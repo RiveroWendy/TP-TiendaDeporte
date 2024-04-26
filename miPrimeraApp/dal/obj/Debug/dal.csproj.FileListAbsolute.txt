@@ -1,0 +1,6 @@
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\dal\bin\Debug\dal.dll
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\dal\bin\Debug\dal.pdb
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\dal\obj\Debug\dal.csproj.AssemblyReference.cache
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\dal\obj\Debug\dal.csproj.CoreCompileInputs.cache
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\dal\obj\Debug\dal.dll
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\dal\obj\Debug\dal.pdb

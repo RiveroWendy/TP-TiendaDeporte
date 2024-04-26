@@ -1,0 +1,9 @@
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\bll\bin\Debug\bll.dll
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\bll\bin\Debug\bll.pdb
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\bll\bin\Debug\dal.dll
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\bll\bin\Debug\dal.pdb
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\bll\obj\Debug\bll.csproj.AssemblyReference.cache
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\bll\obj\Debug\bll.csproj.CoreCompileInputs.cache
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\bll\obj\Debug\bll.csproj.Up2Date
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\bll\obj\Debug\bll.dll
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\bll\obj\Debug\bll.pdb

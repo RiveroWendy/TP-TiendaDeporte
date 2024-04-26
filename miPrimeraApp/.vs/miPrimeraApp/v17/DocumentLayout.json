@@ -1,0 +1,143 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1FCC1CBE-AE95-4D27-ABE7-EA0AAC262143}|miPrimeraApp\\UIApp.csproj|c:\\users\\kevin01r\\source\\repos\\miprimeraappdeescritorio\\miprimeraapp\\miprimeraapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FCC1CBE-AE95-4D27-ABE7-EA0AAC262143}|miPrimeraApp\\UIApp.csproj|solutionrelative:miprimeraapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FCC1CBE-AE95-4D27-ABE7-EA0AAC262143}|miPrimeraApp\\UIApp.csproj|c:\\users\\kevin01r\\source\\repos\\miprimeraappdeescritorio\\miprimeraapp\\miprimeraapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1FCC1CBE-AE95-4D27-ABE7-EA0AAC262143}|miPrimeraApp\\UIApp.csproj|solutionrelative:miprimeraapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9586BBC3-3F05-4E7A-9281-E29FC08640D6}|bll\\bll.csproj|C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\bll\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9586BBC3-3F05-4E7A-9281-E29FC08640D6}|bll\\bll.csproj|solutionrelative:bll\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94DBEBDA-9294-4F8D-B1BF-C7CF79F68C4F}|dal\\dal.csproj|C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\dal\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94DBEBDA-9294-4F8D-B1BF-C7CF79F68C4F}|dal\\dal.csproj|solutionrelative:dal\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94DBEBDA-9294-4F8D-B1BF-C7CF79F68C4F}|dal\\dal.csproj|C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\dal\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94DBEBDA-9294-4F8D-B1BF-C7CF79F68C4F}|dal\\dal.csproj|solutionrelative:dal\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9586BBC3-3F05-4E7A-9281-E29FC08640D6}|bll\\bll.csproj|C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\bll\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9586BBC3-3F05-4E7A-9281-E29FC08640D6}|bll\\bll.csproj|solutionrelative:bll\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|UIApp||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FCC1CBE-AE95-4D27-ABE7-EA0AAC262143}|miPrimeraApp\\UIApp.csproj|c:\\users\\kevin01r\\source\\repos\\miprimeraappdeescritorio\\miprimeraapp\\miprimeraapp\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|5e9a8ac2-4f34-4521-858f-4c248ba31532"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 313,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 113,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\miPrimeraApp\\Form1.cs",
+              "RelativeDocumentMoniker": "miPrimeraApp\\Form1.cs",
+              "ToolTip": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\miPrimeraApp\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "miPrimeraApp\\Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T18:28:43.734Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Login.cs",
+              "DocumentMoniker": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\bll\\Login.cs",
+              "RelativeDocumentMoniker": "bll\\Login.cs",
+              "ToolTip": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\bll\\Login.cs",
+              "RelativeToolTip": "bll\\Login.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAQwB0AAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T18:21:08.533Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\dal\\Usuario.cs",
+              "RelativeDocumentMoniker": "dal\\Usuario.cs",
+              "ToolTip": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\dal\\Usuario.cs",
+              "RelativeToolTip": "dal\\Usuario.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T18:18:18.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Conexion.cs",
+              "DocumentMoniker": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\dal\\Conexion.cs",
+              "RelativeDocumentMoniker": "dal\\Conexion.cs",
+              "ToolTip": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\dal\\Conexion.cs",
+              "RelativeToolTip": "dal\\Conexion.cs",
+              "ViewState": "AQIAAHAAAAAAAAAAAAAvwH0AAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T18:16:26.875Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\bll\\Usuario.cs",
+              "RelativeDocumentMoniker": "bll\\Usuario.cs",
+              "ToolTip": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\bll\\Usuario.cs",
+              "RelativeToolTip": "bll\\Usuario.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T17:46:34.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UIApp",
+              "DocumentMoniker": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\miPrimeraApp\\UIApp.csproj",
+              "RelativeDocumentMoniker": "miPrimeraApp\\UIApp.csproj",
+              "ToolTip": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\miPrimeraApp\\UIApp.csproj",
+              "RelativeToolTip": "miPrimeraApp\\UIApp.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-04-18T17:23:20.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\miPrimeraApp\\Form1.cs",
+              "RelativeDocumentMoniker": "miPrimeraApp\\Form1.cs",
+              "ToolTip": "C:\\Users\\kevin01r\\source\\repos\\miPrimeraAppDeEscritorio\\miPrimeraApp\\miPrimeraApp\\Form1.cs",
+              "RelativeToolTip": "miPrimeraApp\\Form1.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAnwCUAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T17:23:12.375Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

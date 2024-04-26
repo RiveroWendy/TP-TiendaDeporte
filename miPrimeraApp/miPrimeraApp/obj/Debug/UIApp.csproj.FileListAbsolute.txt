@@ -1,0 +1,15 @@
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\bin\Debug\miPrimeraApp.exe.config
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\bin\Debug\miPrimeraApp.exe
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\bin\Debug\miPrimeraApp.pdb
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\bin\Debug\bll.dll
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\bin\Debug\dal.dll
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\bin\Debug\bll.pdb
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\bin\Debug\dal.pdb
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\obj\Debug\UIApp.csproj.AssemblyReference.cache
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\obj\Debug\miPrimeraApp.Form1.resources
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\obj\Debug\miPrimeraApp.Properties.Resources.resources
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\obj\Debug\UIApp.csproj.GenerateResource.cache
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\obj\Debug\UIApp.csproj.CoreCompileInputs.cache
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\obj\Debug\UIApp.csproj.Up2Date
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\obj\Debug\miPrimeraApp.exe
+C:\Users\kevin01r\source\repos\miPrimeraAppDeEscritorio\miPrimeraApp\miPrimeraApp\obj\Debug\miPrimeraApp.pdb
