@@ -1,0 +1,6 @@
+D:\UPE 2024\Tecnicas de Programacion\PROYECTOS VISUAL STUDIO\Deportes\DAL\bin\Debug\DAL.dll
+D:\UPE 2024\Tecnicas de Programacion\PROYECTOS VISUAL STUDIO\Deportes\DAL\bin\Debug\DAL.pdb
+D:\UPE 2024\Tecnicas de Programacion\PROYECTOS VISUAL STUDIO\Deportes\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\UPE 2024\Tecnicas de Programacion\PROYECTOS VISUAL STUDIO\Deportes\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\UPE 2024\Tecnicas de Programacion\PROYECTOS VISUAL STUDIO\Deportes\DAL\obj\Debug\DAL.dll
+D:\UPE 2024\Tecnicas de Programacion\PROYECTOS VISUAL STUDIO\Deportes\DAL\obj\Debug\DAL.pdb
