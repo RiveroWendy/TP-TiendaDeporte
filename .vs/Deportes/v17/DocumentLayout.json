@@ -1,29 +1,29 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\",
+  "WorkspaceRootPath": "C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\uideportes\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|c:\\users\\wendy\\onedrive\\documentos\\github\\tp-tiendadeporte\\uideportes\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|solutionrelative:uideportes\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\uideportes\\formcrearusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\uideportes\\formcrearusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|solutionrelative:uideportes\\formcrearusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|c:\\users\\kevin01r\\source\\repos\\tp-tiendadeporte\\uideportes\\formadministrador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\uideportes\\formadministrador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|solutionrelative:uideportes\\formadministrador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\uideportes\\formbuscarusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\uideportes\\formbuscarusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|solutionrelative:uideportes\\formbuscarusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\uideportes\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\uideportes\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|solutionrelative:uideportes\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\uideportes\\formadministrador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\uideportes\\formadministrador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F0E77C25-5063-4E5E-83D1-3046EEA4D156}|UIDeportes\\UIDeportes.csproj|solutionrelative:uideportes\\formadministrador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 146,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -47,10 +47,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -80,9 +76,9 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\UIDeportes\\Form1.cs",
               "RelativeDocumentMoniker": "UIDeportes\\Form1.cs",
-              "ToolTip": "C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\Form1.cs",
+              "ToolTip": "C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\UIDeportes\\Form1.cs",
               "RelativeToolTip": "UIDeportes\\Form1.cs",
               "ViewState": "AQIAABwAAAAAAAAAAAASwDkAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -92,63 +88,59 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Form1.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\Form1.cs",
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\UIDeportes\\Form1.cs",
               "RelativeDocumentMoniker": "UIDeportes\\Form1.cs",
-              "ToolTip": "C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\Form1.cs [Dise\u00F1o]",
-              "RelativeToolTip": "UIDeportes\\Form1.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\UIDeportes\\Form1.cs [Design]",
+              "RelativeToolTip": "UIDeportes\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-02T13:29:50.222Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "FormAdministrador.cs",
-              "DocumentMoniker": "C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\FormAdministrador.cs",
+              "DocumentMoniker": "C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\UIDeportes\\FormAdministrador.cs",
               "RelativeDocumentMoniker": "UIDeportes\\FormAdministrador.cs",
-              "ToolTip": "C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\FormAdministrador.cs",
+              "ToolTip": "C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\UIDeportes\\FormAdministrador.cs",
               "RelativeToolTip": "UIDeportes\\FormAdministrador.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T14:05:31.575Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T14:05:31.575Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "FormCrearUsuario.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\FormCrearUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\UIDeportes\\FormCrearUsuario.cs",
               "RelativeDocumentMoniker": "UIDeportes\\FormCrearUsuario.cs",
               "ToolTip": "C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\FormCrearUsuario.cs [Dise\u00F1o]",
-              "RelativeToolTip": "UIDeportes\\FormCrearUsuario.cs [Dise\u00F1o]",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\FormCrearUsuario.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T13:35:38.507Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-05-02T13:35:38.507Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "FormAdministrador.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\FormAdministrador.cs",
+              "DocumentMoniker": "C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\UIDeportes\\FormAdministrador.cs",
               "RelativeDocumentMoniker": "UIDeportes\\FormAdministrador.cs",
               "ToolTip": "C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\FormAdministrador.cs [Dise\u00F1o]",
-              "RelativeToolTip": "UIDeportes\\FormAdministrador.cs [Dise\u00F1o]",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\FormAdministrador.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T13:30:10.52Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-05-02T13:30:10.52Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "FormBuscarUsuario.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\FormBuscarUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\wendy\\OneDrive\\Documentos\\Github\\TP-TiendaDeporte\\UIDeportes\\FormBuscarUsuario.cs",
               "RelativeDocumentMoniker": "UIDeportes\\FormBuscarUsuario.cs",
               "ToolTip": "C:\\Users\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\FormBuscarUsuario.cs [Dise\u00F1o]",
-              "RelativeToolTip": "UIDeportes\\FormBuscarUsuario.cs [Dise\u00F1o]",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\kevin01r\\source\\repos\\TP-TiendaDeporte\\UIDeportes\\FormBuscarUsuario.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T14:05:43.534Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-05-02T14:05:43.534Z"
             }
           ]
         },
