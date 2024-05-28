@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    internal class Direccion
+    public class Direccion
     {
-    }
+		private int myVar;
+
+		public int MyProperty
+		{
+			get { return myVar; }
+			set { myVar = value; }
+		}
+
+	}
 }

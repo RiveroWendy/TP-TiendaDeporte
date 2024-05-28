@@ -7,78 +7,84 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BE;
+using BLL;
+
+
+
 
 namespace UIDeportes
 {
     public partial class Form1 : Form
     {
+        LoginBLL loginBLL = new LoginBLL();
         FormGerente formularioGerente;
         FormEncargadoDeposito formularioEncargadoDeposito;
         FormCajero formularioCajero;
         FormVendedor formularioVendedor;
         FormAdministrador formularioAdministrativo;
-
         public Form1()
         {
             InitializeComponent();
             formularioGerente = new FormGerente();
             formularioEncargadoDeposito = new FormEncargadoDeposito();
             formularioCajero = new FormCajero();
-            formularioVendedor = new FormVendedor();   
-            formularioAdministrativo = new FormAdministrador();    
-
+            formularioVendedor = new FormVendedor();
+            formularioAdministrativo = new FormAdministrador();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+        
 
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            // Verifico usuario y contraseña
             string nombreUsuario = tboxNombreUsuario.Text;
-            string contraseña = tboxClave.Text;
+            string clave = tboxClave.Text;
 
-            if (nombreUsuario == "gerente" && contraseña == "123")
+            bool loginExitoso = loginBLL.Login(nombreUsuario, clave);
+
+            if (loginExitoso)
             {
-                // Oculto la ventana actual (Form1)
+                string cargo = loginBLL.ObtenerCargo(nombreUsuario);
+
+                switch (cargo)
+                {
+                    case "Gerente":
+                        formularioGerente.Show();
+                        break;
+                    case "Encargado de Depósito":
+                        formularioEncargadoDeposito.Show();
+                        break;
+                    case "Cajero":
+                        formularioCajero.Show();
+                        break;
+                    case "Vendedor":
+                        formularioVendedor.Show();
+                        break;
+                    case "Administrador":
+                        formularioAdministrativo.Show();
+                        break;
+                    default:
+                        MessageBox.Show("Cargo no reconocido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
                 this.Hide();
-                formularioGerente.Show();
-            }
-            else if (nombreUsuario == "edeposito" && contraseña == "123")
-            {
-                // Oculto la ventana actual (Form1)
-                this.Hide();
-                formularioEncargadoDeposito.Show();
-            }else if (nombreUsuario == "cajero" && contraseña == "123")
-            {
-                // Oculto la ventana actual (Form1)
-                this.Hide();
-                formularioCajero.Show();
-            }
-            else if (nombreUsuario == "vendedor" && contraseña == "123")
-            {
-                // Oculto la ventana actual (Form1)
-                this.Hide();
-                formularioVendedor.Show();
-            }
-            else if (nombreUsuario == "administrador" && contraseña == "123")
-            {
-                // Oculto la ventana actual (Form1)
-                this.Hide();
-                formularioAdministrativo.Show();
             }
             else
             {
-                MessageBox.Show("Nombre de usuario o contraseña incorrectos.\nPor favor, inténtelo de nuevo.");
+                MessageBox.Show("Nombre de usuario o clave incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void tboxNombreUsuario_TextChanged(object sender, EventArgs e)
         {
 
         }
+
         private void tboxClave_TextChanged(object sender, EventArgs e)
         {
 

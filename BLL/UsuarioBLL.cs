@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BE;
+using DAL;
 
-
-namespace BE
+namespace BLL
 {
-    public class LoginBE
+    public class UsuarioBLL
     {
-        public string NombreUsuario { get; set; }
-        public string Clave { get; set; }
+        
     }
 }
