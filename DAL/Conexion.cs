@@ -22,9 +22,20 @@ namespace DAL
          * base de datos (en este caso, SqlServer)
          * 
          */
+        
+
         private void Conectar()
         {   // HACK: Cadena de conexión hardcodeada. Luego ponerla como parametro de configuración del proyecto u otra alternativa.
-            strCadenaDeConexion = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=SportExpress;Data Source=.\sqlexpress";
+            //strCadenaDeConexion = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=SportExpress;Data Source=.\sqlexpress";
+            //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            //builder.DataSource = "localhost";
+            //builder.InitialCatalog = "master";
+            //builder.UserID = "sa";
+            //builder.Password = "";
+            //builder.ApplicationName = "MyApp";
+
+            string strCadenaDeConexion = "Server=localhost;Database=sportexpress;Integrated Security=True;";
+
 
             //Instanció un objeto del tipo SqlConnection
             objConexion = new SqlConnection();

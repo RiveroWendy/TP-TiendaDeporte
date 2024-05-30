@@ -6,7 +6,24 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    internal class Stock
+    public class Stock
     {
-    }
+		private int _idProducto;
+
+		public int IdProducto
+		{
+			get { return _idProducto; }
+			set { _idProducto = value; }
+		}
+
+		private int _cantidad;
+
+		public int Cantidad
+		{
+			get { return _cantidad; }
+			set { _cantidad = value; }
+		}
+
+		public Stock() { }
+	}
 }
