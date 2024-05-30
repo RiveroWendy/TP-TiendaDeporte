@@ -46,7 +46,7 @@
             // btnBuscarUsuario
             // 
             this.btnBuscarUsuario.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnBuscarUsuario.Location = new System.Drawing.Point(229, 242);
+            this.btnBuscarUsuario.Location = new System.Drawing.Point(229, 189);
             this.btnBuscarUsuario.Name = "btnBuscarUsuario";
             this.btnBuscarUsuario.Size = new System.Drawing.Size(300, 99);
             this.btnBuscarUsuario.TabIndex = 1;
@@ -54,14 +54,14 @@
             this.btnBuscarUsuario.UseVisualStyleBackColor = false;
             this.btnBuscarUsuario.Click += new System.EventHandler(this.btnBuscarUsuario_Click);
             // 
-            // FormAdministrativo
+            // FormAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(801, 479);
             this.Controls.Add(this.btnBuscarUsuario);
             this.Controls.Add(this.btnCrearUsuario);
-            this.Name = "FormAdministrativo";
+            this.Name = "FormAdministrador";
             this.Text = "FormAdministrativo";
             this.ResumeLayout(false);
 

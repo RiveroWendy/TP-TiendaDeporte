@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Gerente : Cargo
-    {
-    }
+    public class Gerente : Cargo { }
 }

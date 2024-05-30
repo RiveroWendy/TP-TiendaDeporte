@@ -13,11 +13,13 @@ namespace UIDeportes
     public partial class FormAdministrador : Form
     {
         FormCrearUsuario formularioCrearUsuario;
+        FormBuscarUsuario formularioBuscarUsuario;
 
         public FormAdministrador()
         {
             InitializeComponent();
             formularioCrearUsuario = new FormCrearUsuario();
+            formularioBuscarUsuario = new FormBuscarUsuario();   
         }
 
         private void btnCrearUsuario_Click(object sender, EventArgs e)
@@ -29,7 +31,8 @@ namespace UIDeportes
 
         private void btnBuscarUsuario_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            formularioBuscarUsuario.Show();
         }
     }
 }

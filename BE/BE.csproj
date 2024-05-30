@@ -47,12 +47,13 @@
     <Compile Include="CategoriaProducto.cs" />
     <Compile Include="ClienteBE.cs" />
     <Compile Include="DetalleVentaBE.cs" />
-    <Compile Include="Direccion.cs" />
-    <Compile Include="Empleado.cs" />
+    <Compile Include="DireccionBE.cs" />
+    <Compile Include="EmpleadoBE.cs" />
     <Compile Include="EncargadoDeposito.cs" />
     <Compile Include="Gerente.cs" />
+    <Compile Include="LocalidadBE.cs" />
     <Compile Include="LoginBE.cs" />
-    <Compile Include="Persona.cs" />
+    <Compile Include="PersonaBE.cs" />
     <Compile Include="ProductoBE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedor.cs" />

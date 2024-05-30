@@ -48,12 +48,18 @@
             this.lblIngreseDireccion = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardarUsuario = new System.Windows.Forms.Button();
+            this.lblLocalidad = new System.Windows.Forms.Label();
+            this.tboxLocalidad = new System.Windows.Forms.TextBox();
+            this.tboxNombreUsuario = new System.Windows.Forms.TextBox();
+            this.lblNombreUsuario = new System.Windows.Forms.Label();
+            this.tboxClave = new System.Windows.Forms.TextBox();
+            this.lblClave = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblCargos
             // 
             this.lblCargos.AutoSize = true;
-            this.lblCargos.Location = new System.Drawing.Point(63, 366);
+            this.lblCargos.Location = new System.Drawing.Point(63, 493);
             this.lblCargos.Name = "lblCargos";
             this.lblCargos.Size = new System.Drawing.Size(150, 20);
             this.lblCargos.TabIndex = 0;
@@ -69,10 +75,11 @@
             "Cajero",
             "Encargado de Deposito",
             "Gerente"});
-            this.cboxCargos.Location = new System.Drawing.Point(294, 366);
+            this.cboxCargos.Location = new System.Drawing.Point(294, 493);
             this.cboxCargos.Name = "cboxCargos";
             this.cboxCargos.Size = new System.Drawing.Size(225, 28);
             this.cboxCargos.TabIndex = 2;
+            this.cboxCargos.SelectedIndexChanged += new System.EventHandler(this.cboxCargos_SelectedIndexChanged);
             // 
             // lblDNI
             // 
@@ -149,7 +156,7 @@
             // 
             // tboxCP
             // 
-            this.tboxCP.Location = new System.Drawing.Point(792, 302);
+            this.tboxCP.Location = new System.Drawing.Point(792, 261);
             this.tboxCP.Name = "tboxCP";
             this.tboxCP.Size = new System.Drawing.Size(255, 26);
             this.tboxCP.TabIndex = 20;
@@ -157,7 +164,7 @@
             // lblCP
             // 
             this.lblCP.AutoSize = true;
-            this.lblCP.Location = new System.Drawing.Point(618, 302);
+            this.lblCP.Location = new System.Drawing.Point(618, 261);
             this.lblCP.Name = "lblCP";
             this.lblCP.Size = new System.Drawing.Size(107, 20);
             this.lblCP.TabIndex = 19;
@@ -165,7 +172,7 @@
             // 
             // tboxAlturaCalle
             // 
-            this.tboxAlturaCalle.Location = new System.Drawing.Point(792, 248);
+            this.tboxAlturaCalle.Location = new System.Drawing.Point(792, 207);
             this.tboxAlturaCalle.Name = "tboxAlturaCalle";
             this.tboxAlturaCalle.Size = new System.Drawing.Size(255, 26);
             this.tboxAlturaCalle.TabIndex = 18;
@@ -173,7 +180,7 @@
             // lblAltura
             // 
             this.lblAltura.AutoSize = true;
-            this.lblAltura.Location = new System.Drawing.Point(618, 248);
+            this.lblAltura.Location = new System.Drawing.Point(618, 207);
             this.lblAltura.Name = "lblAltura";
             this.lblAltura.Size = new System.Drawing.Size(90, 20);
             this.lblAltura.TabIndex = 17;
@@ -181,7 +188,7 @@
             // 
             // tboxNombreCalle
             // 
-            this.tboxNombreCalle.Location = new System.Drawing.Point(792, 193);
+            this.tboxNombreCalle.Location = new System.Drawing.Point(792, 152);
             this.tboxNombreCalle.Name = "tboxNombreCalle";
             this.tboxNombreCalle.Size = new System.Drawing.Size(255, 26);
             this.tboxNombreCalle.TabIndex = 16;
@@ -189,7 +196,7 @@
             // lblCalle
             // 
             this.lblCalle.AutoSize = true;
-            this.lblCalle.Location = new System.Drawing.Point(618, 193);
+            this.lblCalle.Location = new System.Drawing.Point(618, 152);
             this.lblCalle.Name = "lblCalle";
             this.lblCalle.Size = new System.Drawing.Size(104, 20);
             this.lblCalle.TabIndex = 15;
@@ -198,7 +205,7 @@
             // lblIngreseDireccion
             // 
             this.lblIngreseDireccion.AutoSize = true;
-            this.lblIngreseDireccion.Location = new System.Drawing.Point(618, 146);
+            this.lblIngreseDireccion.Location = new System.Drawing.Point(618, 104);
             this.lblIngreseDireccion.Name = "lblIngreseDireccion";
             this.lblIngreseDireccion.Size = new System.Drawing.Size(149, 20);
             this.lblIngreseDireccion.TabIndex = 21;
@@ -207,7 +214,7 @@
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnCancelar.Location = new System.Drawing.Point(875, 493);
+            this.btnCancelar.Location = new System.Drawing.Point(875, 446);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(172, 67);
             this.btnCancelar.TabIndex = 23;
@@ -218,18 +225,74 @@
             // btnGuardarUsuario
             // 
             this.btnGuardarUsuario.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnGuardarUsuario.Location = new System.Drawing.Point(622, 493);
+            this.btnGuardarUsuario.Location = new System.Drawing.Point(622, 446);
             this.btnGuardarUsuario.Name = "btnGuardarUsuario";
             this.btnGuardarUsuario.Size = new System.Drawing.Size(172, 67);
             this.btnGuardarUsuario.TabIndex = 22;
             this.btnGuardarUsuario.Text = "Guardar Usuario";
             this.btnGuardarUsuario.UseVisualStyleBackColor = false;
+            this.btnGuardarUsuario.Click += new System.EventHandler(this.btnGuardarUsuario_Click);
+            // 
+            // lblLocalidad
+            // 
+            this.lblLocalidad.AutoSize = true;
+            this.lblLocalidad.Location = new System.Drawing.Point(618, 308);
+            this.lblLocalidad.Name = "lblLocalidad";
+            this.lblLocalidad.Size = new System.Drawing.Size(77, 20);
+            this.lblLocalidad.TabIndex = 24;
+            this.lblLocalidad.Text = "Localidad";
+            this.lblLocalidad.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // tboxLocalidad
+            // 
+            this.tboxLocalidad.Location = new System.Drawing.Point(792, 308);
+            this.tboxLocalidad.Name = "tboxLocalidad";
+            this.tboxLocalidad.Size = new System.Drawing.Size(255, 26);
+            this.tboxLocalidad.TabIndex = 25;
+            // 
+            // tboxNombreUsuario
+            // 
+            this.tboxNombreUsuario.Location = new System.Drawing.Point(294, 366);
+            this.tboxNombreUsuario.Name = "tboxNombreUsuario";
+            this.tboxNombreUsuario.Size = new System.Drawing.Size(225, 26);
+            this.tboxNombreUsuario.TabIndex = 27;
+            // 
+            // lblNombreUsuario
+            // 
+            this.lblNombreUsuario.AutoSize = true;
+            this.lblNombreUsuario.Location = new System.Drawing.Point(63, 369);
+            this.lblNombreUsuario.Name = "lblNombreUsuario";
+            this.lblNombreUsuario.Size = new System.Drawing.Size(146, 20);
+            this.lblNombreUsuario.TabIndex = 26;
+            this.lblNombreUsuario.Text = "Nombre de Usuario";
+            // 
+            // tboxClave
+            // 
+            this.tboxClave.Location = new System.Drawing.Point(294, 429);
+            this.tboxClave.Name = "tboxClave";
+            this.tboxClave.Size = new System.Drawing.Size(225, 26);
+            this.tboxClave.TabIndex = 29;
+            // 
+            // lblClave
+            // 
+            this.lblClave.AutoSize = true;
+            this.lblClave.Location = new System.Drawing.Point(63, 432);
+            this.lblClave.Name = "lblClave";
+            this.lblClave.Size = new System.Drawing.Size(48, 20);
+            this.lblClave.TabIndex = 28;
+            this.lblClave.Text = "Clave";
             // 
             // FormCrearUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 637);
+            this.Controls.Add(this.tboxClave);
+            this.Controls.Add(this.lblClave);
+            this.Controls.Add(this.tboxNombreUsuario);
+            this.Controls.Add(this.lblNombreUsuario);
+            this.Controls.Add(this.tboxLocalidad);
+            this.Controls.Add(this.lblLocalidad);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardarUsuario);
             this.Controls.Add(this.lblIngreseDireccion);
@@ -280,5 +343,11 @@
         private System.Windows.Forms.Label lblIngreseDireccion;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardarUsuario;
+        private System.Windows.Forms.Label lblLocalidad;
+        private System.Windows.Forms.TextBox tboxLocalidad;
+        private System.Windows.Forms.TextBox tboxNombreUsuario;
+        private System.Windows.Forms.Label lblNombreUsuario;
+        private System.Windows.Forms.TextBox tboxClave;
+        private System.Windows.Forms.Label lblClave;
     }
 }

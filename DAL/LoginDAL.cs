@@ -28,8 +28,13 @@ namespace DAL
 
         public string ObtenerCargoUsuario(string nombreUsuario)
         {
-            DataTable tablaUsuarios = conexion.LeerPorComando("SELECT u.NombreUsuario, c.Nombre FROM Usuario u JOIN Empleado e ON u.IdEmpleado = e.IdEmpleado JOIN Cargo c ON e.IdTipoEmpleado = c.IdCargo");
-
+            DataTable tablaUsuarios = conexion.LeerPorComando("SELECT u.NombreUsuario, c.Nombre FROM Usuario u JOIN Empleado e ON u.IdEmpleado = e.IdEmpleado JOIN Cargo c ON e.IdCargo = c.IdCargo");
+            /*DataTable tablaUsuarios = conexion.LeerPorComando(
+        "SELECT u.NombreUsuario, c.Nombre " +
+        "FROM Usuario u " +
+        "JOIN Empleado e ON u.IdEmpleado = e.IdEmpleado " +
+        "JOIN Cargo c ON e.IdCargo = c.IdCargo " + // Cambio de e.IdTipoEmpleado a e.IdCargo
+        "WHERE u.NombreUsuario = @NombreUsuario");*/
             foreach (DataRow fila in tablaUsuarios.Rows)
             {
                 if (fila["NombreUsuario"].ToString() == nombreUsuario)

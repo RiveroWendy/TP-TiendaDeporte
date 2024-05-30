@@ -33,12 +33,18 @@
             this.lblDNI = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnBuscarUsuario = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CorreoElectronico = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIngreseDireccion
             // 
             this.lblIngreseDireccion.AutoSize = true;
-            this.lblIngreseDireccion.Location = new System.Drawing.Point(161, 98);
+            this.lblIngreseDireccion.Location = new System.Drawing.Point(66, 87);
             this.lblIngreseDireccion.Name = "lblIngreseDireccion";
             this.lblIngreseDireccion.Size = new System.Drawing.Size(195, 20);
             this.lblIngreseDireccion.TabIndex = 24;
@@ -46,7 +52,7 @@
             // 
             // tboxDNI
             // 
-            this.tboxDNI.Location = new System.Drawing.Point(229, 160);
+            this.tboxDNI.Location = new System.Drawing.Point(134, 149);
             this.tboxDNI.Name = "tboxDNI";
             this.tboxDNI.Size = new System.Drawing.Size(225, 26);
             this.tboxDNI.TabIndex = 23;
@@ -54,17 +60,16 @@
             // lblDNI
             // 
             this.lblDNI.AutoSize = true;
-            this.lblDNI.Location = new System.Drawing.Point(161, 166);
+            this.lblDNI.Location = new System.Drawing.Point(66, 155);
             this.lblDNI.Name = "lblDNI";
             this.lblDNI.Size = new System.Drawing.Size(37, 20);
             this.lblDNI.TabIndex = 22;
             this.lblDNI.Text = "DNI";
-            this.lblDNI.Click += new System.EventHandler(this.lblDNI_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnCancelar.Location = new System.Drawing.Point(389, 280);
+            this.btnCancelar.Location = new System.Drawing.Point(691, 526);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(172, 67);
             this.btnCancelar.TabIndex = 26;
@@ -75,25 +80,75 @@
             // btnBuscarUsuario
             // 
             this.btnBuscarUsuario.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnBuscarUsuario.Location = new System.Drawing.Point(136, 280);
+            this.btnBuscarUsuario.Location = new System.Drawing.Point(438, 526);
             this.btnBuscarUsuario.Name = "btnBuscarUsuario";
             this.btnBuscarUsuario.Size = new System.Drawing.Size(172, 67);
             this.btnBuscarUsuario.TabIndex = 25;
             this.btnBuscarUsuario.Text = "Buscar Usuario";
             this.btnBuscarUsuario.UseVisualStyleBackColor = false;
+            this.btnBuscarUsuario.Click += new System.EventHandler(this.btnBuscarUsuario_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nombre,
+            this.Apellido,
+            this.CorreoElectronico,
+            this.Cargo});
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Location = new System.Drawing.Point(63, 229);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.RowTemplate.Height = 28;
+            this.dataGridView1.Size = new System.Drawing.Size(800, 244);
+            this.dataGridView1.TabIndex = 27;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 8;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.Width = 150;
+            // 
+            // Apellido
+            // 
+            this.Apellido.HeaderText = "Apellido";
+            this.Apellido.MinimumWidth = 8;
+            this.Apellido.Name = "Apellido";
+            this.Apellido.Width = 150;
+            // 
+            // CorreoElectronico
+            // 
+            this.CorreoElectronico.HeaderText = "Correo Electronico";
+            this.CorreoElectronico.MinimumWidth = 8;
+            this.CorreoElectronico.Name = "CorreoElectronico";
+            this.CorreoElectronico.Width = 150;
+            // 
+            // Cargo
+            // 
+            this.Cargo.HeaderText = "Cargo";
+            this.Cargo.MinimumWidth = 8;
+            this.Cargo.Name = "Cargo";
+            this.Cargo.Width = 150;
             // 
             // FormBuscarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(760, 490);
+            this.ClientSize = new System.Drawing.Size(1037, 833);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnBuscarUsuario);
             this.Controls.Add(this.lblIngreseDireccion);
             this.Controls.Add(this.tboxDNI);
             this.Controls.Add(this.lblDNI);
             this.Name = "FormBuscarUsuario";
+            this.RightToLeftLayout = true;
             this.Text = "FormBuscarUsuario";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,5 +161,10 @@
         private System.Windows.Forms.Label lblDNI;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnBuscarUsuario;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CorreoElectronico;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cargo;
     }
 }

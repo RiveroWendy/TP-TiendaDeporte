@@ -91,7 +91,8 @@ namespace DAL
             return unaTabla;
         }
 
-        public DataTable LeerPorComando(string pComando)
+        /*public DataTable LeerPorComando(string pComando)*/
+        public DataTable LeerPorComando(string pComando, SqlParameter[] pParametrosSql = null)
         {
             //Instancio un objeto del tipo DataTable
             var unaTabla = new DataTable();
@@ -134,7 +135,8 @@ namespace DAL
             return unaTabla;
         }
 
-        public int EscribirPorComando(string pTexto)
+        /*public int EscribirPorComando(string pTexto)*/
+        public int EscribirPorComando(string pTexto, SqlParameter[] pParametrosSql = null)
         {
             //Instanció una variable filasAfectadas que va a terminar devolviendo la cantidad de filas afectadas.
             int filasAfectadas = 0;
