@@ -46,26 +46,6 @@ namespace BLL
             return usuarioDAL.BuscarUsuarioPorDni(dni);
         }
 
-        /*public void EditarUsuario(UsuarioBE usuario)
-        {
-            usuarioDAL.EditarUsuario(usuario);
-        }
-
-        public void EliminarUsuario(int idUsuario)
-        {
-            usuarioDAL.EliminarUsuario(idUsuario);
-        }*/
-
-
-
-        /*public void EditarUsuario(EmpleadoBE empleado)
-        {
-            throw new NotImplementedException();
-        }*/
-        /*public UsuarioBE ObtenerUsuarioPorId(int idUsuario)
-        {
-            return usuarioDAL.ObtenerUsuarioPorId(idUsuario);
-        }*/
     }
 }
 
