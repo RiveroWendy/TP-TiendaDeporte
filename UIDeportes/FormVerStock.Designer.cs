@@ -52,6 +52,7 @@
             this.btnBuscarProducto.TabIndex = 1;
             this.btnBuscarProducto.Text = "Buscar Producto";
             this.btnBuscarProducto.UseVisualStyleBackColor = true;
+            this.btnBuscarProducto.Click += new System.EventHandler(this.btnBuscarProducto_Click);
             // 
             // tboxNombreProducto
             // 

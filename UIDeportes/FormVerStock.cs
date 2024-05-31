@@ -26,5 +26,10 @@ namespace UIDeportes
         {
             this.Close();
         }
+
+        private void btnBuscarProducto_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -57,7 +57,7 @@
             this.tboxNombre.Name = "tboxNombre";
             this.tboxNombre.Size = new System.Drawing.Size(284, 26);
             this.tboxNombre.TabIndex = 1;
-            this.tboxNombre.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+           // this.tboxNombre.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btnGuardarProducto
             // 
@@ -67,6 +67,7 @@
             this.btnGuardarProducto.TabIndex = 2;
             this.btnGuardarProducto.Text = "Guardar Producto";
             this.btnGuardarProducto.UseVisualStyleBackColor = true;
+            this.btnGuardarProducto.Click += new System.EventHandler(this.btnGuardarProducto_Click);
             // 
             // btnCancelar
             // 
