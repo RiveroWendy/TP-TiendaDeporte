@@ -19,18 +19,22 @@ namespace BLL
             _productos = new List<ProductoBE>();
         }
 
-        public void CrearProducto(int idProducto, string nombre, long precio, Stock cantidad, CategoriaProducto categoria, Proveedor proveedor)
+        public void CrearProducto(ProductoBE producto)
         {
-            ProductoBE nuevoProducto = new ProductoBE
+            try
             {
-                IdProducto = idProducto,
-                Nombre = nombre,
-                Precio = precio,
-                Cantidad = cantidad,
-                Categoria = categoria,
-                Proveedor = proveedor
-            };
-            _productos.Add(nuevoProducto);
+                if (producto == null)
+                {
+                    throw new ArgumentNullException(nameof(producto), "El producto no puede ser nulo");
+                }
+
+                _productoDAL.CrearProducto(producto);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error al crear el producto. Detalles: " + ex.Message, ex);
+            }
         }
 
         public Stock VisualizarStock(int idProducto)
@@ -86,6 +90,32 @@ namespace BLL
                     return encontradoProducto;
                 }
                 return null;
+            }
+        }
+
+        public List<CategoriaProducto> ObtenerCategoria()
+        {
+            try
+            {
+                var productoDAL = new ProductoDAL();
+                return productoDAL.ObtenerCategoria();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las categorías. Detalles: " + ex.Message, ex);
+            }
+        }
+
+        public List<Proveedor> ObtenerProveedor()
+        {
+            try
+            {
+                var productoDAL = new ProductoDAL();
+                return productoDAL.ObtenerProveedor();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los proveedores. Detalles: " + ex.Message, ex);
             }
         }
     }

@@ -39,6 +39,7 @@ namespace UIDeportes
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            //Valor TextBox Nombre
             string input = tboxNombreProducto.Text;
             int idProducto;
 

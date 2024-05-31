@@ -148,7 +148,7 @@ namespace DAL
         public int EscribirPorComando(string pTexto)
         {
             //Instanció una variable filasAfectadas que va a terminar devolviendo la cantidad de filas afectadas.
-            int filasAfectadas = 0;
+            int identificador = 0;
 
             //Instancio un objeto del tipo SqlCommand
             var objComando = new SqlCommand();
@@ -158,18 +158,26 @@ namespace DAL
 
             try
             {
-                objComando.CommandText = pTexto;
+                //scope_identity trae el ultimo valor identity insertado
+                //Al insertar traemos de vuelta su identificador unico autoincrementable 
+                //y por ultimo lo casteamos a int
+                objComando.CommandText = pTexto + "; SELECT CAST(scope_identity() AS int);";
                 objComando.CommandType = CommandType.Text;
                 objComando.Connection = this.objConexion;
 
                 //El método ExecuteNonQuery() me devuelve la cantidad de filas afectadas.
-                filasAfectadas = objComando.ExecuteNonQuery();
+                //para poder devolver el id unico autoincrementable
+                object result = objComando.ExecuteScalar();
 
+                if (result != null)
+                {
+                    identificador = Convert.ToInt32(result);
+                }
 
             }
             catch (Exception)
             {
-                filasAfectadas = -1;
+                identificador = -1;
                 throw;
             }
             finally
@@ -179,7 +187,7 @@ namespace DAL
             }
 
 
-            return filasAfectadas;
+            return identificador;
         }
 
 

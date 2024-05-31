@@ -55,5 +55,13 @@ namespace BE
         }
 
         public ProductoBE() { }
+
+        public ProductoBE(string nombre, long precio, Stock cantidad, CategoriaProducto categoria)
+        {
+            this.Nombre = nombre;
+            this.Precio = precio;
+            this.Cantidad = cantidad;
+            this.Categoria = categoria;
+        }
     }
 }
