@@ -17,16 +17,19 @@ namespace UIDeportes
         private UsuarioBLL _usuarioBLL;
         public FormBuscarUsuario()
         {
+            // Inicializamos los componentes del formulario
             InitializeComponent();
 
+            // Creamos una instancia de UsuarioBLL
             _usuarioBLL = new UsuarioBLL();
 
-            // Crear columnas de botones
+            // Creamos una columna de botones para editar
             DataGridViewButtonColumn editarColumna = new DataGridViewButtonColumn();
             editarColumna.Name = "Editar";
             editarColumna.Text = "Editar";
             editarColumna.UseColumnTextForButtonValue = true;
 
+            // Creamos una columna de botones para eliminar
             DataGridViewButtonColumn eliminarColumna = new DataGridViewButtonColumn();
             eliminarColumna.Name = "Eliminar";
             eliminarColumna.Text = "Eliminar";
@@ -36,7 +39,7 @@ namespace UIDeportes
             dataGridView1.Columns.Add(editarColumna);
             dataGridView1.Columns.Add(eliminarColumna);
 
-            // Manejar el evento de clic del botón de editar
+            // Manejamos el evento de clic en el contenido de las celdas del DataGridView
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
         }
 
@@ -48,13 +51,19 @@ namespace UIDeportes
         private void btnBuscarUsuario_Click(object sender, EventArgs e)
         {
             int dni;
+
+            // Intentamos convertir el texto del TextBox a un número entero
             if (int.TryParse(tboxDNI.Text, out  dni))
             {
+                // Buscamos el usuario por DNI utilizando la capa de lógica de negocio (BLL)
                 UsuarioBE usuario = _usuarioBLL.BuscarUsuarioPorDni(dni);
 
+                // Si encontramos un usuario con el DNI proporcionado
                 if (usuario != null)
                 {
+                    // Limpiamos las filas del DataGridView
                     dataGridView1.Rows.Clear();
+                    // Añadimos una nueva fila al DataGridView con la información del usuario
                     dataGridView1.Rows.Add(usuario.IdUsuario, usuario.Empleado.Nombre, usuario.Empleado.Apellido, usuario.Empleado.Correo, usuario.Empleado.Cargo.Nombre, usuario.Empleado.Dni, usuario.Empleado.Cargo.IdCargo, usuario.Empleado.Direccion.IdDireccion, usuario.Empleado.Direccion.Localidad.IdLocalidad);
                 }
                 else
@@ -70,8 +79,10 @@ namespace UIDeportes
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Verificamos que la celda seleccionada sea válida
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
+                // Verificamos si se ha clicado en la columna "Editar"
                 if (dataGridView1.Columns[e.ColumnIndex].Name == "Editar")
                 {
                     // Obtener el DNI del usuario seleccionado en la fila
@@ -89,7 +100,7 @@ namespace UIDeportes
                 }
                 else if (dataGridView1.Columns[e.ColumnIndex].Name == "Eliminar")
                 {
-                    // Código para eliminar el usuario
+                    // Código para eliminar el usuario, aun resta por hacerlo.
                 }
             }
 

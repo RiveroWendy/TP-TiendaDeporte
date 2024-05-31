@@ -34,7 +34,7 @@ namespace UIDeportes
 
         private void CargarDatosUsuario()
         {
-            // Cargar datos del usuario en los controles del formulario
+            // Cargamos los datos del usuario en los controles del formulario
             tboxNombre.Text = _usuario.Empleado.Nombre;
             tboxApellido.Text = _usuario.Empleado.Apellido;
             tboxCorreo.Text = _usuario.Empleado.Correo;
@@ -54,7 +54,7 @@ namespace UIDeportes
             cboxCargo.Items.Add("Gerente");
             cboxCargo.Items.Add("Vendedor");
 
-            // Seleccionar el cargo actual del usuario
+            // Seleccionamos el cargo actual del usuario
             cboxCargo.SelectedItem = _usuario.Empleado.Cargo.Nombre;
         }
 
@@ -65,7 +65,7 @@ namespace UIDeportes
 
         private void btnGuardar_Click_1(object sender, EventArgs e)
         {
-            // Actualizar los datos del usuario con los valores de los controles del formulario
+            // Actualizar¿mos los datos del usuario con los valores de los controles del formulario
             _usuario.Empleado.Nombre = tboxNombre.Text;
             _usuario.Empleado.Apellido = tboxApellido.Text;
             _usuario.Empleado.Correo = tboxCorreo.Text;
@@ -79,15 +79,15 @@ namespace UIDeportes
             _usuario.Empleado.Cargo.Nombre = cboxCargo.SelectedItem.ToString();
 
 
-            // Obtener el nombre del cargo seleccionado del ComboBox
+            // Obtenemos el nombre del cargo seleccionado del ComboBox
             if (cboxCargo.SelectedItem is string selectedCargo)
             {
-                // Buscar el objeto Cargo correspondiente en la lista de cargos
+                // Buscamos el objeto Cargo correspondiente en la lista de cargos
                 Cargo cargoSeleccionado = ObtenerCargoPorNombre(selectedCargo);
 
                 if (cargoSeleccionado != null)
                 {
-                    // Asignar el objeto Cargo al usuario
+                    // Asignamos el objeto Cargo al usuario
                     _usuario.Empleado.Cargo = cargoSeleccionado;
                 }
                 else
@@ -101,9 +101,10 @@ namespace UIDeportes
                 MessageBox.Show("Por favor seleccione un cargo.");
                 return;
             }
-            // Llamar al método de la capa BLL para actualizar el usuario
+            // Llamamos al método de la capa BLL para actualizar el usuario
             _usuarioBLL.ActualizarUsuario(_usuario);
-            //MessageBox.Show("¡Usuario editado con éxito!");
+
+            MessageBox.Show("¡Usuario editado con éxito!");
 
             this.Close();
 
@@ -125,8 +126,10 @@ namespace UIDeportes
 
         private void cboxCargo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Verificamos si el ítem seleccionado es de tipo Cargo
             if (cboxCargo.SelectedItem is Cargo selectedCargo)
             {
+                // Actualizamos el nombre y el Id del cargo del empleado en el objeto _usuario
                 _usuario.Empleado.Cargo.Nombre = selectedCargo.Nombre;
                 _usuario.Empleado.Cargo.IdCargo = selectedCargo.IdCargo;
             }

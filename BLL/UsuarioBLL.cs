@@ -34,10 +34,7 @@ namespace BLL
 
         public void ActualizarUsuario(UsuarioBE usuario)
         {
-            // Verificar que los IDs no sean cero antes de pasarlos a la capa DAL
-            Console.WriteLine($"IdLocalidad: {usuario.Empleado.Direccion.Localidad.IdLocalidad}");
-            Console.WriteLine($"IdDireccion: {usuario.Empleado.Direccion.IdDireccion}");
-            Console.WriteLine($"IdEmpleado: {usuario.Empleado.IdEmpleado}");
+
             usuarioDAL.ActualizarUsuario(usuario);
         }
 

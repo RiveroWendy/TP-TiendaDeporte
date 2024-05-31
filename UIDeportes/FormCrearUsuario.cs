@@ -34,8 +34,13 @@ namespace UIDeportes
         {
             try
             {
+                // Obtenemos la lista de cargos desde la capa de lógica de negocio (BLL)
                 List<Cargo> cargos = usuarioBLL.ObtenerCargos();
+
+                // Asignamos la lista de cargos como fuente de datos del ComboBox
                 cboxCargos.DataSource = cargos;
+
+                // Especificamos las propiedades para mostrar y el valor de los ítems del ComboBox
                 cboxCargos.DisplayMember = "Nombre";
                 cboxCargos.ValueMember = "IdCargo";
             }
@@ -46,7 +51,7 @@ namespace UIDeportes
         }
         private void btnGuardarUsuario_Click(object sender, EventArgs e)
         {
-            // Capturar los valores de los TextBoxes
+            // Capturamos los valores de los TextBoxes
             int dni = int.Parse(tboxDNI.Text);
             string nombre = tboxNombre.Text;
             string apellido = tboxApellido.Text;
@@ -58,14 +63,14 @@ namespace UIDeportes
             string nombreUsuario = tboxNombreUsuario.Text;
             string clave = tboxClave.Text;
 
-            
+            // Verificamos si hay campos obligatorios vacíos
             if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(apellido) || string.IsNullOrEmpty(nombreUsuario) || string.IsNullOrEmpty(clave))
             {
                 MessageBox.Show("Por favor, complete todos los campos obligatorios.");
                 return;
             }
 
-            // Crear instancias de las clases BE
+            // Creamos instancias de las clases BE 
             LocalidadBE localidad = new LocalidadBE
             {
                 NombreLocalidad = nombreLocalidad,
@@ -94,22 +99,28 @@ namespace UIDeportes
 
             try
             {
+                // Llamamos al método para crear el usuario en la capa de lógica de negocio (BLL)
                 usuarioBLL.CrearUsuario(usuario);
-                // Notificar al usuario y cerrar el formulario
+                // Notificamos al usuario y cerramos el formulario
                 MessageBox.Show("Usuario creado exitosamente.");
                 this.Close();
             }
             catch (Exception ex)
             {
+                // Mostramos un mensaje de error en caso de que ocurra una excepción
                 MessageBox.Show("Error al crear el usuario: " + ex.Message);
             }
         }
 
         private void cboxCargos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Obtenemos el cargo seleccionado del ComboBox
             Cargo cargoSeleccionado = cboxCargos.SelectedItem as Cargo;
+
+            // Verificamos si el cargo seleccionado no es nulo
             if (cargoSeleccionado != null)
             {
+                // Asignamos el cargo seleccionado al empleado
                 empleado.Cargo = cargoSeleccionado;
             }
             else
