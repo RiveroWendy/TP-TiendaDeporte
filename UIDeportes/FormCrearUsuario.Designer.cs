@@ -96,6 +96,7 @@
             this.tboxDNI.Name = "tboxDNI";
             this.tboxDNI.Size = new System.Drawing.Size(225, 26);
             this.tboxDNI.TabIndex = 5;
+            this.tboxDNI.TextChanged += new System.EventHandler(this.tboxDNI_TextChanged);
             // 
             // lblNuevoUsuario
             // 

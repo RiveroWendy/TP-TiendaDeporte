@@ -136,6 +136,39 @@ namespace DAL
         }
 
         /*public int EscribirPorComando(string pTexto)*/
+
+        public int EscribirPorComando1(string pTexto, SqlParameter[] pParametrosSql = null)
+        {
+            int filasAfectadas = 0;
+            var objComando = new SqlCommand();
+            this.Conectar();
+
+            try
+            {
+                objComando.CommandText = pTexto;
+                objComando.CommandType = CommandType.Text;
+                objComando.Connection = this.objConexion;
+
+                if (pParametrosSql != null)
+                {
+                    objComando.Parameters.AddRange(pParametrosSql);
+                }
+
+                filasAfectadas = objComando.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                filasAfectadas = -1;
+                throw;
+            }
+            finally
+            {
+                this.Desconectar();
+            }
+
+            return filasAfectadas;
+        }
+        
         public int EscribirPorComando(string pTexto, SqlParameter[] pParametrosSql = null)
         {
             //Instanció una variable filasAfectadas que va a terminar devolviendo la cantidad de filas afectadas.
@@ -172,8 +205,7 @@ namespace DAL
 
             return filasAfectadas;
         }
-
-
+        
         public int EscribirPorStoreProcedure(string pTexto, SqlParameter[] pParametrosSql)
         {
             //Instanció una variable filasAfectadas que va a terminar devolviendo la cantidad de filas afectadas.
@@ -234,8 +266,6 @@ namespace DAL
             return objParametro;
         }
 
-
-
         public SqlParameter crearParametro(string pNombre, double pValor)
         {
 
@@ -285,6 +315,11 @@ namespace DAL
             objParametro.DbType = DbType.Boolean;
 
             return objParametro;
+        }
+
+        internal void EscribirPorComando(SqlParameter[] parametros)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 

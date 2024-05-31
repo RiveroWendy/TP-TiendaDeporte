@@ -20,6 +20,7 @@ namespace UIDeportes
             InitializeComponent();
 
             _usuarioBLL = new UsuarioBLL();
+
             // Crear columnas de botones
             DataGridViewButtonColumn editarColumna = new DataGridViewButtonColumn();
             editarColumna.Name = "Editar";
@@ -46,7 +47,25 @@ namespace UIDeportes
 
         private void btnBuscarUsuario_Click(object sender, EventArgs e)
         {
-            
+            int dni;
+            if (int.TryParse(tboxDNI.Text, out  dni))
+            {
+                UsuarioBE usuario = _usuarioBLL.BuscarUsuarioPorDni(dni);
+
+                if (usuario != null)
+                {
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Rows.Add(usuario.IdUsuario, usuario.Empleado.Nombre, usuario.Empleado.Apellido, usuario.Empleado.Correo, usuario.Empleado.Cargo.Nombre, usuario.Empleado.Dni, usuario.Empleado.Cargo.IdCargo, usuario.Empleado.Direccion.IdDireccion, usuario.Empleado.Direccion.Localidad.IdLocalidad);
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró ningún usuario con ese DNI.", "Usuario no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+           else
+            {
+                MessageBox.Show("Por favor, ingrese un DNI válido.", "DNI inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -55,13 +74,15 @@ namespace UIDeportes
             {
                 if (dataGridView1.Columns[e.ColumnIndex].Name == "Editar")
                 {
-                    // Código para editar el usuario
-                    int usuarioId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["IdUsuario"].Value);
-                    UsuarioBE usuario = _usuarioBLL.BuscarUsuario(usuarioId); ;
+                    // Obtener el DNI del usuario seleccionado en la fila
+                    int dni = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["DNI"].Value);
+
+                    // Buscar el usuario en la base de datos utilizando su DNI
+                    UsuarioBE usuario = _usuarioBLL.BuscarUsuarioPorDni(dni);
+
                     if (usuario != null)
                     {
-                        // Abrir un nuevo formulario para editar el usuario
-
+                        // Abrir el formulario de edición y pasarle el usuario encontrado
                         FormEditarUsuario formEditarUsuario = new FormEditarUsuario(usuario);
                         formEditarUsuario.ShowDialog();
                     }
@@ -69,15 +90,10 @@ namespace UIDeportes
                 else if (dataGridView1.Columns[e.ColumnIndex].Name == "Eliminar")
                 {
                     // Código para eliminar el usuario
-                    int usuarioId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["IdUsuario"].Value);
-                    _usuarioBLL.EliminarUsuario(usuarioId);
-
-                    //EliminarUsuario(usuarioId);
                 }
             }
-        }
 
-    
+        }   
     }
 }
     

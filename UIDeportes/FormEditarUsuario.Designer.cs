@@ -48,11 +48,17 @@
             this.lblCargo = new System.Windows.Forms.Label();
             this.lblEditar = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblDNI = new System.Windows.Forms.Label();
+            this.tboxDni = new System.Windows.Forms.TextBox();
+            this.lblNombreUsuario = new System.Windows.Forms.Label();
+            this.tboxNombreUsuario = new System.Windows.Forms.TextBox();
+            this.lblClave = new System.Windows.Forms.Label();
+            this.tboxClave = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(871, 370);
+            this.btnGuardar.Location = new System.Drawing.Point(871, 410);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(150, 73);
             this.btnGuardar.TabIndex = 0;
@@ -62,7 +68,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(1069, 370);
+            this.btnCancelar.Location = new System.Drawing.Point(1069, 410);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(150, 73);
             this.btnCancelar.TabIndex = 1;
@@ -76,6 +82,7 @@
             this.tboxNombre.Name = "tboxNombre";
             this.tboxNombre.Size = new System.Drawing.Size(315, 26);
             this.tboxNombre.TabIndex = 2;
+            this.tboxNombre.TextChanged += new System.EventHandler(this.tboxNombre_TextChanged);
             // 
             // cboxCargo
             // 
@@ -84,6 +91,7 @@
             this.cboxCargo.Name = "cboxCargo";
             this.cboxCargo.Size = new System.Drawing.Size(315, 28);
             this.cboxCargo.TabIndex = 3;
+            this.cboxCargo.SelectedIndexChanged += new System.EventHandler(this.cboxCargo_SelectedIndexChanged);
             // 
             // lblNombre
             // 
@@ -109,6 +117,7 @@
             this.tboxApellido.Name = "tboxApellido";
             this.tboxApellido.Size = new System.Drawing.Size(315, 26);
             this.tboxApellido.TabIndex = 5;
+            this.tboxApellido.TextChanged += new System.EventHandler(this.tboxApellido_TextChanged);
             // 
             // lblCorreo
             // 
@@ -125,6 +134,7 @@
             this.tboxCorreo.Name = "tboxCorreo";
             this.tboxCorreo.Size = new System.Drawing.Size(315, 26);
             this.tboxCorreo.TabIndex = 7;
+            this.tboxCorreo.TextChanged += new System.EventHandler(this.tboxCorreo_TextChanged);
             // 
             // lblCalle
             // 
@@ -141,6 +151,7 @@
             this.tboxCalle.Name = "tboxCalle";
             this.tboxCalle.Size = new System.Drawing.Size(315, 26);
             this.tboxCalle.TabIndex = 9;
+            this.tboxCalle.TextChanged += new System.EventHandler(this.tboxCalle_TextChanged);
             // 
             // lblNumero
             // 
@@ -157,6 +168,7 @@
             this.tboxNumeroCalle.Name = "tboxNumeroCalle";
             this.tboxNumeroCalle.Size = new System.Drawing.Size(315, 26);
             this.tboxNumeroCalle.TabIndex = 11;
+            this.tboxNumeroCalle.TextChanged += new System.EventHandler(this.tboxNumeroCalle_TextChanged);
             // 
             // lblLocalidad
             // 
@@ -173,6 +185,7 @@
             this.tboxLocalidad.Name = "tboxLocalidad";
             this.tboxLocalidad.Size = new System.Drawing.Size(315, 26);
             this.tboxLocalidad.TabIndex = 13;
+            this.tboxLocalidad.TextChanged += new System.EventHandler(this.tboxLocalidad_TextChanged);
             // 
             // lblCP
             // 
@@ -189,6 +202,7 @@
             this.tboxCodigoPostal.Name = "tboxCodigoPostal";
             this.tboxCodigoPostal.Size = new System.Drawing.Size(315, 26);
             this.tboxCodigoPostal.TabIndex = 15;
+            this.tboxCodigoPostal.TextChanged += new System.EventHandler(this.tboxCodigoPostal_TextChanged);
             // 
             // lblCargo
             // 
@@ -219,11 +233,68 @@
             this.label1.TabIndex = 19;
             this.label1.Text = "Editar Dirección";
             // 
+            // lblDNI
+            // 
+            this.lblDNI.AutoSize = true;
+            this.lblDNI.Location = new System.Drawing.Point(152, 330);
+            this.lblDNI.Name = "lblDNI";
+            this.lblDNI.Size = new System.Drawing.Size(37, 20);
+            this.lblDNI.TabIndex = 21;
+            this.lblDNI.Text = "DNI";
+            // 
+            // tboxDni
+            // 
+            this.tboxDni.Location = new System.Drawing.Point(327, 324);
+            this.tboxDni.Name = "tboxDni";
+            this.tboxDni.Size = new System.Drawing.Size(315, 26);
+            this.tboxDni.TabIndex = 20;
+            this.tboxDni.TextChanged += new System.EventHandler(this.tboxDni_TextChanged);
+            // 
+            // lblNombreUsuario
+            // 
+            this.lblNombreUsuario.AutoSize = true;
+            this.lblNombreUsuario.Location = new System.Drawing.Point(152, 390);
+            this.lblNombreUsuario.Name = "lblNombreUsuario";
+            this.lblNombreUsuario.Size = new System.Drawing.Size(146, 20);
+            this.lblNombreUsuario.TabIndex = 23;
+            this.lblNombreUsuario.Text = "Nombre de Usuario";
+            // 
+            // tboxNombreUsuario
+            // 
+            this.tboxNombreUsuario.Location = new System.Drawing.Point(327, 384);
+            this.tboxNombreUsuario.Name = "tboxNombreUsuario";
+            this.tboxNombreUsuario.Size = new System.Drawing.Size(315, 26);
+            this.tboxNombreUsuario.TabIndex = 22;
+            this.tboxNombreUsuario.TextChanged += new System.EventHandler(this.tboxNombreUsuario_TextChanged);
+            // 
+            // lblClave
+            // 
+            this.lblClave.AutoSize = true;
+            this.lblClave.Location = new System.Drawing.Point(152, 449);
+            this.lblClave.Name = "lblClave";
+            this.lblClave.Size = new System.Drawing.Size(48, 20);
+            this.lblClave.TabIndex = 25;
+            this.lblClave.Text = "Clave";
+            // 
+            // tboxClave
+            // 
+            this.tboxClave.Location = new System.Drawing.Point(327, 443);
+            this.tboxClave.Name = "tboxClave";
+            this.tboxClave.Size = new System.Drawing.Size(315, 26);
+            this.tboxClave.TabIndex = 24;
+            this.tboxClave.TextChanged += new System.EventHandler(this.tboxClave_TextChanged);
+            // 
             // FormEditarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1338, 523);
+            this.Controls.Add(this.lblClave);
+            this.Controls.Add(this.tboxClave);
+            this.Controls.Add(this.lblNombreUsuario);
+            this.Controls.Add(this.tboxNombreUsuario);
+            this.Controls.Add(this.lblDNI);
+            this.Controls.Add(this.tboxDni);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblEditar);
             this.Controls.Add(this.lblCargo);
@@ -273,5 +344,11 @@
         private System.Windows.Forms.Label lblCargo;
         private System.Windows.Forms.Label lblEditar;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDNI;
+        private System.Windows.Forms.TextBox tboxDni;
+        private System.Windows.Forms.Label lblNombreUsuario;
+        private System.Windows.Forms.TextBox tboxNombreUsuario;
+        private System.Windows.Forms.Label lblClave;
+        private System.Windows.Forms.TextBox tboxClave;
     }
 }

@@ -134,7 +134,9 @@ namespace UIDeportes
 
         }
 
+        private void tboxDNI_TextChanged(object sender, EventArgs e)
+        {
 
-       
+        }
     }
 }

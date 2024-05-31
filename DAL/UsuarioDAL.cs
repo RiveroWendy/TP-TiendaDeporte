@@ -12,9 +12,113 @@ namespace DAL
     public class UsuarioDAL
     {
         
-            private Conexion conexion = new Conexion();
+        private Conexion conexion = new Conexion();
 
-            public void CrearUsuario(UsuarioBE usuario)
+        public UsuarioBE BuscarUsuarioPorDni(int dni)
+        {
+         string comando = $"SELECT u.IdUsuario, u.NombreUsuario, u.Clave, e.IdEmpleado, e.Nombre, e.Apellido, e.Dni, e.CorreoElectronico, d.IdDireccion, d.NombreCalle, d.NumeroCalle, l.IdLocalidad, l.NombreLocalidad, l.CodigoPostal, c.IdCargo, c.Nombre AS NombreCargo " +
+                          $"FROM Usuario u " +
+                          $"JOIN Empleado e ON u.IdEmpleado = e.IdEmpleado " +
+                          $"JOIN Direccion d ON e.IdDireccion = d.IdDireccion " +
+                          $"JOIN Localidad l ON d.IdLocalidad = l.IdLocalidad " +
+                          $"JOIN Cargo c ON e.IdCargo = c.IdCargo " +
+                          $"WHERE e.Dni = {dni}";
+
+         DataTable tabla = conexion.LeerPorComando(comando);
+
+         if (tabla.Rows.Count > 0)
+        {
+             DataRow fila = tabla.Rows[0];
+
+             Cargo cargo;
+             string nombreCargo = fila["NombreCargo"].ToString();
+             int idCargo = Convert.ToInt32(fila["IdCargo"]);
+
+             switch (nombreCargo)
+             {
+                 case "Administrador":
+                     cargo = new Administrador { IdCargo = idCargo, Nombre = nombreCargo };
+                     break;
+                 case "Cajero":
+                     cargo = new Cajero { IdCargo = idCargo, Nombre = nombreCargo };
+                     break;
+                 case "Encargado de Depósito":
+                     cargo = new EncargadoDeposito { IdCargo = idCargo, Nombre = nombreCargo };
+                     break;
+                 case "Gerente":
+                     cargo = new Gerente { IdCargo = idCargo, Nombre = nombreCargo };
+                     break;
+                 case "Vendedor":
+                     cargo = new Vendedor { IdCargo = idCargo, Nombre = nombreCargo };
+                     break;
+                 default:
+                     throw new Exception($"Tipo de cargo desconocido: {nombreCargo}");
+             }
+
+                return new UsuarioBE
+                {
+                    IdUsuario = Convert.ToInt32(fila["IdUsuario"]),
+                    NombreUsuario = fila["NombreUsuario"].ToString(),
+                    Clave = fila["Clave"].ToString(),
+                    Empleado = new EmpleadoBE
+                    {
+                        IdEmpleado = Convert.ToInt32(fila["IdEmpleado"]),
+                        Dni = Convert.ToInt32(fila["Dni"]),  // Aquí convertimos el valor a int
+                        Nombre = fila["Nombre"].ToString(),
+                        Apellido = fila["Apellido"].ToString(),
+                        Correo = fila["CorreoElectronico"].ToString(),
+                        Direccion = new DireccionBE
+                        {
+                            IdDireccion = Convert.ToInt32(fila["IdDireccion"]),
+                            NombreCalle = fila["NombreCalle"].ToString(),
+                            NumeroCalle = Convert.ToInt32(fila["NumeroCalle"]),
+                            Localidad = new LocalidadBE
+                            {
+                                IdLocalidad = Convert.ToInt32(fila["IdLocalidad"]),
+                                NombreLocalidad = fila["NombreLocalidad"].ToString(),
+                                CodigoPostal = fila["CodigoPostal"].ToString()
+                            }
+                        },
+                        Cargo = cargo
+                    }
+                };
+        }
+
+         return null;
+     }
+
+        public void ActualizarUsuario(UsuarioBE usuario)
+        {
+            string comando =
+                "UPDATE Localidad SET NombreLocalidad = @NombreLocalidad, CodigoPostal = @CodigoPostal WHERE IdLocalidad = @IdLocalidad; " +
+                "UPDATE Direccion SET NombreCalle = @NombreCalle, NumeroCalle = @NumeroCalle WHERE IdDireccion = @IdDireccion; " +
+                "UPDATE Usuario SET NombreUsuario = @NombreUsuario, Clave = @Clave WHERE IdUsuario = @IdUsuario; " +
+                "UPDATE Empleado SET Nombre = @Nombre, Apellido = @Apellido, Dni = @Dni, CorreoElectronico = @CorreoElectronico, IdCargo = @IdCargo WHERE IdEmpleado = @IdEmpleado;";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                conexion.crearParametro("@NombreLocalidad", usuario.Empleado.Direccion.Localidad.NombreLocalidad),
+                conexion.crearParametro("@CodigoPostal", usuario.Empleado.Direccion.Localidad.CodigoPostal),
+                conexion.crearParametro("@IdLocalidad", usuario.Empleado.Direccion.Localidad.IdLocalidad),
+                conexion.crearParametro("@NombreCalle", usuario.Empleado.Direccion.NombreCalle),
+                conexion.crearParametro("@NumeroCalle", usuario.Empleado.Direccion.NumeroCalle),
+                conexion.crearParametro("@IdDireccion", usuario.Empleado.Direccion.IdDireccion),
+                conexion.crearParametro("@NombreUsuario", usuario.NombreUsuario),
+                conexion.crearParametro("@Clave", usuario.Clave),
+                conexion.crearParametro("@IdUsuario", usuario.IdUsuario),
+                conexion.crearParametro("@Nombre", usuario.Empleado.Nombre),
+                conexion.crearParametro("@Apellido", usuario.Empleado.Apellido),
+                conexion.crearParametro("@Dni", usuario.Empleado.Dni),
+                conexion.crearParametro("@CorreoElectronico", usuario.Empleado.Correo),
+                conexion.crearParametro("@IdCargo", usuario.Empleado.Cargo.IdCargo),
+                conexion.crearParametro("@IdEmpleado", usuario.Empleado.IdEmpleado)
+            };
+
+            conexion.EscribirPorComando1(comando, parametros);
+           
+        }
+
+        public void CrearUsuario(UsuarioBE usuario)
             {
                 try
                 {
@@ -57,7 +161,7 @@ namespace DAL
                 }
             }
 
-            public List<Cargo> ObtenerCargos()
+        public List<Cargo> ObtenerCargos()
             {
                 List<Cargo> cargos = new List<Cargo>();
 
@@ -101,236 +205,6 @@ namespace DAL
                 }
 
                 return cargos;
-            }      
-     
-        public void EditarUsuario(UsuarioBE usuario)
-        {
-            // Actualizar tabla Usuario
-            string comandoUsuario = "UPDATE Usuario SET NombreUsuario = @NombreUsuario, Clave = @Clave WHERE IdUsuario = @IdUsuario";
-            SqlParameter[] parametrosUsuario = new SqlParameter[]
-            {
-                conexion.crearParametro("@IdUsuario", usuario.IdUsuario),
-                conexion.crearParametro("@NombreUsuario", usuario.NombreUsuario),
-                conexion.crearParametro("@Clave", usuario.Clave)
-            };
-            conexion.EscribirPorComando(comandoUsuario, parametrosUsuario);
-
-            // Actualizar tabla Empleado
-            string comandoEmpleado = "UPDATE Empleado SET Nombre = @Nombre, Apellido = @Apellido, CorreoElectronico = @CorreoElectronico, IdCargo = @IdCargo WHERE IdEmpleado = @IdEmpleado";
-            SqlParameter[] parametrosEmpleado = new SqlParameter[]
-            {
-                conexion.crearParametro("@IdEmpleado", usuario.Empleado.IdEmpleado),
-                conexion.crearParametro("@Nombre", usuario.Empleado.Nombre),
-                conexion.crearParametro("@Apellido", usuario.Empleado.Apellido),
-                conexion.crearParametro("@CorreoElectronico", usuario.Empleado.Correo),
-                conexion.crearParametro("@IdCargo", usuario.Empleado.Cargo.IdCargo)
-            };
-            conexion.EscribirPorComando(comandoEmpleado, parametrosEmpleado);
-
-            // Actualizar tabla Direccion
-            string comandoDireccion = "UPDATE Direccion SET NombreCalle = @NombreCalle, NumeroCalle = @NumeroCalle, IdLocalidad = @IdLocalidad WHERE IdDireccion = @IdDireccion";
-            SqlParameter[] parametrosDireccion = new SqlParameter[]
-            {
-                conexion.crearParametro("@IdDireccion", usuario.Empleado.Direccion.IdDireccion),
-                conexion.crearParametro("@NombreCalle", usuario.Empleado.Direccion.NombreCalle),
-                conexion.crearParametro("@NumeroCalle", usuario.Empleado.Direccion.NumeroCalle),
-                conexion.crearParametro("@IdLocalidad", usuario.Empleado.Direccion.Localidad.IdLocalidad)
-            };
-            conexion.EscribirPorComando(comandoDireccion, parametrosDireccion);
-
-            // Actualizar tabla Localidad
-            string comandoLocalidad = "UPDATE Localidad SET NombreLocalidad = @NombreLocalidad, CodigoPostal = @CodigoPostal WHERE IdLocalidad = @IdLocalidad";
-            SqlParameter[] parametrosLocalidad = new SqlParameter[]
-            {
-                conexion.crearParametro("@IdLocalidad", usuario.Empleado.Direccion.Localidad.IdLocalidad),
-                conexion.crearParametro("@NombreLocalidad", usuario.Empleado.Direccion.Localidad.NombreLocalidad),
-                conexion.crearParametro("@CodigoPostal", usuario.Empleado.Direccion.Localidad.CodigoPostal)
-            };
-            conexion.EscribirPorComando(comandoLocalidad, parametrosLocalidad);
-        }
-
-        public void EliminarUsuario(int idUsuario)
-        {
-            string comando = "DELETE FROM Usuario WHERE IdUsuario = @IdUsuario";
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                conexion.crearParametro("@IdUsuario", idUsuario)
-            };
-            conexion.EscribirPorComando(comando, parametros);
-        }
-
-        public UsuarioBE BuscarUsuario(int idUsuario)
-        {
-            string comando = "SELECT * FROM Usuario WHERE IdUsuario = @IdUsuario";
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                conexion.crearParametro("@IdUsuario", idUsuario)
-            };
-            DataTable tabla = conexion.LeerPorComando(comando, parametros);
-            if (tabla.Rows.Count > 0)
-            {
-                DataRow fila = tabla.Rows[0];
-                int idEmpleado = Convert.ToInt32(fila["IdEmpleado"]);
-
-                EmpleadoBE empleado = BuscarEmpleado(idEmpleado);
-
-                return new UsuarioBE
-                {
-                    IdUsuario = Convert.ToInt32(fila["IdUsuario"]),
-                    NombreUsuario = fila["NombreUsuario"].ToString(),
-                    Clave = fila["Clave"].ToString(),
-                    Empleado = empleado
-                };
-            }
-            return null;
-        }
-
-        private EmpleadoBE BuscarEmpleado(int idEmpleado)
-        {
-            string comando = "SELECT * FROM Empleado WHERE IdEmpleado = @IdEmpleado";
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                conexion.crearParametro("@IdEmpleado", idEmpleado)
-            };
-            DataTable tabla = conexion.LeerPorComando(comando, parametros);
-            if (tabla.Rows.Count > 0)
-            {
-                DataRow fila = tabla.Rows[0];
-                int idDireccion = Convert.ToInt32(fila["IdDireccion"]);
-
-                DireccionBE direccion = BuscarDireccion(idDireccion);
-                int idCargo = Convert.ToInt32(fila["IdCargo"]);
-                Cargo cargo;
-                switch (idCargo)
-                {
-                    case 1:
-                        cargo = new Gerente { IdCargo = idCargo, Nombre = "Gerente" };
-                        break;
-                    case 2:
-                        cargo = new Administrador { IdCargo = idCargo, Nombre = "Administrador" };
-                        break;
-                    case 3:
-                        cargo = new Cajero { IdCargo = idCargo, Nombre = "Cajero" };
-                        break;
-                    case 4:
-                        cargo = new EncargadoDeposito { IdCargo = idCargo, Nombre = "Encargado de Depósito" };
-                        break;
-                    case 5:
-                        cargo = new Vendedor { IdCargo = idCargo, Nombre = "Vendedor" };
-                        break;
-                    default:
-                        throw new ArgumentException("IdCargo no válido");
-                }
-
-                return new EmpleadoBE
-                {
-                    IdEmpleado = Convert.ToInt32(fila["IdEmpleado"]),
-                    Nombre = fila["Nombre"].ToString(),
-                    Apellido = fila["Apellido"].ToString(),
-                    Correo = fila["CorreoElectronico"].ToString(),
-                    Direccion = direccion,
-                    Cargo = cargo,
-                };
-            }
-            return null;
-        }
-
-        private DireccionBE BuscarDireccion(int idDireccion)
-        {
-            string comando = "SELECT * FROM Direccion WHERE IdDireccion = @IdDireccion";
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                conexion.crearParametro("@IdDireccion", idDireccion)
-            };
-            DataTable tabla = conexion.LeerPorComando(comando, parametros);
-            if (tabla.Rows.Count > 0)
-            {
-                DataRow fila = tabla.Rows[0];
-                int idLocalidad = Convert.ToInt32(fila["IdLocalidad"]);
-
-                LocalidadBE localidad = BuscarLocalidad(idLocalidad);
-
-                return new DireccionBE
-                {
-                    IdDireccion = Convert.ToInt32(fila["IdDireccion"]),
-                    NombreCalle = fila["NombreCalle"].ToString(),
-                    NumeroCalle = Convert.ToInt32(fila["NumeroCalle"]),
-                    Localidad = localidad
-                };
-            }
-            return null;
-        }
-
-        private LocalidadBE BuscarLocalidad(int idLocalidad)
-        {
-            string comando = "SELECT * FROM Localidad WHERE IdLocalidad = @IdLocalidad";
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                conexion.crearParametro("@IdLocalidad", idLocalidad)
-            };
-            DataTable tabla = conexion.LeerPorComando(comando, parametros);
-            if (tabla.Rows.Count > 0)
-            {
-                DataRow fila = tabla.Rows[0];
-                return new LocalidadBE
-                {
-                    IdLocalidad = Convert.ToInt32(fila["IdLocalidad"]),
-                    NombreLocalidad = fila["NombreLocalidad"].ToString(),
-                    CodigoPostal = fila["CodigoPostal"].ToString()
-                };
-            }
-            return null;
-        }
-        public UsuarioBE ObtenerUsuarioPorId(int idUsuario)
-        {
-            string comando = "SELECT * FROM Usuario WHERE IdUsuario = @IdUsuario";
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                conexion.crearParametro("@IdUsuario", idUsuario)
-            };
-            DataTable tabla = conexion.LeerPorComando(comando, parametros);
-            if (tabla.Rows.Count > 0)
-            {
-                DataRow fila = tabla.Rows[0];
-                int idEmpleado = Convert.ToInt32(fila["IdEmpleado"]);
-
-                EmpleadoBE empleado = BuscarEmpleado(idEmpleado);
-
-                return new UsuarioBE
-                {
-                    IdUsuario = Convert.ToInt32(fila["IdUsuario"]),
-                    NombreUsuario = fila["NombreUsuario"].ToString(),
-                    Clave = fila["Clave"].ToString(),
-                    Empleado = empleado
-                };
-            }
-            return null;
-        }
-        public List<UsuarioBE> BuscarUsuarios(string criterio)
-        {
-            string comando = "SELECT * FROM Usuario WHERE NombreUsuario LIKE @Criterio OR NombreUsuario LIKE @Criterio";
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                conexion.crearParametro("@Criterio", "%" + criterio + "%")
-            };
-            DataTable tabla = conexion.LeerPorComando(comando, parametros);
-            List<UsuarioBE> usuarios = new List<UsuarioBE>();
-
-            foreach (DataRow fila in tabla.Rows)
-            {
-                int idEmpleado = Convert.ToInt32(fila["IdEmpleado"]);
-                EmpleadoBE empleado = BuscarEmpleado(idEmpleado);
-
-                usuarios.Add(new UsuarioBE
-                {
-                    IdUsuario = Convert.ToInt32(fila["IdUsuario"]),
-                    NombreUsuario = fila["NombreUsuario"].ToString(),
-                    Clave = fila["Clave"].ToString(),
-                    Empleado = empleado
-                });
-            }
-
-            return usuarios;
-        }
+            }          
     }
 }

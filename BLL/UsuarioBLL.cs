@@ -32,9 +32,21 @@ namespace BLL
 
         public List<Cargo> ObtenerCargos() => usuarioDAL.ObtenerCargos();
 
+        public void ActualizarUsuario(UsuarioBE usuario)
+        {
+            // Verificar que los IDs no sean cero antes de pasarlos a la capa DAL
+            Console.WriteLine($"IdLocalidad: {usuario.Empleado.Direccion.Localidad.IdLocalidad}");
+            Console.WriteLine($"IdDireccion: {usuario.Empleado.Direccion.IdDireccion}");
+            Console.WriteLine($"IdEmpleado: {usuario.Empleado.IdEmpleado}");
+            usuarioDAL.ActualizarUsuario(usuario);
+        }
 
+        public UsuarioBE BuscarUsuarioPorDni(int dni)
+        {
+            return usuarioDAL.BuscarUsuarioPorDni(dni);
+        }
 
-        public void EditarUsuario(UsuarioBE usuario)
+        /*public void EditarUsuario(UsuarioBE usuario)
         {
             usuarioDAL.EditarUsuario(usuario);
         }
@@ -42,21 +54,18 @@ namespace BLL
         public void EliminarUsuario(int idUsuario)
         {
             usuarioDAL.EliminarUsuario(idUsuario);
-        }
+        }*/
 
-        public UsuarioBE BuscarUsuario(int idUsuario)
-        {
-            return usuarioDAL.BuscarUsuario(idUsuario);
-        }
 
-        public void EditarUsuario(EmpleadoBE empleado)
+
+        /*public void EditarUsuario(EmpleadoBE empleado)
         {
             throw new NotImplementedException();
-        }
-        public UsuarioBE ObtenerUsuarioPorId(int idUsuario)
+        }*/
+        /*public UsuarioBE ObtenerUsuarioPorId(int idUsuario)
         {
             return usuarioDAL.ObtenerUsuarioPorId(idUsuario);
-        }
+        }*/
     }
 }
 
