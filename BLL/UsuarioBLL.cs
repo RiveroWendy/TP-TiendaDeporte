@@ -38,6 +38,7 @@ namespace BLL
             usuarioDAL.ActualizarUsuario(usuario);
         }
 
+
         public UsuarioBE BuscarUsuarioPorDni(int dni)
         {
             return usuarioDAL.BuscarUsuarioPorDni(dni);

@@ -288,7 +288,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1338, 523);
+            this.ClientSize = new System.Drawing.Size(1455, 646);
             this.Controls.Add(this.lblClave);
             this.Controls.Add(this.tboxClave);
             this.Controls.Add(this.lblNombreUsuario);

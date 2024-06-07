@@ -75,43 +75,57 @@ namespace UIDeportes
                 MessageBox.Show("Por favor, complete todos los campos obligatorios.");
                 return;
             }
-            if (long.TryParse(textBoxPrecio.Text, out long precio) == false)
+
+            if (!long.TryParse(textBoxPrecio.Text, out long precio))
             {
                 MessageBox.Show("Por favor, ingrese un precio válido.");
                 return;
             }
+
             var categoriaSeleccionada = comboBoxCategoria.SelectedItem as CategoriaProducto;
             if (categoriaSeleccionada == null)
             {
                 MessageBox.Show("Por favor, seleccione una categoría.");
                 return;
             }
-            int cantidad = int.Parse(textBoxCantidad.Text);
-            producto.Nombre = nombre;
-            producto.Precio = precio;
 
-            Stock stock = new Stock()
+            var proveedorSeleccionado = comboBoxProveedor.SelectedItem as Proveedor;
+            if (proveedorSeleccionado == null)
             {
-                Cantidad = cantidad,
+                MessageBox.Show("Por favor, seleccione un proveedor.");
+                return;
+            }
+
+            if (!int.TryParse(textBoxCantidad.Text, out int cantidad))
+            {
+                MessageBox.Show("Por favor, ingrese una cantidad válida.");
+                return;
+            }
+
+            // Crear el objeto ProductoBE y asignarle los valores
+            producto = new ProductoBE
+            {
+                Nombre = nombre,
+                Precio = precio,
+                Categoria = categoriaSeleccionada,
+                Proveedor = proveedorSeleccionado,
+                Cantidad = new Stock { Cantidad = cantidad }
             };
-            producto.Cantidad = stock;
 
             try
             {
-
                 // Llamar al método para guardar el producto
                 var productoBLL = new ProductoBLL();
                 productoBLL.CrearProducto(producto);
 
                 MessageBox.Show("Producto guardado exitosamente.");
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al guardar el producto: " + ex.Message);
             }
-
         }
+
 
 
         private void FormAltaProducto_Load(object sender, EventArgs e)

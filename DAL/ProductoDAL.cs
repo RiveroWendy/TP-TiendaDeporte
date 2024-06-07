@@ -37,7 +37,6 @@ namespace DAL
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -83,17 +82,11 @@ namespace DAL
                 {
                     int idProveedor = Convert.ToInt32(row["IdProveedor"]);
                     string nombreEmpresa = row["NombreEmpresa"].ToString();
-                    //string telefono = row["Telefono"].ToString();
-                    //string correo = row["Correo"].ToString();
-
 
                     Proveedor proveedor = new Proveedor
                     {
                         IdProveedor = idProveedor,
                         NombreEmpresa = nombreEmpresa,
-                        //Telefono = telefono,
-                        //Correo = correo
-
                     };
 
                     proveedores.Add(proveedor);
@@ -105,7 +98,6 @@ namespace DAL
             }
             return proveedores;
         }
-
 
         public DataTable VisualizarStock(int idProducto)
         {
@@ -121,14 +113,14 @@ namespace DAL
 
         public void EditarProducto(int idProducto, string nombre, long precio, int cantidad, string categoria, string proveedor)
         {
-            string query = "UPDATE dbo.Producto SET Nombre = @Nombre, Precio = @Precio, Cantidad = @Cantidad, Categoria = @Categoria, Proveedor = @Proveedor WHERE IdProducto = @IdProducto";
+            //string query = "UPDATE dbo.Producto SET Nombre = @Nombre, Precio = @Precio, Cantidad = @Cantidad, Categoria = @Categoria, Proveedor = @Proveedor WHERE IdProducto = @IdProducto";
 
             //TO-DO
         }
 
         public void EliminarProducto(int idProducto)
         {
-            string query = "DELETE FROM dbo.Producto WHERE IdProducto = @IdProducto";
+           // string query = "DELETE FROM dbo.Producto WHERE IdProducto = @IdProducto";
 
             //TO-DO
         }
@@ -147,10 +139,8 @@ namespace DAL
                 JOIN dbo.Proveedor pr ON p.IdProveedor = pr.IdProveedor
                 WHERE p.IdProducto =" + idProducto;
 
-
             return _conexion.LeerPorComando(query);
         }
 
     }
 }
-

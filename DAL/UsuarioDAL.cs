@@ -6,6 +6,7 @@ using System.Text;
 using BE;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Net;
 
 namespace DAL
 {
@@ -16,21 +17,22 @@ namespace DAL
 
         public UsuarioBE BuscarUsuarioPorDni(int dni)
         {
-            // Creamos la consulta SQL que selecciona los datos del usuario, empleado, dirección, localidad y cargo
+            // Creamos la consulta SQL que selecciona los datos del usuario, empleado, dirección, localidad y cargo      
+
             string comando = $"SELECT u.IdUsuario, u.NombreUsuario, u.Clave, e.IdEmpleado, e.Nombre, e.Apellido, e.Dni, e.CorreoElectronico, d.IdDireccion, d.NombreCalle, d.NumeroCalle, l.IdLocalidad, l.NombreLocalidad, l.CodigoPostal, c.IdCargo, c.Nombre AS NombreCargo " +
                           $"FROM Usuario u " +
-                          $"JOIN Empleado e ON u.IdEmpleado = e.IdEmpleado " +
+                          $"LEFT JOIN Empleado e ON u.IdEmpleado = e.IdEmpleado " +
                           $"JOIN Direccion d ON e.IdDireccion = d.IdDireccion " +
                           $"JOIN Localidad l ON d.IdLocalidad = l.IdLocalidad " +
                           $"JOIN Cargo c ON e.IdCargo = c.IdCargo " +
                           $"WHERE e.Dni = {dni}";
-
+   
             // Ejecutamos el comando y obtenemos los resultados en un DataTable
             DataTable tabla = conexion.LeerPorComando(comando);
 
             // Si encontramos al menos una fila, procedemos a procesar los datos
             if (tabla.Rows.Count > 0)
-        {
+            {
                  DataRow fila = tabla.Rows[0];
 
                  Cargo cargo;
@@ -39,7 +41,7 @@ namespace DAL
 
                 // Dependiendo del nombre del cargo, creamos una instancia del tipo correspondiente
                 switch (nombreCargo)
-             {
+                {
                      case "Administrador":
                          cargo = new Administrador { IdCargo = idCargo, Nombre = nombreCargo };
                          break;
@@ -57,7 +59,7 @@ namespace DAL
                          break;
                      default:
                          throw new Exception($"Tipo de cargo desconocido: {nombreCargo}");
-             }
+                }
                 // Creamos y retornamos una instancia de UsuarioBE con todos los datos obtenidos y procesados
                 return new UsuarioBE
                 {
@@ -86,10 +88,10 @@ namespace DAL
                         Cargo = cargo
                     }
                 };
-        }
-        // Si no encontramos ninguna fila, retornamos null
+            }
+       
         return null;
-     }
+        }
 
         public void ActualizarUsuario(UsuarioBE usuario)
         {

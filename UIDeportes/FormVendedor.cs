@@ -7,22 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BE;
 
 namespace UIDeportes
 {
     public partial class FormVendedor : Form
     {
         FormDatosCliente formularioDatosCliente;
-        FormBuscarCliente formularioBuscarCliente;
+        FormCliente formularioCliente;
         FormBuscarVenta formularioBuscarVenta;
         FormGenerarVenta formularioGenerarVenta;
         public FormVendedor()
         {
             InitializeComponent();
             formularioDatosCliente = new FormDatosCliente();
-            formularioBuscarCliente = new FormBuscarCliente();
+            formularioCliente = new FormCliente();
             formularioBuscarVenta = new FormBuscarVenta();
             formularioGenerarVenta = new FormGenerarVenta();
+
         }
 
         private void btnAltaCliente_Click(object sender, EventArgs e)
@@ -34,7 +36,7 @@ namespace UIDeportes
         private void btnBuscarCliente_Click(object sender, EventArgs e)
         {
             this.Hide();
-            formularioBuscarCliente.Show();
+            formularioCliente.Show();
         }
 
         private void btnBuscarVenta_Click(object sender, EventArgs e)

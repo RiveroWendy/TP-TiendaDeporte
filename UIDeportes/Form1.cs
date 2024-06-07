@@ -17,7 +17,10 @@ namespace UIDeportes
 {
     public partial class Form1 : Form
     {
+        // Declaramos una instancia de LoginBLL para manejar la lógica de negocio relacionada con el login.
         LoginBLL loginBLL = new LoginBLL();
+
+        // Declaramos instancias de los diferentes formularios que utilizaremos.
         FormGerente formularioGerente;
         FormEncargadoDeposito formularioEncargadoDeposito;
         FormCajero formularioCajero;
@@ -26,6 +29,7 @@ namespace UIDeportes
         public Form1()
         {
             InitializeComponent();
+            // Inicializamos las instancias de los diferentes formularios.
             formularioGerente = new FormGerente();
             formularioEncargadoDeposito = new FormEncargadoDeposito();
             formularioCajero = new FormCajero();
@@ -41,15 +45,20 @@ namespace UIDeportes
 
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
+            // Obtenemos el nombre de usuario y la clave de los campos de texto.
             string nombreUsuario = tboxNombreUsuario.Text;
             string clave = tboxClave.Text;
 
+            // Verificamos si el inicio de sesión es exitoso llamando al método Login de loginBLL.
             bool loginExitoso = loginBLL.Login(nombreUsuario, clave);
 
+            // Si el inicio de sesión fue exitoso.
             if (loginExitoso)
             {
+                // Obtenemos el cargo del usuario.
                 string cargo = loginBLL.ObtenerCargo(nombreUsuario);
 
+                // Dependiendo del cargo, mostramos el formulario correspondiente.
                 switch (cargo)
                 {
                     case "Gerente":

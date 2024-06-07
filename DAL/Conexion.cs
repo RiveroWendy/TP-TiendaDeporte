@@ -54,7 +54,6 @@ namespace DAL
             //Me conecto...
             this.Conectar();
 
-
             try
             {
                 objComando.CommandText = pNombreStoreProcedure;
@@ -87,11 +86,11 @@ namespace DAL
                 this.Desconectar();
             }
 
-
             return unaTabla;
         }
 
         /*public DataTable LeerPorComando(string pComando)*/
+                
         public DataTable LeerPorComando(string pComando, SqlParameter[] pParametrosSql = null)
         {
             //Instancio un objeto del tipo DataTable
@@ -105,7 +104,6 @@ namespace DAL
 
             try
             {
-
 
                 //Parametrizo el objeto SqlCommand con sus valores respectivos
                 objComando.CommandType = CommandType.Text;
@@ -186,9 +184,13 @@ namespace DAL
                 objComando.CommandType = CommandType.Text;
                 objComando.Connection = this.objConexion;
 
+                if (pParametrosSql != null)
+                {
+                    objComando.Parameters.AddRange(pParametrosSql);
+                }
+
                 //El método ExecuteNonQuery() me devuelve la cantidad de filas afectadas.
                 filasAfectadas = objComando.ExecuteNonQuery();
-
 
             }
             catch (Exception)
@@ -235,8 +237,6 @@ namespace DAL
                     filasAfectadas = -1;
                 }
 
-
-
             }
             catch (Exception)
             {
@@ -248,7 +248,6 @@ namespace DAL
                 //Me desconecto
                 this.Desconectar();
             }
-
 
             return filasAfectadas;
         }
@@ -278,7 +277,6 @@ namespace DAL
             return objParametro;
         }
 
-
         public SqlParameter crearParametro(string pNombre, DateTime pValor)
         {
 
@@ -291,7 +289,6 @@ namespace DAL
             return objParametro;
         }
 
-
         public SqlParameter crearParametro(string pNombre, int pValor)
         {
 
@@ -303,8 +300,6 @@ namespace DAL
 
             return objParametro;
         }
-
-
         public SqlParameter crearParametro(string pNombre, Boolean pValor)
         {
 
@@ -322,7 +317,5 @@ namespace DAL
             throw new NotImplementedException();
         }
         #endregion
-
-
     }
 }
