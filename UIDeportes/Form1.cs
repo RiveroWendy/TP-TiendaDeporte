@@ -26,6 +26,7 @@ namespace UIDeportes
         FormCajero formularioCajero;
         FormVendedor formularioVendedor;
         FormAdministrador formularioAdministrativo;
+        FormEditarProducto formularioEditarProducto;
         public Form1()
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace UIDeportes
             formularioCajero = new FormCajero();
             formularioVendedor = new FormVendedor();
             formularioAdministrativo = new FormAdministrador();
+            formularioEditarProducto = new FormEditarProducto();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -102,6 +104,12 @@ namespace UIDeportes
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            formularioEditarProducto.Show();
         }
     }
 }

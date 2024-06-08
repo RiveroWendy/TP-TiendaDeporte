@@ -44,17 +44,25 @@ namespace BLL
             return producto?.Cantidad;
         }
 
-        public void EditarProducto(int idProducto, string nombre, long precio, Stock cantidad, CategoriaProducto categoria, Proveedor proveedor)
+        public int EditarProducto(int idProducto, string nombre, long precio)
         {
-            var producto = _productos.FirstOrDefault(p => p.IdProducto == idProducto);
+            ProductoBE producto = new ProductoBE(); 
             if (producto != null)
             {
+                producto.IdProducto = idProducto;
                 producto.Nombre = nombre;
                 producto.Precio = precio;
-                producto.Cantidad = cantidad;
-                producto.Categoria = categoria;
-                producto.Proveedor = proveedor;
+                producto.Cantidad = new Stock();
+                producto.Categoria = new CategoriaProducto();
+                producto.Proveedor = new Proveedor();
+
             }
+            return _productoDAL.EditarProducto(producto);
+        }
+
+        public int EditarStockProducto(int idProducto, int cantidad)
+        {
+            return _productoDAL.EditarStockProducto(idProducto, cantidad);
         }
 
         public void EliminarProducto(int idProducto)
@@ -117,6 +125,85 @@ namespace BLL
             catch (Exception ex)
             {
                 throw new Exception("Error al obtener los proveedores. Detalles: " + ex.Message, ex);
+            }
+        }
+
+        /*TODO*/
+        public List<ProductoBE> TraerProductos()
+        {
+            try
+            {
+                var productoData = _productoDAL.TraerProductosConStock();
+
+                List<ProductoBE> productos = new List<ProductoBE>();
+
+                foreach (DataRow row in productoData.Rows)
+                {
+                    int IdProducto = Convert.ToInt32(row["IdProducto"]);
+                    string Nombre = row["Nombre"].ToString();
+                    long Precio = Convert.ToInt64(row["Precio"]);
+                    int IdProveedor = Convert.ToInt32(row["IdProveedor"]);
+                    int IdCategoria = Convert.ToInt32(row["IdCategoria"]);
+                    int Cantidad = Convert.ToInt32(row["Cantidad"]);
+
+
+                    ProductoBE producto = new ProductoBE
+                    {
+                        IdProducto = IdProducto,
+                        Nombre = Nombre,
+                        Precio = Precio,
+                        Proveedor = new Proveedor
+                        {
+                            IdProveedor = IdProveedor
+                        },
+                        Categoria = new CategoriaProducto
+                        {
+                            IdCategoria = IdCategoria
+                        },
+                        Cantidad = new Stock
+                        {
+                            Cantidad = Cantidad
+                        }
+                };
+
+                    productos.Add(producto);
+                }
+
+                return productos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los proveedores. Detalles: " + ex.Message, ex);
+
+            }
+        }
+
+        public Stock TraerStock(int idProducto)
+        {
+            try
+            {
+                var productoData = _productoDAL.TraerStock(idProducto);
+
+                Stock stock = new Stock();
+
+                foreach (DataRow row in productoData.Rows)
+                {
+                    //int IdStock = Convert.ToInt32(row["IdStock"]);
+                    int IdProducto = Convert.ToInt32(row["IdProducto"]);
+                    int Precio = Convert.ToInt32(row["Cantidad"]);
+
+                    stock.IdProducto = IdProducto;
+                    stock.Cantidad = Precio;
+                }
+                
+                return stock;
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los proveedores. Detalles: " + ex.Message, ex);
+
             }
         }
     }

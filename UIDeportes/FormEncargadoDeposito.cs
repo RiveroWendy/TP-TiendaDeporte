@@ -15,12 +15,14 @@ namespace UIDeportes
         FormAltaProducto formularioAltaProducto;
         FormBuscarProducto formularioBuscarProducto;
         FormVerStock formularioVerStock;
+        FormEditarProducto formularioEditarProducto;
         public FormEncargadoDeposito()
         {
             InitializeComponent();
             formularioAltaProducto = new FormAltaProducto();
             formularioBuscarProducto = new FormBuscarProducto();    
-            formularioVerStock = new FormVerStock();    
+            formularioVerStock = new FormVerStock();
+            formularioEditarProducto = new FormEditarProducto();
         }
 
         private void btnAltaProducto_Click(object sender, EventArgs e)
@@ -39,6 +41,12 @@ namespace UIDeportes
         {
             this.Hide();
             formularioVerStock.Show();
+        }
+
+        private void btnEditarProducto_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            formularioEditarProducto.Show();
         }
     }
 }

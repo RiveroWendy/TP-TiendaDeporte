@@ -41,6 +41,7 @@ namespace DAL
             }
         }
 
+
         public List<CategoriaProducto> ObtenerCategoria()
         {
             List<CategoriaProducto> categorias = new List<CategoriaProducto>();
@@ -111,11 +112,18 @@ namespace DAL
             return _conexion.LeerPorComando(query);
         }
 
-        public void EditarProducto(int idProducto, string nombre, long precio, int cantidad, string categoria, string proveedor)
+        public int EditarProducto(ProductoBE producto)
         {
             //string query = "UPDATE dbo.Producto SET Nombre = @Nombre, Precio = @Precio, Cantidad = @Cantidad, Categoria = @Categoria, Proveedor = @Proveedor WHERE IdProducto = @IdProducto";
 
-            //TO-DO
+            SqlParameter[] parameters = new SqlParameter[]
+             {
+                new SqlParameter("@Nombre", producto.Nombre),
+                new SqlParameter("@Precio", producto.Precio),
+                new SqlParameter("@IdProducto", producto.IdProducto)
+              };
+
+            return _conexion.EscribirPorComando(query, parameters);
         }
 
         public void EliminarProducto(int idProducto)
@@ -142,5 +150,59 @@ namespace DAL
             return _conexion.LeerPorComando(query);
         }
 
+
+
+        /*TODO*/
+        public DataTable TraerProductos()
+        {
+            try
+            {
+                string query = "SELECT IdProducto, Nombre, Precio, IdProveedor, IdCategoria FROM dbo.Producto";
+                return _conexion.LeerPorComando(query);              
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las categorías. Detalles: " + ex.Message, ex);
+            }
+        }
+        public DataTable TraerProductosConStock()
+        {
+            try
+            {
+                string query = "SELECT Producto.IdProducto, Nombre, Precio, IdProveedor, IdCategoria, Stock.Cantidad " +
+                               "FROM Producto " +
+                               "JOIN Stock on Producto.IdProducto = Stock.IdProducto ";
+                return _conexion.LeerPorComando(query);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las categorías. Detalles: " + ex.Message, ex);
+            }
+        }
+
+        public DataTable TraerStock(int idProducto)
+        {
+            string query = "SELECT TOP 1 IdProducto, Cantidad FROM dbo.Stock WHERE IdProducto = @IdProducto";
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@IdProducto", idProducto)
+            };
+
+            return _conexion.LeerPorComando(query, parameters);
+        }
+
+        public int EditarStockProducto(int idProducto, int cantidad)
+        {
+            string query = "UPDATE Stock SET Cantidad = @Cantidad WHERE IdProducto = @IdProducto";
+
+            SqlParameter[] parameters = new SqlParameter[]
+             {
+                new SqlParameter("@IdProducto", idProducto),
+                new SqlParameter("@Cantidad", cantidad),
+              };
+
+            return _conexion.EscribirPorComando(query, parameters);
+        }
     }
 }
