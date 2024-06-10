@@ -24,7 +24,7 @@ namespace DAL
          */
         private void Conectar()
         {   // HACK: Cadena de conexión hardcodeada. Luego ponerla como parametro de configuración del proyecto u otra alternativa.
-            string strCadenaDeConexion = "Server=localhost;Database=sportexpress;Integrated Security=True;";
+            string strCadenaDeConexion = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=SportExpress;Data Source=.\sqlexpress";
 
             //Instanció un objeto del tipo SqlConnection
             objConexion = new SqlConnection();
