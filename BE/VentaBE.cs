@@ -10,9 +10,9 @@ namespace BE
     {
         private int _idVenta;
         private DateTime _fechaVenta;
-        private int _idEmpleado;
+        private EmpleadoBE _empleadoResponsable;
         private ClienteBE _clienteAsociado;
-        private List<DetalleVentaBE> _detalleVentas; // Versión en lista de detalles
+        private List<DetalleVentaBE> _detalleVentas;
         private long _totalVenta;
 
         public VentaBE()
@@ -32,10 +32,10 @@ namespace BE
             set { _fechaVenta = value; }
         }
 
-        public int IdEmpleado
+        public EmpleadoBE EmpleadoResponsable
         {
-            get { return _idEmpleado; }
-            set { _idEmpleado = value; }
+            get { return _empleadoResponsable; }
+            set { _empleadoResponsable = value; }
         }
 
         public ClienteBE ClienteAsociado
