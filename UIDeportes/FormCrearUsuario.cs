@@ -17,7 +17,6 @@ namespace UIDeportes
     {
         private UsuarioBLL usuarioBLL;
         private EmpleadoBE empleado;
-        private Cargo _cargo;
 
         public FormCrearUsuario()
         {
