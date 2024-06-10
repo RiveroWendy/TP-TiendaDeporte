@@ -17,6 +17,7 @@ namespace BLL
         public UsuarioBLL()
         {
             _usuarioDAL = new UsuarioDAL();
+            _cargo = new CargoDAL();
         }
 
         public void CrearUsuario(UsuarioBE usuario)

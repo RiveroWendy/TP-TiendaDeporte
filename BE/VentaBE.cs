@@ -18,6 +18,8 @@ namespace BE
         public VentaBE()
         {
             _detalleVentas = new List<DetalleVentaBE>();
+            _empleadoResponsable = new EmpleadoBE();
+            _clienteAsociado = new ClienteBE();
         }
 
         public int IdVenta

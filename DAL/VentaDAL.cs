@@ -12,10 +12,16 @@ namespace DAL
     public class VentaDAL
     {
         private ManejadorStoreProcedure _storeProcedure;
+        private ClienteDAL _cliente;
+        private CargoDAL _cargo;
+        private DireccionDAL _direccion;
 
         public VentaDAL()
         {
             _storeProcedure = new ManejadorStoreProcedure();
+            _cliente = new ClienteDAL();
+            _cargo = new CargoDAL();
+            _direccion = new DireccionDAL();
         }
 
         public void AgregarVenta(VentaBE venta)
@@ -57,7 +63,7 @@ namespace DAL
                             IdVenta = Convert.ToInt32(row["IdVenta"]),
                             FechaVenta = Convert.ToDateTime(row["FechaVenta"]),
                             EmpleadoResponsable = ObtenerEmpleadoPorId(Convert.ToInt32(row["IdEmpleado"])),
-                            ClienteAsociado = ObtenerClientePorId(idCliente),
+                            ClienteAsociado = _cliente.ObtenerClientePorId(idCliente),
                             DetalleVentas = ObtenerDetallesVenta(Convert.ToInt32(row["IdVenta"])),
                             TotalVenta = (long)row["TotalVenta"]
                         };
@@ -132,119 +138,6 @@ namespace DAL
             }
         }
 
-        private Cargo CrearCargo(string nombreCargo, int idCargo)
-        {
-            /*
-             * No usar reflection, no me gusta, además no es seguro...
-             * Mejor utilizar el patrón fábrica (hacerlo sencillo)..
-             */
-            Type cargoType = Type.GetType($"Cargo.{nombreCargo}");
-
-            if (cargoType == null || !typeof(Cargo).IsAssignableFrom(cargoType))
-            {
-                throw new Exception($"Tipo de cargo desconocido o no válido: {nombreCargo}");
-            }
-
-            Cargo cargo = (Cargo)Activator.CreateInstance(cargoType);
-            cargo.IdCargo = idCargo;
-
-            return cargo;
-            // ------------------------------------------------------------------------------
-        }
-
-
-        private ClienteBE ObtenerClientePorId(int idCliente)
-        {
-
-            try
-            {
-                SqlParameter[] parametros = new SqlParameter[]
-                {
-                    new SqlParameter("@IdCliente", idCliente)
-                };
-
-                DataTable dt = _storeProcedure.LeerPorStoreProcedure("sp_cliente_por_id", parametros);
-                DataRow row = dt.Rows[0];
-
-                ClienteBE cliente = new ClienteBE
-                {
-                    IdCliente = Convert.ToInt32(row["IdCliente"]),
-                    Dni = Convert.ToInt32(row["Dni"]),
-                    Nombre = row["Nombre"].ToString(),
-                    Apellido = row["Apellido"].ToString(),
-                    Correo = row["CorreoElectronico"].ToString(),
-                    Direccion = ObtenerDireccionPorId(Convert.ToInt32(row["IdDireccion"]))
-                };
-
-                return cliente;
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-
-
-        private DireccionBE ObtenerDireccionPorId(int idDireccion)
-        {
-            try
-            {
-                SqlParameter[] parametros = new SqlParameter[]
-                {
-                    new SqlParameter("@IdDireccion", idDireccion)
-                };
-
-                DataTable dt = _storeProcedure.LeerPorStoreProcedure("sp_direccion_por_id", parametros);
-                DataRow row = dt.Rows[0];
-
-                DireccionBE direccion = new DireccionBE
-                {
-                    IdDireccion = Convert.ToInt32(row["IdDireccion"]),
-                    NombreCalle = row["NombreCalle"].ToString(),
-                    NumeroCalle = Convert.ToInt32(row["NumeroCalle"]),
-                    Localidad = ObtenerLocalidadPorId(Convert.ToInt32(row["IdLocalidad"]))
-                };
-
-                return direccion;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        private LocalidadBE ObtenerLocalidadPorId(int idLocalidad)
-        {
-            try
-            {
-                SqlParameter[] parametros = new SqlParameter[]
-                {
-                    new SqlParameter("@IdLocalidad", idLocalidad)
-                };
-
-                DataTable dt = _storeProcedure.LeerPorStoreProcedure("sp_localidad_por_id", parametros);
-                DataRow row = dt.Rows[0];
-
-                LocalidadBE localidad = new LocalidadBE
-                {
-                    IdLocalidad = Convert.ToInt32(row["IdLocalidad"]),
-                    NombreLocalidad = row["NombreLocalidad"].ToString(),
-                    CodigoPostal = row["CodigoPostal"].ToString()
-                };
-
-                return localidad;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
         private EmpleadoBE ObtenerEmpleadoPorId(int idEmpleado)
         {
             try
@@ -264,8 +157,8 @@ namespace DAL
                     Nombre = row["Nombre"].ToString(),
                     Apellido = row["Apellido"].ToString(),
                     Correo = row["CorreoElectronico"].ToString(),
-                    Direccion = ObtenerDireccionPorId(Convert.ToInt32(row["IdDireccion"])),
-                    Cargo = ObtenerCargoPorId(Convert.ToInt32(row["IdCargo"]))
+                    Direccion = _direccion.ObtenerDireccionPorId(Convert.ToInt32(row["IdDireccion"])),
+                    Cargo = _cargo.ObtenerCargoPorId(Convert.ToInt32(row["IdCargo"]))
                 };
 
                 return empleado;
@@ -276,34 +169,5 @@ namespace DAL
                 throw;
             }
         }
-
-        private Cargo ObtenerCargoPorId(int idCargo)
-        {
-            try
-            {
-                SqlParameter[] parametros = new SqlParameter[]
-                {
-                    new SqlParameter("@IdCargo", idCargo)
-                };
-
-                DataTable dt = _storeProcedure.LeerPorStoreProcedure("sp_cargo_por_id", parametros);
-                DataRow row = dt.Rows[0];
-
-                Cargo cargo = null;
-
-                // De acá en más utilizar la fábrica para crear instancias de los cargos
-                // Es decir el método CrearCargo...
-
-                return cargo;
-
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
     }
 }

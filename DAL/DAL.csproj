@@ -43,9 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CargoDAL.cs" />
     <Compile Include="ClienteDAL.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="ConexionBase.cs" />
+    <Compile Include="DireccionDAL.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LoginDAL.cs" />
     <Compile Include="ManejadorStoreProcedure.cs" />
