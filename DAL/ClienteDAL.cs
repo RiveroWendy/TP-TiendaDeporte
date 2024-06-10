@@ -12,10 +12,14 @@ namespace DAL
     public class ClienteDAL
     {
         private Conexion conexion; // Agregamos un campo para la instancia de Conexion
+        private ManejadorStoreProcedure _storeProcedure;
+        private DireccionDAL _direccion;
 
         public ClienteDAL()
         {
             conexion = new Conexion(); // Creamos una instancia de Conexion
+            _storeProcedure = new ManejadorStoreProcedure();
+            _direccion = new DireccionDAL();
         }
 
         public void CrearCliente(ClienteBE cliente)
@@ -141,6 +145,39 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Error al actualizar el cliente.", ex);
+            }
+        }
+
+        public ClienteBE ObtenerClientePorId(int idCliente)
+        {
+
+            try
+            {
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+                    new SqlParameter("@IdCliente", idCliente)
+                };
+
+                DataTable dt = _storeProcedure.LeerPorStoreProcedure("sp_cliente_por_id", parametros);
+                DataRow row = dt.Rows[0];
+
+                ClienteBE cliente = new ClienteBE
+                {
+                    IdCliente = Convert.ToInt32(row["IdCliente"]),
+                    Dni = Convert.ToInt32(row["Dni"]),
+                    Nombre = row["Nombre"].ToString(),
+                    Apellido = row["Apellido"].ToString(),
+                    Correo = row["CorreoElectronico"].ToString(),
+                    Direccion = _direccion.ObtenerDireccionPorId(Convert.ToInt32(row["IdDireccion"]))
+                };
+
+                return cliente;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }
