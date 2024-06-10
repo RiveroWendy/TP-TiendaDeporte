@@ -11,7 +11,13 @@ namespace BLL
 {
     public class UsuarioBLL
     {
-        private UsuarioDAL usuarioDAL = new UsuarioDAL();
+        private UsuarioDAL _usuarioDAL;
+        private CargoDAL _cargo;
+
+        public UsuarioBLL()
+        {
+            _usuarioDAL = new UsuarioDAL();
+        }
 
         public void CrearUsuario(UsuarioBE usuario)
         {
@@ -22,7 +28,7 @@ namespace BLL
                     throw new ArgumentNullException(nameof(usuario), "El usuario no puede ser nulo.");
                 }
 
-                usuarioDAL.CrearUsuario(usuario);
+                _usuarioDAL.CrearUsuario(usuario);
             }
             catch (Exception ex)
             {
@@ -30,18 +36,17 @@ namespace BLL
             }
         }
 
-        public List<Cargo> ObtenerCargos() => usuarioDAL.ObtenerCargos();
+        public List<Cargo> ObtenerCargos() => _cargo.ObtenerCargos();
 
         public void ActualizarUsuario(UsuarioBE usuario)
         {
 
-            usuarioDAL.ActualizarUsuario(usuario);
+            _usuarioDAL.ActualizarUsuario(usuario);
         }
-
 
         public UsuarioBE BuscarUsuarioPorDni(int dni)
         {
-            return usuarioDAL.BuscarUsuarioPorDni(dni);
+            return _usuarioDAL.BuscarUsuarioPorDni(dni);
         }
 
     }
