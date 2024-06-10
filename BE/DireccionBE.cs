@@ -10,7 +10,6 @@ namespace BE
     {
         #region Atributos
         private int _idDireccion;
-        //private int _idLocalidad;
         private string _nombreCalle;
         private int _numeroCalle;
         private LocalidadBE _localidad;
@@ -22,12 +21,6 @@ namespace BE
             get { return _idDireccion; }
             set { _idDireccion = value; }
         }
-
-        /*public int IdLocalidad
-        {
-            get { return _idLocalidad; }
-            set { _idLocalidad = value; }
-        }*/
 
         public string NombreCalle
         {
@@ -51,10 +44,9 @@ namespace BE
         #region Constructores
         public DireccionBE() { }
 
-        public DireccionBE(int idDireccion, /*int idLocalidad,*/ string nombreCalle, int numeroCalle, LocalidadBE localidad)
+        public DireccionBE(int idDireccion, string nombreCalle, int numeroCalle, LocalidadBE localidad)
         {
             _idDireccion = idDireccion;
-            //_idLocalidad = idLocalidad;
             _nombreCalle = nombreCalle;
             _numeroCalle = numeroCalle;
             _localidad = localidad;
