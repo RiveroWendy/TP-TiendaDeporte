@@ -12,7 +12,7 @@ namespace DAL
 {
     public class UsuarioDAL
     {
-        
+
         private Conexion conexion = new Conexion();
         private CargoDAL _cargo;
 
@@ -31,19 +31,16 @@ namespace DAL
                           $"JOIN Localidad l ON d.IdLocalidad = l.IdLocalidad " +
                           $"JOIN Cargo c ON e.IdCargo = c.IdCargo " +
                           $"WHERE e.Dni = {dni}";
-   
-            // Ejecutamos el comando y obtenemos los resultados en un DataTable
-            DataTable tabla = conexion.LeerPorComando(comando);
 
             // Ejecutamos el comando y obtenemos los resultados en un DataTable
             DataTable tabla = conexion.LeerPorComando(comando);
 
             // Si encontramos al menos una fila, procedemos a procesar los datos
             if (tabla.Rows.Count > 0)
-        {
-                 DataRow fila = tabla.Rows[0];
-                 int idCargo = Convert.ToInt32(fila["IdCargo"]);
-                 Cargo cargo = _cargo.ObtenerCargoPorId(idCargo);
+            {
+                DataRow fila = tabla.Rows[0];
+                int idCargo = Convert.ToInt32(fila["IdCargo"]);
+                Cargo cargo = _cargo.ObtenerCargoPorId(idCargo);
 
                 // Creamos y retornamos una instancia de UsuarioBE con todos los datos obtenidos y procesados
                 return new UsuarioBE
@@ -77,9 +74,7 @@ namespace DAL
 
             return null;
         }
-        // Si no encontramos ninguna fila, retornamos null
-        return null;
-     }
+
 
         public void ActualizarUsuario(UsuarioBE usuario)
         {
@@ -93,25 +88,25 @@ namespace DAL
             // Creamos los parámetros necesarios para la consulta
             SqlParameter[] parametros = new SqlParameter[]
             {
-                conexion.crearParametro("@NombreLocalidad", usuario.Empleado.Direccion.Localidad.NombreLocalidad),
-                conexion.crearParametro("@CodigoPostal", usuario.Empleado.Direccion.Localidad.CodigoPostal),
-                conexion.crearParametro("@IdLocalidad", usuario.Empleado.Direccion.Localidad.IdLocalidad),
-                conexion.crearParametro("@NombreCalle", usuario.Empleado.Direccion.NombreCalle),
-                conexion.crearParametro("@NumeroCalle", usuario.Empleado.Direccion.NumeroCalle),
-                conexion.crearParametro("@IdDireccion", usuario.Empleado.Direccion.IdDireccion),
-                conexion.crearParametro("@NombreUsuario", usuario.NombreUsuario),
-                conexion.crearParametro("@Clave", usuario.Clave),
-                conexion.crearParametro("@IdUsuario", usuario.IdUsuario),
-                conexion.crearParametro("@Nombre", usuario.Empleado.Nombre),
-                conexion.crearParametro("@Apellido", usuario.Empleado.Apellido),
-                conexion.crearParametro("@Dni", usuario.Empleado.Dni),
-                conexion.crearParametro("@CorreoElectronico", usuario.Empleado.Correo),
-                conexion.crearParametro("@IdCargo", usuario.Empleado.Cargo.IdCargo),
-                conexion.crearParametro("@IdEmpleado", usuario.Empleado.IdEmpleado)
+            conexion.crearParametro("@NombreLocalidad", usuario.Empleado.Direccion.Localidad.NombreLocalidad),
+            conexion.crearParametro("@CodigoPostal", usuario.Empleado.Direccion.Localidad.CodigoPostal),
+            conexion.crearParametro("@IdLocalidad", usuario.Empleado.Direccion.Localidad.IdLocalidad),
+            conexion.crearParametro("@NombreCalle", usuario.Empleado.Direccion.NombreCalle),
+            conexion.crearParametro("@NumeroCalle", usuario.Empleado.Direccion.NumeroCalle),
+            conexion.crearParametro("@IdDireccion", usuario.Empleado.Direccion.IdDireccion),
+            conexion.crearParametro("@NombreUsuario", usuario.NombreUsuario),
+            conexion.crearParametro("@Clave", usuario.Clave),
+            conexion.crearParametro("@IdUsuario", usuario.IdUsuario),
+            conexion.crearParametro("@Nombre", usuario.Empleado.Nombre),
+            conexion.crearParametro("@Apellido", usuario.Empleado.Apellido),
+            conexion.crearParametro("@Dni", usuario.Empleado.Dni),
+            conexion.crearParametro("@CorreoElectronico", usuario.Empleado.Correo),
+            conexion.crearParametro("@IdCargo", usuario.Empleado.Cargo.IdCargo),
+            conexion.crearParametro("@IdEmpleado", usuario.Empleado.IdEmpleado)
             };
             // Ejecutamos el comando con los parámetros creados
             conexion.EscribirPorComando1(comando, parametros);
-           
+
         }
 
         public void CrearUsuario(UsuarioBE usuario)
