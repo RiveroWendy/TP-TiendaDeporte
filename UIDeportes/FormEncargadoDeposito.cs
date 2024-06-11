@@ -16,6 +16,7 @@ namespace UIDeportes
         FormBuscarProducto formularioBuscarProducto;
         FormVerStock formularioVerStock;
         FormEditarProducto formularioEditarProducto;
+        FormEliminarProducto formularioEliminarProducto;
         public FormEncargadoDeposito()
         {
             InitializeComponent();
@@ -23,6 +24,8 @@ namespace UIDeportes
             formularioBuscarProducto = new FormBuscarProducto();    
             formularioVerStock = new FormVerStock();
             formularioEditarProducto = new FormEditarProducto();
+            formularioEliminarProducto = new FormEliminarProducto();
+
         }
 
         private void btnAltaProducto_Click(object sender, EventArgs e)
@@ -47,6 +50,12 @@ namespace UIDeportes
         {
             this.Hide();
             formularioEditarProducto.Show();
+        }
+
+        private void btnEliminarProducto_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            formularioEliminarProducto.Show();
         }
     }
 }

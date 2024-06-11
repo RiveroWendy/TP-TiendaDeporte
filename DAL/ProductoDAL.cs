@@ -29,18 +29,28 @@ namespace DAL
                 }
 
                 // Insertar producto
-                string queryInsertarProducto = $"INSERT INTO dbo.Producto (Nombre, Precio, IdProveedor, IdCategoria) VALUES  ('{producto.Nombre}', '{producto.Precio}', '{producto.Proveedor.IdProveedor}' , '{producto.Categoria.IdCategoria}')";
-                var identity = _conexion.EscribirPorComando(queryInsertarProducto);
-                string queryInsertarCantidad = $"INSERT INTO dbo.Stock (IdProducto, Cantidad) VALUES  ('{identity}', '{producto.Cantidad.Cantidad}')";
-                _conexion.EscribirPorComando(queryInsertarCantidad);
+                //string queryInsertarProducto = $"INSERT INTO dbo.Producto (Nombre, Precio, IdProveedor, IdCategoria) VALUES  ('{producto.Nombre}', '{producto.Precio}', '{producto.Proveedor.IdProveedor}' , '{producto.Categoria.IdCategoria}')";
+                //var identity = _conexion.EscribirPorComando(queryInsertarProducto);
+                //string queryInsertarCantidad = $"INSERT INTO dbo.Stock (IdProducto, Cantidad) VALUES  ('{identity}', '{producto.Cantidad.Cantidad}')";
+                string SP = "CrearProducto";
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@Nombre", producto.Nombre),
+                    new SqlParameter("@Precio", producto.Precio),
+                    new SqlParameter("@IdProveedor", producto.Proveedor.IdProveedor),
+                    new SqlParameter("@IdCategoria", producto.Categoria.IdCategoria),
+                    new SqlParameter("@Cantidad", producto.Cantidad.Cantidad)
+                };
+
+                _conexion.EscribirPorStoreProcedure(SP, parameters);
 
             }
             catch (Exception)
             {
+
                 throw;
             }
         }
-
 
         public List<CategoriaProducto> ObtenerCategoria()
         {
@@ -83,11 +93,17 @@ namespace DAL
                 {
                     int idProveedor = Convert.ToInt32(row["IdProveedor"]);
                     string nombreEmpresa = row["NombreEmpresa"].ToString();
+                    //string telefono = row["Telefono"].ToString();
+                    //string correo = row["Correo"].ToString();
+
 
                     Proveedor proveedor = new Proveedor
                     {
                         IdProveedor = idProveedor,
                         NombreEmpresa = nombreEmpresa,
+                        //Telefono = telefono,
+                        //Correo = correo
+
                     };
 
                     proveedores.Add(proveedor);
@@ -99,6 +115,7 @@ namespace DAL
             }
             return proveedores;
         }
+
 
         public DataTable VisualizarStock(int idProducto)
         {
@@ -114,7 +131,7 @@ namespace DAL
 
         public int EditarProducto(ProductoBE producto)
         {
-            //string query = "UPDATE dbo.Producto SET Nombre = @Nombre, Precio = @Precio, Cantidad = @Cantidad, Categoria = @Categoria, Proveedor = @Proveedor WHERE IdProducto = @IdProducto";
+            string query = "UPDATE dbo.Producto SET Nombre = @Nombre, Precio = @Precio WHERE IdProducto = @IdProducto";
 
             SqlParameter[] parameters = new SqlParameter[]
              {
@@ -126,11 +143,19 @@ namespace DAL
             return _conexion.EscribirPorComando(query, parameters);
         }
 
-        public void EliminarProducto(int idProducto)
+        public int EliminarProducto(int idProducto)
         {
-           // string query = "DELETE FROM dbo.Producto WHERE IdProducto = @IdProducto";
+            int valorFilasAfectadasProducto = 0;
 
-            //TO-DO
+            string queryStock = "EliminarProducto";
+            //string queryProducto = "DELETE FROM dbo.Producto WHERE IdProducto = @IdProducto";
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@IdProducto", idProducto)
+            };
+
+            return _conexion.EscribirPorStoreProcedure(queryStock, parameters);
         }
 
         public DataTable BuscarProducto(int idProducto)
@@ -147,6 +172,7 @@ namespace DAL
                 JOIN dbo.Proveedor pr ON p.IdProveedor = pr.IdProveedor
                 WHERE p.IdProducto =" + idProducto;
 
+
             return _conexion.LeerPorComando(query);
         }
 
@@ -158,7 +184,7 @@ namespace DAL
             try
             {
                 string query = "SELECT IdProducto, Nombre, Precio, IdProveedor, IdCategoria FROM dbo.Producto";
-                return _conexion.LeerPorComando(query);              
+                return _conexion.LeerPorComando(query);
             }
             catch (Exception ex)
             {
@@ -206,3 +232,4 @@ namespace DAL
         }
     }
 }
+

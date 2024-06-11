@@ -65,13 +65,14 @@ namespace BLL
             return _productoDAL.EditarStockProducto(idProducto, cantidad);
         }
 
-        public void EliminarProducto(int idProducto)
+        public int EliminarProducto(int idProducto)
         {
-            var producto = _productos.FirstOrDefault(p => p.IdProducto == idProducto);
-            if (producto != null)
-            {
-                _productos.Remove(producto);
-            }
+            //var producto = _productos.FirstOrDefault(p => p.IdProducto == idProducto);
+            //if (producto != null)
+            //{
+            //    _productos.Remove(producto);
+            //}
+            return _productoDAL.EliminarProducto(idProducto);
         }
 
         public ProductoBE BuscarProducto(int idProducto)

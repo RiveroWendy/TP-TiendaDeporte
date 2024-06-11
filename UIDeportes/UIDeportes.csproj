@@ -119,6 +119,12 @@
     <Compile Include="FormEditarUsuario.Designer.cs">
       <DependentUpon>FormEditarUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormEliminarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEliminarProducto.Designer.cs">
+      <DependentUpon>FormEliminarProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormEncargadoDeposito.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEditarUsuario.resx">
       <DependentUpon>FormEditarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEliminarProducto.resx">
+      <DependentUpon>FormEliminarProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEncargadoDeposito.resx">
       <DependentUpon>FormEncargadoDeposito.cs</DependentUpon>
