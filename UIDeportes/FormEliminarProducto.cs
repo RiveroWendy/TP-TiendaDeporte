@@ -14,16 +14,16 @@ namespace UIDeportes
 {
     public partial class FormEliminarProducto : Form
     {
-        private ProductoBLL _productoBLL;
+        private BLL.ProductoBLL _productoBLL;
         public FormEliminarProducto()
         {
             InitializeComponent();
-            _productoBLL = new ProductoBLL();
+            _productoBLL = new BLL.ProductoBLL();
         }
 
         private void FormEliminarProducto_Load(object sender, EventArgs e)
         {
-            List<ProductoBE> productos = _productoBLL.TraerProductos();
+            List<BE.ProductoBE> productos = _productoBLL.TraerProductos();
 
 
             if (productos.Count > 0)
@@ -35,7 +35,7 @@ namespace UIDeportes
 
                 dgvEliminarProductos.Rows.Clear();
 
-                foreach (ProductoBE producto in productos)
+                foreach (BE.ProductoBE producto in productos)
                 {
                     dgvEliminarProductos.Rows.Add(producto.IdProducto, producto.Nombre, producto.Precio);
                 }
@@ -69,12 +69,12 @@ namespace UIDeportes
 
 
                         //Listamos los nuevos registros una vez que ya actualizamos
-                        List<ProductoBE> productos = _productoBLL.TraerProductos();
+                        List<BE.ProductoBE> productos = _productoBLL.TraerProductos();
                         dgvEliminarProductos.Rows.Clear();
 
-                        foreach (ProductoBE producto in productos)
+                        foreach (BE.ProductoBE producto in productos)
                         {
-                            dgvEliminarProductos.Rows.Add(producto.IdProducto, producto.Nombre, producto.Precio, producto.Cantidad.Cantidad);
+                            dgvEliminarProductos.Rows.Add(producto.IdProducto, producto.Nombre, producto.Precio, producto.Cantidad.CantidadStock);
                         }
 
                     }

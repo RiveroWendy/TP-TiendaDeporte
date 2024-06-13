@@ -80,6 +80,7 @@
             this.Controls.Add(this.btnEliminarProducto);
             this.Controls.Add(this.dgvEliminarProductos);
             this.Name = "FormEliminarProducto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormEliminarProducto";
             this.Load += new System.EventHandler(this.FormEliminarProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEliminarProductos)).EndInit();
