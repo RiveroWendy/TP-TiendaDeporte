@@ -12,9 +12,11 @@ namespace DAL
     public class VentaDAL
     {
         private ManejadorStoreProcedure _storeProcedure;
+        private ConexionBase _conexion;
         private ClienteDAL _cliente;
         private CargoDAL _cargo;
         private DireccionDAL _direccion;
+        private EmpleadoDAL _empleado;
 
         public VentaDAL()
         {
@@ -22,22 +24,69 @@ namespace DAL
             _cliente = new ClienteDAL();
             _cargo = new CargoDAL();
             _direccion = new DireccionDAL();
+            _empleado = new EmpleadoDAL();
+            _conexion = new ConexionBase();
         }
 
         public void AgregarVenta(VentaBE venta)
         {
-            try
+            using (SqlConnection connection = new SqlConnection(_conexion.ConnectionString))
             {
-                if (venta == null)
+                SqlTransaction transaction = null;
+
+                try
                 {
-                    throw new ArgumentNullException();
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+
+                    SqlParameter[] parametrosVenta = new SqlParameter[]
+                    {
+                        new SqlParameter("@FechaVenta", venta.FechaVenta),
+                        new SqlParameter("@IdEmpleado", venta.EmpleadoResponsable.IdEmpleado),
+                        new SqlParameter("@IdCliente", venta.ClienteAsociado.IdCliente),
+                        new SqlParameter("@TotalVenta", venta.TotalVenta),
+                        new SqlParameter("@IdVenta", SqlDbType.Int) { Direction = ParameterDirection.Output }
+                    };
+
+                    _storeProcedure.EscribirPorStoreProcedure("sp_insertar_venta", parametrosVenta);
+
+                    int idVenta = (int)parametrosVenta.First(p => p.ParameterName == "@IdVenta").Value;
+
+                    foreach (DetalleVentaBE detalle in venta.DetalleVentas)
+                    {
+                        SqlParameter[] parametrosDetalle = new SqlParameter[]
+                        {
+                            new SqlParameter("@IdVenta", idVenta),
+                            new SqlParameter("@IdProducto", detalle.Producto.IdProducto),
+                            new SqlParameter("@Cantidad", detalle.CantidadDeVenta),
+                            new SqlParameter("@PrecioUnitario", detalle.PrecioUnitario)
+                        };
+
+                        _storeProcedure.EscribirPorStoreProcedure("sp_insertar_detalle_venta", parametrosDetalle);
+
+                        SqlParameter[] parametrosStock = new SqlParameter[]
+                        {
+                            new SqlParameter("@IdProducto", detalle.Producto.IdProducto),
+                            new SqlParameter("@Cantidad", detalle.CantidadDeVenta)
+                        };
+
+                        _storeProcedure.EscribirPorStoreProcedure("sp_actualizar_stock", parametrosStock, transaction);
+                    }
+
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction?.Rollback();
+                    throw new ApplicationException("Error al agregar la venta", ex);
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
-            catch (Exception)
-            {
 
-                throw;
-            }
         }
 
 
@@ -62,7 +111,7 @@ namespace DAL
                         {
                             IdVenta = Convert.ToInt32(row["IdVenta"]),
                             FechaVenta = Convert.ToDateTime(row["FechaVenta"]),
-                            EmpleadoResponsable = ObtenerEmpleadoPorId(Convert.ToInt32(row["IdEmpleado"])),
+                            EmpleadoResponsable = _empleado.ObtenerEmpleadoPorId(Convert.ToInt32(row["IdEmpleado"])),
                             ClienteAsociado = _cliente.ObtenerClientePorId(idCliente),
                             DetalleVentas = ObtenerDetallesVenta(Convert.ToInt32(row["IdVenta"])),
                             TotalVenta = (long)row["TotalVenta"]
@@ -108,7 +157,7 @@ namespace DAL
                             Cantidad = new Stock
                             {
                                 IdProducto = Convert.ToInt32(row["IdProducto"]),
-                                Cantidad = Convert.ToInt32(row["StockCantidad"])
+                                CantidadStock = Convert.ToInt32(row["StockCantidad"])
                             },
                             Categoria = new CategoriaProducto
                             {
@@ -123,7 +172,7 @@ namespace DAL
                                 Correo = row["CorreoProveedor"].ToString()
                             }
                         },
-                        Cantidad = Convert.ToInt32(row["Cantidad"]),
+                        CantidadDeVenta = Convert.ToInt32(row["Cantidad"]),
                         PrecioUnitario = Convert.ToInt32(row["PrecioUnitario"])
                     };
 
@@ -138,36 +187,5 @@ namespace DAL
             }
         }
 
-        private EmpleadoBE ObtenerEmpleadoPorId(int idEmpleado)
-        {
-            try
-            {
-                SqlParameter[] parametros = new SqlParameter[]
-                {
-                    new SqlParameter("@IdEmpleado", idEmpleado)
-                };
-
-                DataTable dt = _storeProcedure.LeerPorStoreProcedure("sp_empleado_por_id", parametros);
-                DataRow row = dt.Rows[0];
-
-                EmpleadoBE empleado = new EmpleadoBE
-                {
-                    IdEmpleado = Convert.ToInt32(row["IdEmpleado"]),
-                    Dni = Convert.ToInt32(row["Dni"]),
-                    Nombre = row["Nombre"].ToString(),
-                    Apellido = row["Apellido"].ToString(),
-                    Correo = row["CorreoElectronico"].ToString(),
-                    Direccion = _direccion.ObtenerDireccionPorId(Convert.ToInt32(row["IdDireccion"])),
-                    Cargo = _cargo.ObtenerCargoPorId(Convert.ToInt32(row["IdCargo"]))
-                };
-
-                return empleado;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
     }
 }
