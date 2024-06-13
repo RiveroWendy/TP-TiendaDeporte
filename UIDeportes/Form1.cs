@@ -18,7 +18,7 @@ namespace UIDeportes
     public partial class Form1 : Form
     {
         // Declaramos una instancia de LoginBLL para manejar la lógica de negocio relacionada con el login.
-        LoginBLL loginBLL = new LoginBLL();
+        private LoginBLL _loginBLL;
 
         // Declaramos instancias de los diferentes formularios que utilizaremos.
         FormGerente formularioGerente;
@@ -31,15 +31,11 @@ namespace UIDeportes
         {
             InitializeComponent();
             // Inicializamos las instancias de los diferentes formularios.
-            formularioGerente = new FormGerente();
-            formularioEncargadoDeposito = new FormEncargadoDeposito();
-            formularioCajero = new FormCajero();
-            formularioVendedor = new FormVendedor();
-            formularioAdministrativo = new FormAdministrador();
             formularioEditarProducto = new FormEditarProducto();
+            _loginBLL = new LoginBLL();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -52,36 +48,32 @@ namespace UIDeportes
             string clave = tboxClave.Text;
 
             // Verificamos si el inicio de sesión es exitoso llamando al método Login de loginBLL.
-            bool loginExitoso = loginBLL.Login(nombreUsuario, clave);
-
-            // Si el inicio de sesión fue exitoso.
-            if (loginExitoso)
+            try
             {
-                // Obtenemos el cargo del usuario.
-                string cargo = loginBLL.ObtenerCargo(nombreUsuario);
+                _loginBLL.Login(nombreUsuario, clave);
+                ValidarSesion();
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Se produjo un error al iniciar sesión: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-                // Dependiendo del cargo, mostramos el formulario correspondiente.
-                switch (cargo)
-                {
-                    case "Gerente":
-                        formularioGerente.Show();
-                        break;
-                    case "Encargado de Depósito":
-                        formularioEncargadoDeposito.Show();
-                        break;
-                    case "Cajero":
-                        formularioCajero.Show();
-                        break;
-                    case "Vendedor":
-                        formularioVendedor.Show();
-                        break;
-                    case "Administrador":
-                        formularioAdministrativo.Show();
-                        break;
-                    default:
-                        MessageBox.Show("Cargo no reconocido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        break;
-                }
+        private void ValidarSesion()
+        {
+            if (ManejadorDeSesion.Instancia.IsLogged())
+            {
+                //string nombre = ManejadorDeSesion.Instancia.Sesion.NombreUsuario;
+                string perfil = ManejadorDeSesion.Instancia.Sesion.Empleado.CargoEmpleado.Nombre;
+
+                InicializarFormulariosDeUsuario(perfil);
+                tboxNombreUsuario.Text = String.Empty;
+                tboxClave.Text = String.Empty;
+                tboxNombreUsuario.Focus();
                 this.Hide();
             }
             else
@@ -90,26 +82,42 @@ namespace UIDeportes
             }
         }
 
-
-        private void tboxNombreUsuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tboxClave_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
             formularioEditarProducto.Show();
         }
+
+        private void InicializarFormulariosDeUsuario(string cargo)
+        {
+            // Dependiendo del cargo, mostramos el formulario correspondiente.
+            switch (cargo)
+            {
+                case "Gerente":
+                    formularioGerente = new FormGerente();
+                    formularioGerente.Show();
+                    break;
+                case "Encargado de Depósito":
+                    formularioEncargadoDeposito = new FormEncargadoDeposito();
+                    formularioEncargadoDeposito.Show();
+                    break;
+                case "Cajero":
+                    formularioCajero = new FormCajero();
+                    formularioCajero.Show();
+                    break;
+                case "Vendedor":
+                    formularioVendedor = new FormVendedor();
+                    formularioVendedor.Show();
+                    break;
+                case "Administrador":
+                    formularioAdministrativo = new FormAdministrador();
+                    formularioAdministrativo.Show();
+                    break;
+                default:
+                    MessageBox.Show("Cargo no reconocido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
+        }
+
     }
 }
