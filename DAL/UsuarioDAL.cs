@@ -67,7 +67,7 @@ namespace DAL
                                 CodigoPostal = fila["CodigoPostal"].ToString()
                             }
                         },
-                        Cargo = cargo
+                        CargoEmpleado = cargo
                     }
                 };
             }
@@ -101,7 +101,7 @@ namespace DAL
             conexion.crearParametro("@Apellido", usuario.Empleado.Apellido),
             conexion.crearParametro("@Dni", usuario.Empleado.Dni),
             conexion.crearParametro("@CorreoElectronico", usuario.Empleado.Correo),
-            conexion.crearParametro("@IdCargo", usuario.Empleado.Cargo.IdCargo),
+            conexion.crearParametro("@IdCargo", usuario.Empleado.CargoEmpleado.IdCargo),
             conexion.crearParametro("@IdEmpleado", usuario.Empleado.IdEmpleado)
             };
             // Ejecutamos el comando con los parámetros creados
@@ -124,7 +124,7 @@ namespace DAL
                     throw new ArgumentNullException(nameof(usuario.Empleado), "El objeto Empleado en el usuario no puede ser nulo.");
                 }
 
-                Cargo cargo = usuario.Empleado.Cargo;
+                Cargo cargo = usuario.Empleado.CargoEmpleado;
 
                 // Verificamos que el cargo del empleado no sea nulo
                 if (cargo == null)
@@ -141,7 +141,7 @@ namespace DAL
                 int idDireccion = Convert.ToInt32(conexion.EscribirPorComando(comandoInsertarDireccion));
 
                 // Insertamos el empleado y obtenemos el Id generado
-                string comandoInsertarEmpleado = $"INSERT INTO Empleado (Nombre, Apellido, Dni, CorreoElectronico, IdDireccion, IdCargo) VALUES ('{usuario.Empleado.Nombre}', '{usuario.Empleado.Apellido}', {usuario.Empleado.Dni}, '{usuario.Empleado.Correo}', {idDireccion}, {usuario.Empleado.Cargo.IdCargo}); SELECT SCOPE_IDENTITY();";
+                string comandoInsertarEmpleado = $"INSERT INTO Empleado (Nombre, Apellido, Dni, CorreoElectronico, IdDireccion, IdCargo) VALUES ('{usuario.Empleado.Nombre}', '{usuario.Empleado.Apellido}', {usuario.Empleado.Dni}, '{usuario.Empleado.Correo}', {idDireccion}, {usuario.Empleado.CargoEmpleado.IdCargo}); SELECT SCOPE_IDENTITY();";
                 int idEmpleado = Convert.ToInt32(conexion.EscribirPorComando(comandoInsertarEmpleado));
 
                 // Insertamos el usuario

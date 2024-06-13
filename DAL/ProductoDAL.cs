@@ -39,7 +39,7 @@ namespace DAL
                     new SqlParameter("@Precio", producto.Precio),
                     new SqlParameter("@IdProveedor", producto.Proveedor.IdProveedor),
                     new SqlParameter("@IdCategoria", producto.Categoria.IdCategoria),
-                    new SqlParameter("@Cantidad", producto.Cantidad.Cantidad)
+                    new SqlParameter("@Cantidad", producto.Cantidad.CantidadStock)
                 };
 
                 _conexion.EscribirPorStoreProcedure(SP, parameters);
