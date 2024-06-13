@@ -18,7 +18,7 @@ namespace BE
 
         private int _cantidad;
 
-        public int Cantidad
+        public int CantidadStock
         {
             get { return _cantidad; }
             set { _cantidad = value; }

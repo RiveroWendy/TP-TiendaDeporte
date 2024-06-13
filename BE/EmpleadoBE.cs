@@ -21,7 +21,7 @@ namespace BE
             set { _idEmpleado = value; }
         }
 
-        public Cargo Cargo
+        public Cargo CargoEmpleado
         {
             get { return _cargo; }
             set { _cargo = value; }

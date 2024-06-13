@@ -25,7 +25,7 @@ namespace BE
             set { _producto = value; }
         }
 
-        public int Cantidad
+        public int CantidadDeVenta
         {
             get { return _cantidad; }
             set { _cantidad = value; }

@@ -54,7 +54,12 @@ namespace BE
             set { _proveedor = value; }
         }
 
-        public ProductoBE() { }
+        public ProductoBE()
+        {
+            _cantidad = new Stock();
+            _categoria = new CategoriaProducto();
+            _proveedor = new Proveedor();
+        }
 
         public ProductoBE(string nombre, long precio, Stock cantidad, CategoriaProducto categoria)
         {
