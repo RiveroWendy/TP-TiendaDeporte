@@ -37,18 +37,20 @@
             // lblIngreseProducto
             // 
             this.lblIngreseProducto.AutoSize = true;
-            this.lblIngreseProducto.Location = new System.Drawing.Point(116, 117);
+            this.lblIngreseProducto.Location = new System.Drawing.Point(77, 76);
+            this.lblIngreseProducto.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIngreseProducto.Name = "lblIngreseProducto";
-            this.lblIngreseProducto.Size = new System.Drawing.Size(229, 20);
+            this.lblIngreseProducto.Size = new System.Drawing.Size(153, 13);
             this.lblIngreseProducto.TabIndex = 0;
             this.lblIngreseProducto.Text = "Ingrese el nombre del producto";
             this.lblIngreseProducto.Click += new System.EventHandler(this.lblIngreseProducto_Click);
             // 
             // btnBuscarProducto
             // 
-            this.btnBuscarProducto.Location = new System.Drawing.Point(120, 269);
+            this.btnBuscarProducto.Location = new System.Drawing.Point(80, 175);
+            this.btnBuscarProducto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBuscarProducto.Name = "btnBuscarProducto";
-            this.btnBuscarProducto.Size = new System.Drawing.Size(156, 82);
+            this.btnBuscarProducto.Size = new System.Drawing.Size(104, 53);
             this.btnBuscarProducto.TabIndex = 1;
             this.btnBuscarProducto.Text = "Buscar Producto";
             this.btnBuscarProducto.UseVisualStyleBackColor = true;
@@ -56,16 +58,18 @@
             // 
             // tboxNombreProducto
             // 
-            this.tboxNombreProducto.Location = new System.Drawing.Point(387, 117);
+            this.tboxNombreProducto.Location = new System.Drawing.Point(258, 76);
+            this.tboxNombreProducto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tboxNombreProducto.Name = "tboxNombreProducto";
-            this.tboxNombreProducto.Size = new System.Drawing.Size(302, 26);
+            this.tboxNombreProducto.Size = new System.Drawing.Size(203, 20);
             this.tboxNombreProducto.TabIndex = 2;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(387, 269);
+            this.btnCancelar.Location = new System.Drawing.Point(258, 175);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(156, 82);
+            this.btnCancelar.Size = new System.Drawing.Size(104, 53);
             this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -73,14 +77,16 @@
             // 
             // FormVerStock
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(533, 292);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.tboxNombreProducto);
             this.Controls.Add(this.btnBuscarProducto);
             this.Controls.Add(this.lblIngreseProducto);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormVerStock";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormVerStock";
             this.ResumeLayout(false);
             this.PerformLayout();

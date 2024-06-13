@@ -35,9 +35,10 @@
             // btnCrearUsuario
             // 
             this.btnCrearUsuario.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCrearUsuario.Location = new System.Drawing.Point(229, 72);
+            this.btnCrearUsuario.Location = new System.Drawing.Point(153, 47);
+            this.btnCrearUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCrearUsuario.Name = "btnCrearUsuario";
-            this.btnCrearUsuario.Size = new System.Drawing.Size(300, 99);
+            this.btnCrearUsuario.Size = new System.Drawing.Size(200, 64);
             this.btnCrearUsuario.TabIndex = 0;
             this.btnCrearUsuario.Text = "Crear Usuario";
             this.btnCrearUsuario.UseVisualStyleBackColor = false;
@@ -46,9 +47,10 @@
             // btnBuscarUsuario
             // 
             this.btnBuscarUsuario.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnBuscarUsuario.Location = new System.Drawing.Point(229, 189);
+            this.btnBuscarUsuario.Location = new System.Drawing.Point(153, 123);
+            this.btnBuscarUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBuscarUsuario.Name = "btnBuscarUsuario";
-            this.btnBuscarUsuario.Size = new System.Drawing.Size(300, 99);
+            this.btnBuscarUsuario.Size = new System.Drawing.Size(200, 64);
             this.btnBuscarUsuario.TabIndex = 1;
             this.btnBuscarUsuario.Text = "Buscar Usuario";
             this.btnBuscarUsuario.UseVisualStyleBackColor = false;
@@ -56,12 +58,14 @@
             // 
             // FormAdministrador
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 479);
+            this.ClientSize = new System.Drawing.Size(534, 311);
             this.Controls.Add(this.btnBuscarUsuario);
             this.Controls.Add(this.btnCrearUsuario);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormAdministrador";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAdministrativo";
             this.ResumeLayout(false);
 

@@ -34,9 +34,10 @@
             // 
             // btnReporteMensual
             // 
-            this.btnReporteMensual.Location = new System.Drawing.Point(239, 69);
+            this.btnReporteMensual.Location = new System.Drawing.Point(159, 45);
+            this.btnReporteMensual.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnReporteMensual.Name = "btnReporteMensual";
-            this.btnReporteMensual.Size = new System.Drawing.Size(280, 121);
+            this.btnReporteMensual.Size = new System.Drawing.Size(187, 79);
             this.btnReporteMensual.TabIndex = 0;
             this.btnReporteMensual.Text = "Reporte Mensual";
             this.btnReporteMensual.UseVisualStyleBackColor = true;
@@ -44,21 +45,24 @@
             // 
             // btnReporteProducto
             // 
-            this.btnReporteProducto.Location = new System.Drawing.Point(239, 236);
+            this.btnReporteProducto.Location = new System.Drawing.Point(159, 153);
+            this.btnReporteProducto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnReporteProducto.Name = "btnReporteProducto";
-            this.btnReporteProducto.Size = new System.Drawing.Size(280, 121);
+            this.btnReporteProducto.Size = new System.Drawing.Size(187, 79);
             this.btnReporteProducto.TabIndex = 1;
             this.btnReporteProducto.Text = "Reporte por Producto";
             this.btnReporteProducto.UseVisualStyleBackColor = true;
             // 
             // FormReporteGeneral
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(533, 292);
             this.Controls.Add(this.btnReporteProducto);
             this.Controls.Add(this.btnReporteMensual);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormReporteGeneral";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReporteGeneral";
             this.ResumeLayout(false);
 
