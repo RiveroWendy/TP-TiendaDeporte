@@ -12,10 +12,14 @@ namespace DAL
     public class ConexionBase
     {
         private SqlConnection _conexion;
+
         public SqlConnection DBConexion { get { return _conexion; } }
+
+        public string ConnectionString => ConfigurationManager.ConnectionStrings["UIDeportes.Properties.Settings.CadenaConexion"].ConnectionString;
+
         public void Conectar()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["UIDeportes.Properties.Settings.CadenaConexion"].ConnectionString;
+            string connectionString = ConnectionString;
 
             _conexion = new SqlConnection(connectionString);
 

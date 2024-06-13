@@ -50,15 +50,23 @@ namespace DAL
             return dt;
         }
 
-        public int EscribirPorStoreProcedure(string pNombreStoreProcedure, SqlParameter[] pParametrosSql = null)
+        public int EscribirPorStoreProcedure(string pNombreStoreProcedure, SqlParameter[] pParametrosSql = null, SqlTransaction transaction = null)
         {
             SqlCommand comando = null;
             int filasAfectadas = 0;
 
             try
             {
-                _conexion.Conectar();
-                comando = new SqlCommand(pNombreStoreProcedure, _conexion.DBConexion);
+                if (transaction != null)
+                {
+                    comando = new SqlCommand(pNombreStoreProcedure, transaction.Connection, transaction);
+                }
+                else
+                {
+                    _conexion.Conectar();
+                    comando = new SqlCommand(pNombreStoreProcedure, _conexion.DBConexion);
+                }
+
                 comando.CommandType = CommandType.StoredProcedure;
 
                 if (pParametrosSql != null && pParametrosSql.Length > 0)
@@ -70,14 +78,20 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                _conexion.DBConexion?.Close();
+                if (transaction == null)
+                {
+                    _conexion.DBConexion?.Close();                    
+                }
                 filasAfectadas = -1;
                 throw new Exception("Error al ejecutar el procedimiento almacenado.", ex);
             }
             finally
             {
-                comando?.Dispose();
-                _conexion.Desconectar();
+                if (transaction == null)
+                {
+                    comando?.Dispose();
+                    _conexion.Desconectar();                    
+                }
             }
 
             return filasAfectadas;
