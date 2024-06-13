@@ -14,11 +14,11 @@ namespace UIDeportes
 {
     public partial class FormAltaProducto : Form
     {
-        private ProductoBE producto;
+        private BE.ProductoBE producto;
 
         public FormAltaProducto()
         {
-            producto = new ProductoBE();
+            producto = new BE.ProductoBE();
             InitializeComponent();
             CargarCategorias();
             CargarProveedores();
@@ -36,7 +36,7 @@ namespace UIDeportes
         {
             try
             {
-                var productoBLL = new ProductoBLL();
+                var productoBLL = new BLL.ProductoBLL();
                 List<CategoriaProducto> categorias = productoBLL.ObtenerCategoria();
 
                 comboBoxCategoria.DisplayMember = "Nombre";
@@ -53,7 +53,7 @@ namespace UIDeportes
         {
             try
             {
-                var productoBLL = new ProductoBLL();
+                var productoBLL = new BLL.ProductoBLL();
                 List<Proveedor> proveedores = productoBLL.ObtenerProveedor();
 
                 comboBoxProveedor.DisplayMember = "NombreEmpresa";
@@ -103,19 +103,19 @@ namespace UIDeportes
             }
 
             // Crear el objeto ProductoBE y asignarle los valores
-            producto = new ProductoBE
+            producto = new BE.ProductoBE
             {
                 Nombre = nombre,
                 Precio = precio,
                 Categoria = categoriaSeleccionada,
                 Proveedor = proveedorSeleccionado,
-                Cantidad = new Stock { Cantidad = cantidad }
+                Cantidad = new Stock { CantidadStock = cantidad }
             };
 
             try
             {
                 // Llamar al método para guardar el producto
-                var productoBLL = new ProductoBLL();
+                var productoBLL = new BLL.ProductoBLL();
                 productoBLL.CrearProducto(producto);
 
                 MessageBox.Show("Producto guardado exitosamente.");

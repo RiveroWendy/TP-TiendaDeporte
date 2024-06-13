@@ -121,7 +121,7 @@ namespace UIDeportes
             if (cargoSeleccionado != null)
             {
                 // Asignamos el cargo seleccionado al empleado
-                empleado.Cargo = cargoSeleccionado;
+                empleado.CargoEmpleado = cargoSeleccionado;
             }
             else
             {
@@ -129,24 +129,9 @@ namespace UIDeportes
             }         
         }
 
-        private void FormCrearUsuario_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tboxDNI_TextChanged(object sender, EventArgs e)
-        {
 
         }
     }

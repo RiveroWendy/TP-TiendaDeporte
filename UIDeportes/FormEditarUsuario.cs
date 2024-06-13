@@ -55,7 +55,7 @@ namespace UIDeportes
             cboxCargo.Items.Add("Vendedor");
 
             // Seleccionamos el cargo actual del usuario
-            cboxCargo.SelectedItem = _usuario.Empleado.Cargo.Nombre;
+            cboxCargo.SelectedItem = _usuario.Empleado.CargoEmpleado.Nombre;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace UIDeportes
             _usuario.Empleado.Direccion.NumeroCalle = int.Parse(tboxNumeroCalle.Text);
             _usuario.Empleado.Direccion.Localidad.NombreLocalidad = tboxLocalidad.Text;
             _usuario.Empleado.Direccion.Localidad.CodigoPostal = tboxCodigoPostal.Text;
-            _usuario.Empleado.Cargo.Nombre = cboxCargo.SelectedItem.ToString();
+            _usuario.Empleado.CargoEmpleado.Nombre = cboxCargo.SelectedItem.ToString();
 
 
             // Obtenemos el nombre del cargo seleccionado del ComboBox
@@ -88,7 +88,7 @@ namespace UIDeportes
                 if (cargoSeleccionado != null)
                 {
                     // Asignamos el objeto Cargo al usuario
-                    _usuario.Empleado.Cargo = cargoSeleccionado;
+                    _usuario.Empleado.CargoEmpleado = cargoSeleccionado;
                 }
                 else
                 {
@@ -109,20 +109,6 @@ namespace UIDeportes
             this.Close();
 
         }
-        private void tboxNombre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tboxApellido_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tboxCorreo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void cboxCargo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -130,8 +116,8 @@ namespace UIDeportes
             if (cboxCargo.SelectedItem is Cargo selectedCargo)
             {
                 // Actualizamos el nombre y el Id del cargo del empleado en el objeto _usuario
-                _usuario.Empleado.Cargo.Nombre = selectedCargo.Nombre;
-                _usuario.Empleado.Cargo.IdCargo = selectedCargo.IdCargo;
+                _usuario.Empleado.CargoEmpleado.Nombre = selectedCargo.Nombre;
+                _usuario.Empleado.CargoEmpleado.IdCargo = selectedCargo.IdCargo;
             }
         }
         private Cargo ObtenerCargoPorNombre(string nombreCargo)
@@ -146,40 +132,6 @@ namespace UIDeportes
             }
 
             return null; // Si no se encuentra el cargo, devolver null
-        }
-        private void tboxDni_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tboxNombreUsuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tboxClave_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tboxCalle_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tboxNumeroCalle_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tboxLocalidad_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tboxCodigoPostal_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

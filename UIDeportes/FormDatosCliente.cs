@@ -52,19 +52,11 @@ namespace UIDeportes
             tboxLocalidad.Text = cliente.Direccion.Localidad.NombreLocalidad;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void tboxNombre_TextChanged(object sender, EventArgs e)
-        {
-
+            FormVendedor frm = Application.OpenForms["FormVendedor"] as FormVendedor;
+            frm?.Show();
         }
 
         private void btnGuardarCliente_Click(object sender, EventArgs e)
@@ -140,10 +132,5 @@ namespace UIDeportes
             clienteBLL.ActualizarCliente(clienteExistente);
         }
 
-
-        private void tboxLocalidad_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

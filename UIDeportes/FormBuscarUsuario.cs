@@ -64,7 +64,7 @@ namespace UIDeportes
                     // Limpiamos las filas del DataGridView
                     dataGridView1.Rows.Clear();
                     // Añadimos una nueva fila al DataGridView con la información del usuario
-                    dataGridView1.Rows.Add(usuario.IdUsuario, usuario.Empleado.Nombre, usuario.Empleado.Apellido, usuario.Empleado.Correo, usuario.Empleado.Cargo.Nombre, usuario.Empleado.Dni, usuario.Empleado.Cargo.IdCargo, usuario.Empleado.Direccion.IdDireccion, usuario.Empleado.Direccion.Localidad.IdLocalidad);
+                    dataGridView1.Rows.Add(usuario.IdUsuario, usuario.Empleado.Nombre, usuario.Empleado.Apellido, usuario.Empleado.Correo, usuario.Empleado.CargoEmpleado.Nombre, usuario.Empleado.Dni, usuario.Empleado.CargoEmpleado.IdCargo, usuario.Empleado.Direccion.IdDireccion, usuario.Empleado.Direccion.Localidad.IdLocalidad);
                 }
                 else
                 {
