@@ -12,11 +12,11 @@ namespace DAL
 {
     public class ProductoDAL
     {
-        private readonly Conexion _conexion;
+        private readonly ManejadorStoreProcedure _conexion;
 
         public ProductoDAL()
         {
-            _conexion = new Conexion();
+            _conexion = new ManejadorStoreProcedure();
         }
 
         public void CrearProducto(ProductoBE producto)
@@ -28,6 +28,40 @@ namespace DAL
                     throw new ArgumentNullException();
                 }
 
+                // Insertar producto
+                //string queryInsertarProducto = $"INSERT INTO dbo.Producto (Nombre, Precio, IdProveedor, IdCategoria) VALUES  ('{producto.Nombre}', '{producto.Precio}', '{producto.Proveedor.IdProveedor}' , '{producto.Categoria.IdCategoria}')";
+                //var identity = _conexion.EscribirPorComando(queryInsertarProducto);
+                //string queryInsertarCantidad = $"INSERT INTO dbo.Stock (IdProducto, Cantidad) VALUES  ('{identity}', '{producto.Cantidad.Cantidad}')";
+                //string queryInsertarProducto = $"INSERT INTO dbo.Producto (Nombre, Precio, IdProveedor, IdCategoria) VALUES  ('{producto.Nombre}', '{producto.Precio}', '{producto.Proveedor.IdProveedor}' , '{producto.Categoria.IdCategoria}')";
+                //var identity = _conexion.EscribirPorComando(queryInsertarProducto);
+                //string queryInsertarCantidad = $"INSERT INTO dbo.Stock (IdProducto, Cantidad) VALUES  ('{identity}', '{producto.Cantidad.Cantidad}')";
+                //string queryInsertarProducto = $"INSERT INTO dbo.Producto (Nombre, Precio, IdProveedor, IdCategoria) VALUES  ('{producto.Nombre}', '{producto.Precio}', '{producto.Proveedor.IdProveedor}' , '{producto.Categoria.IdCategoria}')";
+                    new SqlParameter("@Cantidad", producto.Cantidad.CantidadStock)
+                //string queryInsertarCantidad = $"INSERT INTO dbo.Stock (IdProducto, Cantidad) VALUES  ('{identity}', '{producto.Cantidad.Cantidad}')";
+                //string queryInsertarProducto = $"INSERT INTO dbo.Producto (Nombre, Precio, IdProveedor, IdCategoria) VALUES  ('{producto.Nombre}', '{producto.Precio}', '{producto.Proveedor.IdProveedor}' , '{producto.Categoria.IdCategoria}')";
+                //var identity = _conexion.EscribirPorComando(queryInsertarProducto);
+                //string queryInsertarCantidad = $"INSERT INTO dbo.Stock (IdProducto, Cantidad) VALUES  ('{identity}', '{producto.Cantidad.Cantidad}')";
+                //string queryInsertarProducto = $"INSERT INTO dbo.Producto (Nombre, Precio, IdProveedor, IdCategoria) VALUES  ('{producto.Nombre}', '{producto.Precio}', '{producto.Proveedor.IdProveedor}' , '{producto.Categoria.IdCategoria}')";
+                //var identity = _conexion.EscribirPorComando(queryInsertarProducto);
+                //string queryInsertarCantidad = $"INSERT INTO dbo.Stock (IdProducto, Cantidad) VALUES  ('{identity}', '{producto.Cantidad.Cantidad}')";
+                //string queryInsertarProducto = $"INSERT INTO dbo.Producto (Nombre, Precio, IdProveedor, IdCategoria) VALUES  ('{producto.Nombre}', '{producto.Precio}', '{producto.Proveedor.IdProveedor}' , '{producto.Categoria.IdCategoria}')";
+                //var identity = _conexion.EscribirPorComando(queryInsertarProducto);
+                //string queryInsertarCantidad = $"INSERT INTO dbo.Stock (IdProducto, Cantidad) VALUES  ('{identity}', '{producto.Cantidad.Cantidad}')";
+                //string queryInsertarProducto = $"INSERT INTO dbo.Producto (Nombre, Precio, IdProveedor, IdCategoria) VALUES  ('{producto.Nombre}', '{producto.Precio}', '{producto.Proveedor.IdProveedor}' , '{producto.Categoria.IdCategoria}')";
+                //var identity = _conexion.EscribirPorComando(queryInsertarProducto);
+                //string queryInsertarCantidad = $"INSERT INTO dbo.Stock (IdProducto, Cantidad) VALUES  ('{identity}', '{producto.Cantidad.Cantidad}')";
+                //string queryInsertarProducto = $"INSERT INTO dbo.Producto (Nombre, Precio, IdProveedor, IdCategoria) VALUES  ('{producto.Nombre}', '{producto.Precio}', '{producto.Proveedor.IdProveedor}' , '{producto.Categoria.IdCategoria}')";
+                //var identity = _conexion.EscribirPorComando(queryInsertarProducto);
+                //string queryInsertarCantidad = $"INSERT INTO dbo.Stock (IdProducto, Cantidad) VALUES  ('{identity}', '{producto.Cantidad.Cantidad}')";
+                //string queryInsertarProducto = $"INSERT INTO dbo.Producto (Nombre, Precio, IdProveedor, IdCategoria) VALUES  ('{producto.Nombre}', '{producto.Precio}', '{producto.Proveedor.IdProveedor}' , '{producto.Categoria.IdCategoria}')";
+                string query = "SELECT IdCategoria, Nombre FROM dbo.CategoriaProducto";
+                DataTable tablaCategorias = _conexion.LeerPorComando(query);
+                //string queryInsertarProducto = $"INSERT INTO dbo.Producto (Nombre, Precio, IdProveedor, IdCategoria) VALUES  ('{producto.Nombre}', '{producto.Precio}', '{producto.Proveedor.IdProveedor}' , '{producto.Categoria.IdCategoria}')";
+                //var identity = _conexion.EscribirPorComando(queryInsertarProducto);
+                //string queryInsertarCantidad = $"INSERT INTO dbo.Stock (IdProducto, Cantidad) VALUES  ('{identity}', '{producto.Cantidad.Cantidad}')";
+                //string queryInsertarProducto = $"INSERT INTO dbo.Producto (Nombre, Precio, IdProveedor, IdCategoria) VALUES  ('{producto.Nombre}', '{producto.Precio}', '{producto.Proveedor.IdProveedor}' , '{producto.Categoria.IdCategoria}')";
+                //var identity = _conexion.EscribirPorComando(queryInsertarProducto);
+                //string queryInsertarCantidad = $"INSERT INTO dbo.Stock (IdProducto, Cantidad) VALUES  ('{identity}', '{producto.Cantidad.Cantidad}')";
                 string SP = "CrearProducto";
                 SqlParameter[] parameters = new SqlParameter[]
                 {
@@ -49,12 +83,12 @@ namespace DAL
         }
 
         public List<CategoriaProducto> ObtenerCategoria()
-        {
-            List<CategoriaProducto> categorias = new List<CategoriaProducto>();
+                string query = "ObtenerProveedor";
+                DataTable tablaProveedor = _conexion.LeerPorStoreProcedure(query);
             try
             {
-                string query = "SELECT IdCategoria, Nombre FROM dbo.CategoriaProducto";
-                DataTable tablaCategorias = _conexion.LeerPorComando(query);
+                string query = "ObtenerCategoria";
+                DataTable tablaCategorias = _conexion.LeerPorStoreProcedure(query);
 
                 foreach (DataRow row in tablaCategorias.Rows)
                 {
@@ -82,8 +116,8 @@ namespace DAL
             List<Proveedor> proveedores = new List<Proveedor>();
             try
             {
-                string query = "SELECT IdProveedor, NombreEmpresa, Telefono, Correo FROM dbo.Proveedor";
-                DataTable tablaProveedor = _conexion.LeerPorComando(query);
+                string query = "ObtenerProveedor";
+                DataTable tablaProveedor = _conexion.LeerPorStoreProcedure(query);
 
                 foreach (DataRow row in tablaProveedor.Rows)
                 {
@@ -115,19 +149,19 @@ namespace DAL
 
         public DataTable VisualizarStock(int idProducto)
         {
-            string query = "SELECT Cantidad FROM dbo.Producto WHERE IdProducto = @IdProducto";
+            string query = "VisualizarStock";
 
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@IdProducto", idProducto)
             };
 
-            return _conexion.LeerPorComando(query);
+            return _conexion.LeerPorStoreProcedure(query);
         }
 
         public int EditarProducto(ProductoBE producto)
         {
-            string query = "UPDATE dbo.Producto SET Nombre = @Nombre, Precio = @Precio WHERE IdProducto = @IdProducto";
+            string query = "EditarProducto";
 
             SqlParameter[] parameters = new SqlParameter[]
              {
@@ -136,15 +170,12 @@ namespace DAL
                 new SqlParameter("@IdProducto", producto.IdProducto)
               };
 
-            return _conexion.EscribirPorComando(query, parameters);
+            return _conexion.EscribirPorStoreProcedure(query, parameters);
         }
 
         public int EliminarProducto(int idProducto)
         {
-            int valorFilasAfectadasProducto = 0;
-
             string queryStock = "EliminarProducto";
-            //string queryProducto = "DELETE FROM dbo.Producto WHERE IdProducto = @IdProducto";
 
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -154,22 +185,15 @@ namespace DAL
             return _conexion.EscribirPorStoreProcedure(queryStock, parameters);
         }
 
-        public DataTable BuscarProducto(int idProducto)
+        public DataTable BuscarProducto(string nombreProducto)
         {
-            string query = @"
-            SELECT 
-                p.IdProducto, 
-                p.Nombre, 
-                p.Precio, 
-                c.Nombre AS Categoria, 
-                pr.NombreEmpresa AS Proveedor 
-                FROM dbo.Producto p
-                JOIN dbo.CategoriaProducto c ON p.IdCategoria = c.IdCategoria
-                JOIN dbo.Proveedor pr ON p.IdProveedor = pr.IdProveedor
-                WHERE p.IdProducto =" + idProducto;
+            string query = "BuscarProducto";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@NombreProducto", nombreProducto)
+            };
 
-
-            return _conexion.LeerPorComando(query);
+            return _conexion.LeerPorStoreProcedure(query, parameters);
         }
 
 
@@ -179,8 +203,8 @@ namespace DAL
         {
             try
             {
-                string query = "SELECT IdProducto, Nombre, Precio, IdProveedor, IdCategoria FROM dbo.Producto";
-                return _conexion.LeerPorComando(query);
+                string query = "TraerProductos";
+                return _conexion.LeerPorStoreProcedure(query);
             }
             catch (Exception ex)
             {
@@ -191,10 +215,8 @@ namespace DAL
         {
             try
             {
-                string query = "SELECT Producto.IdProducto, Nombre, Precio, IdProveedor, IdCategoria, Stock.Cantidad " +
-                               "FROM Producto " +
-                               "JOIN Stock on Producto.IdProducto = Stock.IdProducto ";
-                return _conexion.LeerPorComando(query);
+                string query = "TraerProductosConStock";
+                return _conexion.LeerPorStoreProcedure(query);
             }
             catch (Exception ex)
             {
@@ -204,19 +226,19 @@ namespace DAL
 
         public DataTable TraerStock(int idProducto)
         {
-            string query = "SELECT TOP 1 IdProducto, Cantidad FROM dbo.Stock WHERE IdProducto = @IdProducto";
+            string query = "TraerStock";
 
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@IdProducto", idProducto)
             };
 
-            return _conexion.LeerPorComando(query, parameters);
+            return _conexion.LeerPorStoreProcedure(query, parameters);
         }
 
         public int EditarStockProducto(int idProducto, int cantidad)
         {
-            string query = "UPDATE Stock SET Cantidad = @Cantidad WHERE IdProducto = @IdProducto";
+            string query = "EditarStockProducto";
 
             SqlParameter[] parameters = new SqlParameter[]
              {
@@ -224,7 +246,7 @@ namespace DAL
                 new SqlParameter("@Cantidad", cantidad),
               };
 
-            return _conexion.EscribirPorComando(query, parameters);
+            return _conexion.EscribirPorStoreProcedure(query, parameters);
         }
     }
 }

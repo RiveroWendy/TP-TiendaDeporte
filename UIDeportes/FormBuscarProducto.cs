@@ -45,7 +45,7 @@ namespace UIDeportes
 
             if (int.TryParse(input, out idProducto))
             {
-                ProductoBE producto = _productoBLL.BuscarProducto(idProducto);
+                BE.ProductoBE producto = _productoBLL.BuscarProducto(idProducto);
                 if (producto != null)
                 {
                     MessageBox.Show("Producto Encontrado Nombre: " + producto.Nombre + "Precio: " + producto.Precio);
