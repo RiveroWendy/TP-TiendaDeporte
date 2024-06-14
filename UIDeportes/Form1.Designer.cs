@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnIniciarSesion = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.lblNombreUsuario = new System.Windows.Forms.Label();
             this.lblClave = new System.Windows.Forms.Label();
             this.tboxNombreUsuario = new System.Windows.Forms.TextBox();
@@ -43,26 +43,26 @@
             this.btnIniciarSesion.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnIniciarSesion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnIniciarSesion.Location = new System.Drawing.Point(131, 261);
-            this.btnIniciarSesion.Margin = new System.Windows.Forms.Padding(2);
+            this.btnIniciarSesion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnIniciarSesion.Name = "btnIniciarSesion";
             this.btnIniciarSesion.Size = new System.Drawing.Size(119, 27);
-            this.btnIniciarSesion.TabIndex = 3;
+            this.btnIniciarSesion.TabIndex = 0;
             this.btnIniciarSesion.Text = "Iniciar Sesión";
             this.btnIniciarSesion.UseVisualStyleBackColor = false;
             this.btnIniciarSesion.Click += new System.EventHandler(this.btnIniciarSesion_Click);
             // 
-            // btnSalir
+            // btnCancelar
             // 
-            this.btnSalir.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSalir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSalir.Location = new System.Drawing.Point(301, 261);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(119, 27);
-            this.btnSalir.TabIndex = 4;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = false;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            this.btnCancelar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCancelar.Location = new System.Drawing.Point(301, 261);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(119, 27);
+            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // lblNombreUsuario
             // 
@@ -87,19 +87,21 @@
             // tboxNombreUsuario
             // 
             this.tboxNombreUsuario.Location = new System.Drawing.Point(303, 94);
-            this.tboxNombreUsuario.Margin = new System.Windows.Forms.Padding(2);
+            this.tboxNombreUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tboxNombreUsuario.Name = "tboxNombreUsuario";
             this.tboxNombreUsuario.Size = new System.Drawing.Size(118, 20);
-            this.tboxNombreUsuario.TabIndex = 1;
+            this.tboxNombreUsuario.TabIndex = 4;
+            this.tboxNombreUsuario.TextChanged += new System.EventHandler(this.tboxNombreUsuario_TextChanged);
             // 
             // tboxClave
             // 
             this.tboxClave.Location = new System.Drawing.Point(303, 146);
-            this.tboxClave.Margin = new System.Windows.Forms.Padding(2);
+            this.tboxClave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tboxClave.Name = "tboxClave";
             this.tboxClave.PasswordChar = '*';
             this.tboxClave.Size = new System.Drawing.Size(118, 20);
-            this.tboxClave.TabIndex = 2;
+            this.tboxClave.TabIndex = 5;
+            this.tboxClave.TextChanged += new System.EventHandler(this.tboxClave_TextChanged);
             // 
             // label1
             // 
@@ -110,6 +112,7 @@
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "LOGIN";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button1
             // 
@@ -136,11 +139,10 @@
             this.Controls.Add(this.tboxNombreUsuario);
             this.Controls.Add(this.lblClave);
             this.Controls.Add(this.lblNombreUsuario);
-            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnIniciarSesion);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -150,7 +152,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnIniciarSesion;
-        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblNombreUsuario;
         private System.Windows.Forms.Label lblClave;
         private System.Windows.Forms.TextBox tboxNombreUsuario;

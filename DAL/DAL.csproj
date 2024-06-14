@@ -48,7 +48,6 @@
     <Compile Include="Conexion.cs" />
     <Compile Include="ConexionBase.cs" />
     <Compile Include="DireccionDAL.cs" />
-    <Compile Include="EmpleadoDAL.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LoginDAL.cs" />
     <Compile Include="ManejadorStoreProcedure.cs" />

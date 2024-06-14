@@ -19,6 +19,15 @@ namespace UIDeportes
         {
             InitializeComponent();
         }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tboxDNICliente_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
         {
@@ -58,49 +67,35 @@ namespace UIDeportes
                 return;
             }
 
-            try
+            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+            ClienteBE cliente = new ClienteBE
             {
-                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                ClienteBE cliente = new ClienteBE
+                IdCliente = Convert.ToInt32(selectedRow.Cells["IdCliente"].Value),
+                Dni = Convert.ToInt32(selectedRow.Cells["DNI"].Value),
+                Nombre = selectedRow.Cells["Nombre"].Value.ToString(),
+                Apellido = selectedRow.Cells["Apellido"].Value.ToString(),
+                Correo = selectedRow.Cells["CorreoElectronico"].Value.ToString(),
+                Direccion = new DireccionBE
                 {
-                    IdCliente = Convert.ToInt32(selectedRow.Cells["IdCliente"].Value),
-                    Dni = Convert.ToInt32(selectedRow.Cells["DNI"].Value),
-                    Nombre = selectedRow.Cells["Nombre"].Value.ToString(),
-                    Apellido = selectedRow.Cells["Apellido"].Value.ToString(),
-                    Correo = selectedRow.Cells["CorreoElectronico"].Value.ToString(),
-                    Direccion = new DireccionBE
+                    NombreCalle = selectedRow.Cells["NombreCalle"].Value.ToString(),
+                    NumeroCalle = Convert.ToInt32(selectedRow.Cells["NumeroCalle"].Value),
+                    Localidad = new LocalidadBE
                     {
-                        NombreCalle = selectedRow.Cells["NombreCalle"].Value.ToString(),
-                        NumeroCalle = Convert.ToInt32(selectedRow.Cells["NumeroCalle"].Value),
-                        Localidad = new LocalidadBE
-                        {
-                            NombreLocalidad = selectedRow.Cells["Localidad"].Value.ToString(),
-                            CodigoPostal = selectedRow.Cells["CodigoPostal"].Value.ToString(),
-                        }
+                        NombreLocalidad = selectedRow.Cells["Localidad"].Value.ToString(),
+                        CodigoPostal = selectedRow.Cells["CodigoPostal"].Value.ToString(),
                     }
-                };
+                }
+            };
 
-                FormDatosCliente formDatosCliente = new FormDatosCliente();
-                formDatosCliente.EstablecerClienteExistente(cliente);
-                formDatosCliente.ShowDialog();
-
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Se produjo un error al modificar el cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            FormDatosCliente formDatosCliente = new FormDatosCliente();
+            formDatosCliente.EstablecerClienteExistente(cliente);
+            formDatosCliente.ShowDialog();
         }
 
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-            FormVendedor frm = Application.OpenForms["FormVendedor"] as FormVendedor;
-            frm?.Show();
         }
     }
 }

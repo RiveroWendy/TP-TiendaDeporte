@@ -15,11 +15,6 @@ namespace BE
         private string _clave;
         #endregion
 
-        public UsuarioBE()
-        {
-            _empleado = new EmpleadoBE();
-        }
-
         #region Propiedades
         public int IdUsuario
         {

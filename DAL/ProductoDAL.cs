@@ -28,10 +28,6 @@ namespace DAL
                     throw new ArgumentNullException();
                 }
 
-                // Insertar producto
-                //string queryInsertarProducto = $"INSERT INTO dbo.Producto (Nombre, Precio, IdProveedor, IdCategoria) VALUES  ('{producto.Nombre}', '{producto.Precio}', '{producto.Proveedor.IdProveedor}' , '{producto.Categoria.IdCategoria}')";
-                //var identity = _conexion.EscribirPorComando(queryInsertarProducto);
-                //string queryInsertarCantidad = $"INSERT INTO dbo.Stock (IdProducto, Cantidad) VALUES  ('{identity}', '{producto.Cantidad.Cantidad}')";
                 string SP = "CrearProducto";
                 SqlParameter[] parameters = new SqlParameter[]
                 {
@@ -39,7 +35,7 @@ namespace DAL
                     new SqlParameter("@Precio", producto.Precio),
                     new SqlParameter("@IdProveedor", producto.Proveedor.IdProveedor),
                     new SqlParameter("@IdCategoria", producto.Categoria.IdCategoria),
-                    new SqlParameter("@Cantidad", producto.Cantidad.CantidadStock)
+                    new SqlParameter("@Cantidad", producto.Cantidad.Cantidad)
                 };
 
                 _conexion.EscribirPorStoreProcedure(SP, parameters);

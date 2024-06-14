@@ -40,7 +40,7 @@ namespace BLL
 
         public Stock VisualizarStock(int idProducto)
         {
-            ProductoBE producto = _productos.FirstOrDefault(p => p.IdProducto == idProducto);
+            var producto = _productos.FirstOrDefault(p => p.IdProducto == idProducto);
             return producto?.Cantidad;
         }
 
@@ -163,7 +163,7 @@ namespace BLL
                         },
                         Cantidad = new Stock
                         {
-                            CantidadStock = Cantidad
+                            Cantidad = Cantidad
                         }
                 };
 
@@ -194,7 +194,7 @@ namespace BLL
                     int Precio = Convert.ToInt32(row["Cantidad"]);
 
                     stock.IdProducto = IdProducto;
-                    stock.CantidadStock = Precio;
+                    stock.Cantidad = Precio;
                 }
                 
                 return stock;

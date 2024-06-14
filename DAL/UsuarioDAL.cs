@@ -14,6 +14,7 @@ namespace DAL
     {
 
         private Conexion conexion = new Conexion();
+        private ManejadorStoreProcedure _conexion = new ManejadorStoreProcedure();
         private CargoDAL _cargo;
 
         public UsuarioDAL()
@@ -23,137 +24,148 @@ namespace DAL
 
         public UsuarioBE BuscarUsuarioPorDni(int dni)
         {
-            // Creamos la consulta SQL que selecciona los datos del usuario, empleado, dirección, localidad y cargo
-            string comando = $"SELECT u.IdUsuario, u.NombreUsuario, u.Clave, e.IdEmpleado, e.Nombre, e.Apellido, e.Dni, e.CorreoElectronico, d.IdDireccion, d.NombreCalle, d.NumeroCalle, l.IdLocalidad, l.NombreLocalidad, l.CodigoPostal, c.IdCargo, c.Nombre AS NombreCargo " +
-                          $"FROM Usuario u " +
-                          $"LEFT JOIN Empleado e ON u.IdEmpleado = e.IdEmpleado " +
-                          $"JOIN Direccion d ON e.IdDireccion = d.IdDireccion " +
-                          $"JOIN Localidad l ON d.IdLocalidad = l.IdLocalidad " +
-                          $"JOIN Cargo c ON e.IdCargo = c.IdCargo " +
-                          $"WHERE e.Dni = {dni}";
-
-            // Ejecutamos el comando y obtenemos los resultados en un DataTable
-            DataTable tabla = conexion.LeerPorComando(comando);
-
-            // Si encontramos al menos una fila, procedemos a procesar los datos
-            if (tabla.Rows.Count > 0)
+            try
             {
-                DataRow fila = tabla.Rows[0];
-                int idCargo = Convert.ToInt32(fila["IdCargo"]);
-                Cargo cargo = _cargo.ObtenerCargoPorId(idCargo);
-
-                // Creamos y retornamos una instancia de UsuarioBE con todos los datos obtenidos y procesados
-                return new UsuarioBE
+                string nombreSP = "sp_buscar_empleado_por_dni";
+                SqlParameter[] parameters = new SqlParameter[]
                 {
-                    IdUsuario = Convert.ToInt32(fila["IdUsuario"]),
-                    NombreUsuario = fila["NombreUsuario"].ToString(),
-                    Clave = fila["Clave"].ToString(),
-                    Empleado = new EmpleadoBE
-                    {
-                        IdEmpleado = Convert.ToInt32(fila["IdEmpleado"]),
-                        Dni = Convert.ToInt32(fila["Dni"]),  // Aquí convertimos el valor a int
-                        Nombre = fila["Nombre"].ToString(),
-                        Apellido = fila["Apellido"].ToString(),
-                        Correo = fila["CorreoElectronico"].ToString(),
-                        Direccion = new DireccionBE
-                        {
-                            IdDireccion = Convert.ToInt32(fila["IdDireccion"]),
-                            NombreCalle = fila["NombreCalle"].ToString(),
-                            NumeroCalle = Convert.ToInt32(fila["NumeroCalle"]),
-                            Localidad = new LocalidadBE
-                            {
-                                IdLocalidad = Convert.ToInt32(fila["IdLocalidad"]),
-                                NombreLocalidad = fila["NombreLocalidad"].ToString(),
-                                CodigoPostal = fila["CodigoPostal"].ToString()
-                            }
-                        },
-                        CargoEmpleado = cargo
-                    }
+            new SqlParameter("@Dni", SqlDbType.Int) { Value = dni }
                 };
+
+                DataTable tabla = _conexion.LeerPorStoreProcedure(nombreSP, parameters);
+
+                if (tabla.Rows.Count > 0)
+                {
+                    DataRow fila = tabla.Rows[0];
+                    int idUsuario = Convert.ToInt32(fila["IdUsuario"]);
+                    int idEmpleado = Convert.ToInt32(fila["IdEmpleado"]);
+
+                    Cargo cargo = _cargo.ObtenerCargoPorId(Convert.ToInt32(fila["IdCargo"]));
+
+                    return new UsuarioBE
+                    {
+                        IdUsuario = Convert.ToInt32(fila["IdUsuario"]),
+                        NombreUsuario = fila["NombreUsuario"].ToString(),
+                        Clave = fila["Clave"].ToString(),
+                        Empleado = new EmpleadoBE
+                        {
+                            IdEmpleado = idEmpleado,
+                            Dni = Convert.ToInt32(fila["Dni"]),
+                            Nombre = fila["Nombre"].ToString(),
+                            Apellido = fila["Apellido"].ToString(),
+                            Correo = fila["CorreoElectronico"].ToString(),
+                            Direccion = new DireccionBE
+                            {
+                                IdDireccion = Convert.ToInt32(fila["IdDireccion"]),
+                                NombreCalle = fila["NombreCalle"].ToString(),
+                                NumeroCalle = Convert.ToInt32(fila["NumeroCalle"]),
+                                Localidad = new LocalidadBE
+                                {
+                                    IdLocalidad = Convert.ToInt32(fila["IdLocalidad"]),
+                                    NombreLocalidad = fila["NombreLocalidad"].ToString(),
+                                    CodigoPostal = fila["CodigoPostal"].ToString()
+                                }
+                            },
+                            Cargo = cargo
+                        }
+                    };
+                }
+
+                return null;
             }
-
-            return null;
+            catch (Exception ex)
+            {
+                throw new Exception("Error al buscar el usuario por DNI en la base de datos. Detalles: " + ex.Message, ex);
+            }
         }
-
 
         public void ActualizarUsuario(UsuarioBE usuario)
         {
-            // Creamos la consulta SQL que actualiza los datos de localidad, dirección, usuario y empleado
-            string comando =
-                "UPDATE Localidad SET NombreLocalidad = @NombreLocalidad, CodigoPostal = @CodigoPostal WHERE IdLocalidad = @IdLocalidad; " +
-                "UPDATE Direccion SET NombreCalle = @NombreCalle, NumeroCalle = @NumeroCalle WHERE IdDireccion = @IdDireccion; " +
-                "UPDATE Usuario SET NombreUsuario = @NombreUsuario, Clave = @Clave WHERE IdUsuario = @IdUsuario; " +
-                "UPDATE Empleado SET Nombre = @Nombre, Apellido = @Apellido, Dni = @Dni, CorreoElectronico = @CorreoElectronico, IdCargo = @IdCargo WHERE IdEmpleado = @IdEmpleado;";
-
-            // Creamos los parámetros necesarios para la consulta
+            string nombreSP = "sp_actualizar_usuario";
             SqlParameter[] parametros = new SqlParameter[]
             {
-            conexion.crearParametro("@NombreLocalidad", usuario.Empleado.Direccion.Localidad.NombreLocalidad),
-            conexion.crearParametro("@CodigoPostal", usuario.Empleado.Direccion.Localidad.CodigoPostal),
-            conexion.crearParametro("@IdLocalidad", usuario.Empleado.Direccion.Localidad.IdLocalidad),
-            conexion.crearParametro("@NombreCalle", usuario.Empleado.Direccion.NombreCalle),
-            conexion.crearParametro("@NumeroCalle", usuario.Empleado.Direccion.NumeroCalle),
-            conexion.crearParametro("@IdDireccion", usuario.Empleado.Direccion.IdDireccion),
-            conexion.crearParametro("@NombreUsuario", usuario.NombreUsuario),
-            conexion.crearParametro("@Clave", usuario.Clave),
-            conexion.crearParametro("@IdUsuario", usuario.IdUsuario),
-            conexion.crearParametro("@Nombre", usuario.Empleado.Nombre),
-            conexion.crearParametro("@Apellido", usuario.Empleado.Apellido),
-            conexion.crearParametro("@Dni", usuario.Empleado.Dni),
-            conexion.crearParametro("@CorreoElectronico", usuario.Empleado.Correo),
-            conexion.crearParametro("@IdCargo", usuario.Empleado.CargoEmpleado.IdCargo),
-            conexion.crearParametro("@IdEmpleado", usuario.Empleado.IdEmpleado)
+        conexion.crearParametro("@IdUsuario", usuario.IdUsuario),
+        conexion.crearParametro("@Nombre", usuario.Empleado.Nombre),
+        conexion.crearParametro("@Apellido", usuario.Empleado.Apellido),
+        conexion.crearParametro("@Dni", usuario.Empleado.Dni),
+        conexion.crearParametro("@CorreoElectronico", usuario.Empleado.Correo),
+        conexion.crearParametro("@NombreCalle", usuario.Empleado.Direccion.NombreCalle),
+        conexion.crearParametro("@NumeroCalle", usuario.Empleado.Direccion.NumeroCalle),
+        conexion.crearParametro("@NombreLocalidad", usuario.Empleado.Direccion.Localidad.NombreLocalidad),
+        conexion.crearParametro("@CodigoPostal", usuario.Empleado.Direccion.Localidad.CodigoPostal),
+        conexion.crearParametro("@IdCargo", usuario.Empleado.Cargo.IdCargo),
+        conexion.crearParametro("@NombreUsuario", usuario.NombreUsuario),
+        conexion.crearParametro("@Clave", usuario.Clave)
             };
-            // Ejecutamos el comando con los parámetros creados
-            conexion.EscribirPorComando1(comando, parametros);
 
+            _conexion.EscribirPorStoreProcedure(nombreSP, parametros);
         }
 
         public void CrearUsuario(UsuarioBE usuario)
         {
             try
             {
-                // Verificamos que el objeto usuario no sea nulo
                 if (usuario == null)
                 {
                     throw new ArgumentNullException(nameof(usuario), "El objeto usuario no puede ser nulo.");
                 }
-                // Verificamos que el objeto Empleado del usuario no sea nulo
                 if (usuario.Empleado == null)
                 {
                     throw new ArgumentNullException(nameof(usuario.Empleado), "El objeto Empleado en el usuario no puede ser nulo.");
                 }
 
-                Cargo cargo = usuario.Empleado.CargoEmpleado;
+                EmpleadoBE empleado = usuario.Empleado;
+                LocalidadBE localidad = empleado.Direccion.Localidad;
 
-                // Verificamos que el cargo del empleado no sea nulo
-                if (cargo == null)
-                {
-                    throw new ArgumentNullException(nameof(cargo), "El cargo del empleado no puede ser nulo.");
-                }
 
-                // Insertamos la localidad y obtenemos el Id generado
-                string comandoInsertarLocalidad = $"INSERT INTO Localidad (NombreLocalidad, CodigoPostal) VALUES ('{usuario.Empleado.Direccion.Localidad.NombreLocalidad}', '{usuario.Empleado.Direccion.Localidad.CodigoPostal}'); SELECT SCOPE_IDENTITY();";
-                int idLocalidad = Convert.ToInt32(conexion.EscribirPorComando(comandoInsertarLocalidad));
+                string nombreSP = "sp_crear_usuario";
+ 
+                SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@Nombre", empleado.Nombre),
+                        new SqlParameter("@Apellido", empleado.Apellido),
+                        new SqlParameter("@Dni", empleado.Dni),
+                        new SqlParameter("@CorreoElectronico", empleado.Correo),
+                        new SqlParameter("@NombreCalle", empleado.Direccion.NombreCalle),
+                        new SqlParameter("@NumeroCalle", empleado.Direccion.NumeroCalle),
+                        new SqlParameter("@NombreLocalidad", localidad.NombreLocalidad),
+                        new SqlParameter("@CodigoPostal", localidad.CodigoPostal),
+                        new SqlParameter("@IdCargo", empleado.Cargo.IdCargo),
+                        new SqlParameter("@NombreUsuario", usuario.NombreUsuario),
+                        new SqlParameter("@Clave", usuario.Clave)
+                    };
 
-                // Insertamos la dirección y obtenemos el Id generado
-                string comandoInsertarDireccion = $"INSERT INTO Direccion (NombreCalle, NumeroCalle, IdLocalidad) VALUES ('{usuario.Empleado.Direccion.NombreCalle}', {usuario.Empleado.Direccion.NumeroCalle}, {idLocalidad}); SELECT SCOPE_IDENTITY();";
-                int idDireccion = Convert.ToInt32(conexion.EscribirPorComando(comandoInsertarDireccion));
-
-                // Insertamos el empleado y obtenemos el Id generado
-                string comandoInsertarEmpleado = $"INSERT INTO Empleado (Nombre, Apellido, Dni, CorreoElectronico, IdDireccion, IdCargo) VALUES ('{usuario.Empleado.Nombre}', '{usuario.Empleado.Apellido}', {usuario.Empleado.Dni}, '{usuario.Empleado.Correo}', {idDireccion}, {usuario.Empleado.CargoEmpleado.IdCargo}); SELECT SCOPE_IDENTITY();";
-                int idEmpleado = Convert.ToInt32(conexion.EscribirPorComando(comandoInsertarEmpleado));
-
-                // Insertamos el usuario
-                string comandoInsertarUsuario = $"INSERT INTO Usuario (IdEmpleado, NombreUsuario, Clave) VALUES ({idEmpleado}, '{usuario.NombreUsuario}', '{usuario.Clave}')";
-                conexion.EscribirPorComando(comandoInsertarUsuario);
-
+               _conexion.EscribirPorStoreProcedure(nombreSP, parameters);
             }
             catch (Exception ex)
             {
-                // En caso de excepción, lanzamos un error con un mensaje detallado
                 throw new Exception("Error al crear el usuario en la base de datos. Detalles: " + ex.Message, ex);
             }
         }
+
+        public void EliminarUsuario(int dni)
+        {
+            try
+            {
+                SqlParameter[] parametros =
+                {
+            new SqlParameter("@Dni", dni)
+        };
+
+                ManejadorStoreProcedure manejadorSP = new ManejadorStoreProcedure();
+                int filasAfectadas = manejadorSP.EscribirPorStoreProcedure("sp_eliminar_usuario", parametros);
+
+                if (filasAfectadas <= 0)
+                {
+                    throw new Exception("No se pudo eliminar el usuario.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar el usuario. Detalles: " + ex.Message, ex);
+            }
+        }
+
+
     }
 }

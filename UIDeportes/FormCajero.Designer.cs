@@ -34,34 +34,30 @@
             // 
             // btnBuscarVenta
             // 
-            this.btnBuscarVenta.Location = new System.Drawing.Point(167, 77);
-            this.btnBuscarVenta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscarVenta.Location = new System.Drawing.Point(251, 119);
             this.btnBuscarVenta.Name = "btnBuscarVenta";
-            this.btnBuscarVenta.Size = new System.Drawing.Size(144, 64);
+            this.btnBuscarVenta.Size = new System.Drawing.Size(216, 98);
             this.btnBuscarVenta.TabIndex = 0;
             this.btnBuscarVenta.Text = "Buscar Venta";
             this.btnBuscarVenta.UseVisualStyleBackColor = true;
             // 
             // btnEmitirFactura
             // 
-            this.btnEmitirFactura.Location = new System.Drawing.Point(167, 154);
-            this.btnEmitirFactura.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEmitirFactura.Location = new System.Drawing.Point(251, 237);
             this.btnEmitirFactura.Name = "btnEmitirFactura";
-            this.btnEmitirFactura.Size = new System.Drawing.Size(144, 64);
+            this.btnEmitirFactura.Size = new System.Drawing.Size(216, 98);
             this.btnEmitirFactura.TabIndex = 1;
             this.btnEmitirFactura.Text = "Emitir Factura";
             this.btnEmitirFactura.UseVisualStyleBackColor = true;
             // 
             // FormCajero
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 292);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnEmitirFactura);
             this.Controls.Add(this.btnBuscarVenta);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormCajero";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormCajero";
             this.ResumeLayout(false);
 

@@ -34,10 +34,9 @@
             // 
             // btnRepVendedor
             // 
-            this.btnRepVendedor.Location = new System.Drawing.Point(174, 144);
-            this.btnRepVendedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRepVendedor.Location = new System.Drawing.Point(261, 222);
             this.btnRepVendedor.Name = "btnRepVendedor";
-            this.btnRepVendedor.Size = new System.Drawing.Size(171, 63);
+            this.btnRepVendedor.Size = new System.Drawing.Size(256, 97);
             this.btnRepVendedor.TabIndex = 1;
             this.btnRepVendedor.Text = "Reporte de Ventas por Vendedor";
             this.btnRepVendedor.UseVisualStyleBackColor = true;
@@ -45,10 +44,9 @@
             // 
             // btnRepGralVtas
             // 
-            this.btnRepGralVtas.Location = new System.Drawing.Point(174, 53);
-            this.btnRepGralVtas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRepGralVtas.Location = new System.Drawing.Point(261, 81);
             this.btnRepGralVtas.Name = "btnRepGralVtas";
-            this.btnRepGralVtas.Size = new System.Drawing.Size(171, 63);
+            this.btnRepGralVtas.Size = new System.Drawing.Size(256, 97);
             this.btnRepGralVtas.TabIndex = 2;
             this.btnRepGralVtas.Text = "Reporte General de Ventas";
             this.btnRepGralVtas.UseVisualStyleBackColor = true;
@@ -56,14 +54,12 @@
             // 
             // FormGerente
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 292);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnRepGralVtas);
             this.Controls.Add(this.btnRepVendedor);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormGerente";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormGerente";
             this.ResumeLayout(false);
 

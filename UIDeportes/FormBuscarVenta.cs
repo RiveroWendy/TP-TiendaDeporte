@@ -20,8 +20,6 @@ namespace UIDeportes
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-            FormVendedor frm = Application.OpenForms["FormVendedor"] as FormVendedor;
-            frm?.Show();
         }
     }
 }

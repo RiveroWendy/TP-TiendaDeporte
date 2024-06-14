@@ -12,18 +12,6 @@ namespace DAL
     public class LoginDAL
     {
         private Conexion conexion = new Conexion();
-        private ManejadorStoreProcedure _storeProcedure;
-        private CargoDAL _cargo;
-        private DireccionDAL _direccion;
-        private EmpleadoDAL _empleado;
-
-        public LoginDAL()
-        {
-            _storeProcedure = new ManejadorStoreProcedure();
-            _cargo = new CargoDAL();
-            _direccion = new DireccionDAL();
-            _empleado = new EmpleadoDAL();
-        }
 
         public bool VerificarCredenciales(string nombreUsuario, string clave)
         {
@@ -59,35 +47,5 @@ namespace DAL
             }
             return null;
         }
-
-
-        public UsuarioBE ValidarUsuario(string nombreUsuario, string password)
-        {
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                new SqlParameter("@NombreUsuario", nombreUsuario),
-                new SqlParameter("@Password", password)
-            };
-
-            DataTable dt = _storeProcedure.LeerPorStoreProcedure("sp_validar_credenciales_usuario", parametros);
-
-            if (dt == null || dt.Rows.Count == 0)
-            {
-                return null;
-            }
-
-            DataRow row = dt.Rows[0];
-
-            UsuarioBE usuario = new UsuarioBE()
-            {
-                IdUsuario = (int)row["IdUsuario"],
-                NombreUsuario = row["NombreUsuario"].ToString(),
-                Empleado = _empleado.ObtenerEmpleadoPorId(Convert.ToInt32(row["IdEmpleado"]))
-            };
-
-            return usuario;
-        }
-
-
     }
 }

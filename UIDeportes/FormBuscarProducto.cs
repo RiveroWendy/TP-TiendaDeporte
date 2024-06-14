@@ -14,12 +14,12 @@ namespace UIDeportes
 {
     public partial class FormBuscarProducto : Form
     {
-        private BLL.ProductoBLL _productoBLL;
+        private ProductoBLL _productoBLL;
 
         public FormBuscarProducto()
         {
             InitializeComponent();
-            _productoBLL = new BLL.ProductoBLL();
+            _productoBLL = new ProductoBLL();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace UIDeportes
 
             if (int.TryParse(input, out idProducto))
             {
-                BE.ProductoBE producto = _productoBLL.BuscarProducto(idProducto);
+                ProductoBE producto = _productoBLL.BuscarProducto(idProducto);
                 if (producto != null)
                 {
                     MessageBox.Show("Producto Encontrado Nombre: " + producto.Nombre + "Precio: " + producto.Precio);

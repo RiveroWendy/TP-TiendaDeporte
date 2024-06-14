@@ -33,26 +33,16 @@ namespace BLL
             {
                 throw new InvalidOperationException("La venta debe tener al menos un detalle de venta.");
             }
-
-            foreach (var detalle in venta.DetalleVentas)
-            {
-                if (detalle.CantidadDeVenta <= 0)
-                {
-                    throw new InvalidOperationException("La cantidad de productos en los detalles de venta debe ser mayor a cero.");
-                }
-            }
-
         }
 
         public void GenerarVenta(VentaBE venta)
         {
             ValidarVenta(venta);
-            _ventaDAL.AgregarVenta(venta);
         }
 
-        public List<VentaBE> BuscarVenta(int idCliente)
+        public void BuscarVenta()
         {
-            return _ventaDAL.BuscarVentaPorIdCliente(idCliente);
+
         }
 
         public void VisualizarVenta()

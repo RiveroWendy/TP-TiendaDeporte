@@ -49,38 +49,34 @@
             // lblIngreseDireccion
             // 
             this.lblIngreseDireccion.AutoSize = true;
-            this.lblIngreseDireccion.Location = new System.Drawing.Point(44, 57);
-            this.lblIngreseDireccion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblIngreseDireccion.Location = new System.Drawing.Point(66, 87);
             this.lblIngreseDireccion.Name = "lblIngreseDireccion";
-            this.lblIngreseDireccion.Size = new System.Drawing.Size(131, 13);
+            this.lblIngreseDireccion.Size = new System.Drawing.Size(195, 20);
             this.lblIngreseDireccion.TabIndex = 24;
             this.lblIngreseDireccion.Text = "Ingrese el DNI del Usuario";
             // 
             // tboxDNI
             // 
-            this.tboxDNI.Location = new System.Drawing.Point(89, 97);
-            this.tboxDNI.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tboxDNI.Location = new System.Drawing.Point(134, 149);
             this.tboxDNI.Name = "tboxDNI";
-            this.tboxDNI.Size = new System.Drawing.Size(151, 20);
+            this.tboxDNI.Size = new System.Drawing.Size(225, 26);
             this.tboxDNI.TabIndex = 23;
             // 
             // lblDNI
             // 
             this.lblDNI.AutoSize = true;
-            this.lblDNI.Location = new System.Drawing.Point(44, 101);
-            this.lblDNI.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDNI.Location = new System.Drawing.Point(66, 155);
             this.lblDNI.Name = "lblDNI";
-            this.lblDNI.Size = new System.Drawing.Size(26, 13);
+            this.lblDNI.Size = new System.Drawing.Size(37, 20);
             this.lblDNI.TabIndex = 22;
             this.lblDNI.Text = "DNI";
             // 
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnCancelar.Location = new System.Drawing.Point(445, 70);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelar.Location = new System.Drawing.Point(667, 108);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(115, 44);
+            this.btnCancelar.Size = new System.Drawing.Size(172, 67);
             this.btnCancelar.TabIndex = 26;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
@@ -89,10 +85,9 @@
             // btnBuscarUsuario
             // 
             this.btnBuscarUsuario.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnBuscarUsuario.Location = new System.Drawing.Point(276, 70);
-            this.btnBuscarUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscarUsuario.Location = new System.Drawing.Point(414, 108);
             this.btnBuscarUsuario.Name = "btnBuscarUsuario";
-            this.btnBuscarUsuario.Size = new System.Drawing.Size(115, 44);
+            this.btnBuscarUsuario.Size = new System.Drawing.Size(172, 67);
             this.btnBuscarUsuario.TabIndex = 25;
             this.btnBuscarUsuario.Text = "Buscar Usuario";
             this.btnBuscarUsuario.UseVisualStyleBackColor = false;
@@ -112,13 +107,12 @@
             this.IdDireccion,
             this.IdLocalidad});
             this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(42, 149);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(63, 229);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1301, 266);
+            this.dataGridView1.Size = new System.Drawing.Size(1951, 410);
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -187,19 +181,17 @@
             // 
             // FormBuscarUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1283, 681);
+            this.ClientSize = new System.Drawing.Size(2086, 1047);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnBuscarUsuario);
             this.Controls.Add(this.lblIngreseDireccion);
             this.Controls.Add(this.tboxDNI);
             this.Controls.Add(this.lblDNI);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormBuscarUsuario";
             this.RightToLeftLayout = true;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormBuscarUsuario";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
