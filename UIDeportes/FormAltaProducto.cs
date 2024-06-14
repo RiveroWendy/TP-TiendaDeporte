@@ -68,15 +68,13 @@ namespace UIDeportes
 
         private void btnGuardarProducto_Click(object sender, EventArgs e)
         {
-            // Valores de los Textbox
             string nombre = tboxNombreProducto.Text;
             if (string.IsNullOrEmpty(nombre))
             {
                 MessageBox.Show("Por favor, complete todos los campos obligatorios.");
                 return;
             }
-
-            if (!long.TryParse(textBoxPrecio.Text, out long precio))
+            if (long.TryParse(textBoxPrecio.Text, out long precio) == false)
             {
                 MessageBox.Show("Por favor, ingrese un precio válido.");
                 return;
@@ -88,37 +86,38 @@ namespace UIDeportes
                 MessageBox.Show("Por favor, seleccione una categoría.");
                 return;
             }
-
-            var proveedorSeleccionado = comboBoxProveedor.SelectedItem as Proveedor;
-            if (proveedorSeleccionado == null)
-            {
-                MessageBox.Show("Por favor, seleccione un proveedor.");
-                return;
-            }
-
-            if (!int.TryParse(textBoxCantidad.Text, out int cantidad))
+            if (int.TryParse(textBoxCantidad.Text, out int cantidad) == false)
             {
                 MessageBox.Show("Por favor, ingrese una cantidad válida.");
                 return;
             }
+            producto.Nombre = nombre;
+            producto.Precio = precio;
 
-            // Crear el objeto ProductoBE y asignarle los valores
-            producto = new BE.ProductoBE
+            producto.Cantidad = new Stock()
             {
-                Nombre = nombre,
-                Precio = precio,
-                Categoria = categoriaSeleccionada,
-                Proveedor = proveedorSeleccionado,
-                Cantidad = new Stock { CantidadStock = cantidad }
+                CantidadStock = cantidad,
             };
+
+            producto.Proveedor = new Proveedor()
+            {
+                IdProveedor = Convert.ToInt32(comboBoxProveedor.SelectedValue),
+            };
+
+            producto.Categoria = new CategoriaProducto()
+            {
+                IdCategoria = Convert.ToInt32(comboBoxCategoria.SelectedValue),
+            };
+
 
             try
             {
-                // Llamar al método para guardar el producto
-                var productoBLL = new BLL.ProductoBLL();
+
+                var productoBLL = new ProductoBLL();
                 productoBLL.CrearProducto(producto);
 
                 MessageBox.Show("Producto guardado exitosamente.");
+
             }
             catch (Exception ex)
             {

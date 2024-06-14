@@ -85,20 +85,36 @@ namespace UIDeportes
                 }
                 else
                 {
-                    int idProducto = Convert.ToInt32(selectedRow.Cells["IdProducto"].Value.ToString());
-                    string nombreProducto = txtNombreProducto.Text;
-                    long precioProducto = Convert.ToInt64(txtPrecioProducto.Text);
 
-                    int cantidad = Convert.ToInt32(txtStockProducto.Text);
+                    string nombreProducto = txtNombreProducto.Text;
+                    if (string.IsNullOrEmpty(nombreProducto))
+                    {
+                        MessageBox.Show("Por favor, complete todos los campos obligatorios.");
+                        return;
+                    }
+                    if (long.TryParse(txtPrecioProducto.Text, out long precioProducto) == false)
+                    {
+                        MessageBox.Show("Por favor, ingrese un precio válido.");
+                        return;
+                    }
+
+                    if (int.TryParse(txtStockProducto.Text, out int cantidad) == false)
+                    {
+                        MessageBox.Show("Por favor, ingrese una cantidad válida.");
+                        return;
+                    }
+
+                    int idProducto = Convert.ToInt32(selectedRow.Cells["IdProducto"].Value.ToString());
+
 
                     _productoBLL.EditarProducto(idProducto, nombreProducto, precioProducto);
                     _productoBLL.EditarStockProducto(idProducto, cantidad);
 
                     //Listamos los nuevos registros una vez que ya actualizamos
-                    List<BE.ProductoBE> productos = _productoBLL.TraerProductos();
+                    List<ProductoBE> productos = _productoBLL.TraerProductos();
                     dgvEditarProductos.Rows.Clear();
 
-                    foreach (BE.ProductoBE producto in productos)
+                    foreach (ProductoBE producto in productos)
                     {
                         dgvEditarProductos.Rows.Add(producto.IdProducto, producto.Nombre, producto.Precio, producto.Cantidad.CantidadStock);
                     }
