@@ -29,7 +29,7 @@ namespace UIDeportes
 
         private void FormBuscarProducto_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void tboxNombreProducto_TextChanged(object sender, EventArgs e)
@@ -39,21 +39,38 @@ namespace UIDeportes
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            //Valor TextBox Nombre
-            string input = tboxNombreProducto.Text;
-            string nombreProducto = input;
-                ProductoBE producto = _productoBLL.BuscarProducto(nombreProducto);
-                if (producto != null)
-                {
-                    MessageBox.Show("Producto Encontrado Nombre: " + producto.Nombre + "Precio: " + producto.Precio);
+            // Valor TextBox Nombre
+            dgvBuscarProducto.DataSource = null;
+            dgvBuscarProducto.Columns.Clear();
+            dgvBuscarProducto.Rows.Clear();
+            string nombreProducto = tboxNombreProducto.Text;
 
-                }
-                else
+            List<ProductoBE> productos = _productoBLL.BuscarProducto(nombreProducto);
+
+            if (productos.Count > 0)
+            {
+                dgvBuscarProducto.Columns.Add("IdProducto", "ID Producto");
+                dgvBuscarProducto.Columns.Add("Nombre", "Nombre");
+                dgvBuscarProducto.Columns.Add("Precio", "Precio");
+
+                dgvBuscarProducto.Rows.Clear();
+
+                foreach (BE.ProductoBE producto in productos)
                 {
-                    MessageBox.Show("Producto no encontrado");
+                    dgvBuscarProducto.Rows.Add(producto.IdProducto, producto.Nombre, producto.Precio, producto.Cantidad.CantidadStock);
                 }
-            
-           
+            }
+            else
+            {
+                MessageBox.Show("Producto no encontrado");
+                dgvBuscarProducto.DataSource = null;
+            }
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

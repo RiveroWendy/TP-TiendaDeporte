@@ -75,33 +75,43 @@ namespace BLL
             return _productoDAL.EliminarProducto(idProducto);
         }
 
-        public ProductoBE BuscarProducto(string nombreProducto)
+        public List<ProductoBE> BuscarProducto(string nombreProducto)
         {
-            var producto = _productos.FirstOrDefault(p => p.Nombre.Equals(nombreProducto, StringComparison.OrdinalIgnoreCase));
-            if (producto != null)
+            List<ProductoBE> productosEncontrados = new List<ProductoBE>();
+
+            var resultados = _productoDAL.BuscarProducto(nombreProducto);
+
+            foreach (DataRow row in resultados.Rows)
             {
-                return producto;
-            }
-            else
-            {
-                DataTable productoData = _productoDAL.BuscarProducto(nombreProducto);
-                if (productoData.Rows.Count > 0)
+                int IdProducto = Convert.ToInt32(row["IdProducto"]);
+                string Nombre = row["Nombre"].ToString();
+                long Precio = Convert.ToInt64(row["Precio"]);
+                int IdProveedor = Convert.ToInt32(row["IdProveedor"]);
+                int IdCategoria = Convert.ToInt32(row["IdCategoria"]);
+
+
+                ProductoBE producto = new ProductoBE
                 {
-                    DataRow row = productoData.Rows[0];
-                    ProductoBE encontradoProducto = new ProductoBE
+                    IdProducto = IdProducto,
+                    Nombre = Nombre,
+                    Precio = Precio,
+                    Proveedor = new Proveedor
                     {
-                        IdProducto = Convert.ToInt32(row["IdProducto"]),
-                        Nombre = row["Nombre"].ToString(),
-                        Precio = Convert.ToInt64(row["Precio"]),
-                        //Cantidad = new Stock { Cantidad = Convert.ToInt32(row["Cantidad"]) },
-                        //Categoria = new CategoriaProducto { Nombre = row["Categoria"].ToString() },
-                        //Proveedor = new Proveedor { NombreEmpresa = row["Proveedor"].ToString() }
-                    };
-                    return encontradoProducto;
-                }
-                return null;
+                        IdProveedor = IdProveedor
+                    },
+                    Categoria = new CategoriaProducto
+                    {
+                        IdCategoria = IdCategoria
+                    }
+                    
+                };
+
+                productosEncontrados.Add(producto);
             }
+
+            return productosEncontrados;
         }
+   
 
         public List<CategoriaProducto> ObtenerCategoria()
         {

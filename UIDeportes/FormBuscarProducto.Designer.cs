@@ -32,32 +32,33 @@
             this.tboxNombreProducto = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.dgvBuscarProducto = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscarProducto)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNombreProducto
             // 
             this.lblNombreProducto.AutoSize = true;
-            this.lblNombreProducto.Location = new System.Drawing.Point(88, 75);
-            this.lblNombreProducto.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNombreProducto.Location = new System.Drawing.Point(81, 42);
             this.lblNombreProducto.Name = "lblNombreProducto";
-            this.lblNombreProducto.Size = new System.Drawing.Size(107, 13);
+            this.lblNombreProducto.Size = new System.Drawing.Size(135, 16);
             this.lblNombreProducto.TabIndex = 0;
             this.lblNombreProducto.Text = "Nombre del Producto";
             // 
             // tboxNombreProducto
             // 
-            this.tboxNombreProducto.Location = new System.Drawing.Point(231, 75);
-            this.tboxNombreProducto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tboxNombreProducto.Location = new System.Drawing.Point(236, 42);
+            this.tboxNombreProducto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tboxNombreProducto.Name = "tboxNombreProducto";
-            this.tboxNombreProducto.Size = new System.Drawing.Size(138, 20);
+            this.tboxNombreProducto.Size = new System.Drawing.Size(219, 22);
             this.tboxNombreProducto.TabIndex = 1;
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(91, 169);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscar.Location = new System.Drawing.Point(483, 31);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(87, 36);
+            this.btnBuscar.Size = new System.Drawing.Size(152, 44);
             this.btnBuscar.TabIndex = 2;
             this.btnBuscar.Text = "Buscar Producto";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -65,28 +66,43 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(231, 169);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelar.Location = new System.Drawing.Point(519, 280);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(87, 36);
+            this.btnCancelar.Size = new System.Drawing.Size(116, 44);
             this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // dgvBuscarProducto
+            // 
+            this.dgvBuscarProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBuscarProducto.Location = new System.Drawing.Point(84, 78);
+            this.dgvBuscarProducto.MultiSelect = false;
+            this.dgvBuscarProducto.Name = "dgvBuscarProducto";
+            this.dgvBuscarProducto.ReadOnly = true;
+            this.dgvBuscarProducto.RowHeadersWidth = 51;
+            this.dgvBuscarProducto.RowTemplate.Height = 24;
+            this.dgvBuscarProducto.Size = new System.Drawing.Size(551, 171);
+            this.dgvBuscarProducto.TabIndex = 4;
+            this.dgvBuscarProducto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
             // FormBuscarProducto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 292);
+            this.ClientSize = new System.Drawing.Size(711, 359);
+            this.Controls.Add(this.dgvBuscarProducto);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.tboxNombreProducto);
             this.Controls.Add(this.lblNombreProducto);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormBuscarProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormBuscarProducto";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscarProducto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,5 +114,6 @@
         private System.Windows.Forms.TextBox tboxNombreProducto;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.DataGridView dgvBuscarProducto;
     }
 }
