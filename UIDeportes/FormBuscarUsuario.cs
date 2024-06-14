@@ -39,8 +39,9 @@ namespace UIDeportes
             dataGridView1.Columns.Add(editarColumna);
             dataGridView1.Columns.Add(eliminarColumna);
 
-            // Manejamos el evento de clic en el contenido de las celdas del DataGridView
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellContentClick -= dataGridView1_CellContentClick; // Eliminamos el manejador existente, si es necesario
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick; // Luego, subscribimos el evento
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -53,7 +54,7 @@ namespace UIDeportes
             int dni;
 
             // Intentamos convertir el texto del TextBox a un número entero
-            if (int.TryParse(tboxDNI.Text, out  dni))
+            if (int.TryParse(tboxDNI.Text, out dni))
             {
                 // Buscamos el usuario por DNI utilizando la capa de lógica de negocio (BLL)
                 UsuarioBE usuario = _usuarioBLL.BuscarUsuarioPorDni(dni);
@@ -71,7 +72,7 @@ namespace UIDeportes
                     MessageBox.Show("No se encontró ningún usuario con ese DNI.", "Usuario no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-           else
+            else
             {
                 MessageBox.Show("Por favor, ingrese un DNI válido.", "DNI inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -79,32 +80,57 @@ namespace UIDeportes
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Verificamos que la celda seleccionada sea válida
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                // Verificamos si se ha clicado en la columna "Editar"
                 if (dataGridView1.Columns[e.ColumnIndex].Name == "Editar")
                 {
-                    // Obtener el DNI del usuario seleccionado en la fila
                     int dni = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["DNI"].Value);
 
-                    // Buscar el usuario en la base de datos utilizando su DNI
                     UsuarioBE usuario = _usuarioBLL.BuscarUsuarioPorDni(dni);
 
                     if (usuario != null)
                     {
-                        // Abrir el formulario de edición y pasarle el usuario encontrado
                         FormEditarUsuario formEditarUsuario = new FormEditarUsuario(usuario);
                         formEditarUsuario.ShowDialog();
                     }
                 }
                 else if (dataGridView1.Columns[e.ColumnIndex].Name == "Eliminar")
                 {
-                    // Código para eliminar el usuario, aun resta por hacerlo.
-                }
-            }
+                    // Obtener el DNI del usuario a eliminar
+                    int dni = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["DNI"].Value);
 
-        }   
+                    // Obtener el valor de la celda Cargo antes de realizar cualquier operación
+                    object cargoValue = dataGridView1.Rows[e.RowIndex].Cells["Cargo"].Value;
+                    if (cargoValue == null)
+                    {
+                        MessageBox.Show("El cargo del usuario no está especificado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    string cargo = cargoValue.ToString();
+
+                    if (cargo == "Administrador")
+                    {
+                        MessageBox.Show("No se puede eliminar al usuario del tipo Administrador.", "Operación no permitida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    DialogResult resultado = MessageBox.Show($"¿Está seguro que desea eliminar al usuario con DNI: {dni}?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        // Llamar al método de la capa BLL para eliminar el usuario
+                        _usuarioBLL.EliminarUsuario(dni);
+                        MessageBox.Show("El usuario ha sido eliminado con exito!");
+
+                        // Eliminar la fila del DataGridView solo si la eliminación fue exitosa
+                        dataGridView1.Rows.RemoveAt(e.RowIndex);
+                    }
+                }
+
+
+            }
+        }
     }
 }
-    
+

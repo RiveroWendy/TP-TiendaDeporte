@@ -21,13 +21,7 @@ namespace UIDeportes
         {
             InitializeComponent();
             clienteBLL = new ClienteBLL();
-           // clienteExistente = cliente; 
-            // Verificar si se pasó un cliente existente
-            if (clienteExistente != null)
-            {
-                // Rellenar los controles del formulario con los datos del cliente existente
-                RellenarDatosClienteExistente(clienteExistente);
-            }
+
         }
         public void EstablecerClienteExistente(ClienteBE cliente)
         {
@@ -52,11 +46,19 @@ namespace UIDeportes
             tboxLocalidad.Text = cliente.Direccion.Localidad.NombreLocalidad;
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-            FormVendedor frm = Application.OpenForms["FormVendedor"] as FormVendedor;
-            frm?.Show();
+        }
+
+        private void tboxNombre_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void btnGuardarCliente_Click(object sender, EventArgs e)
@@ -75,6 +77,7 @@ namespace UIDeportes
                 }
 
                 MessageBox.Show("Cliente guardado exitosamente.");
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -132,5 +135,9 @@ namespace UIDeportes
             clienteBLL.ActualizarCliente(clienteExistente);
         }
 
+        private void tboxLocalidad_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

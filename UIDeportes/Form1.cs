@@ -11,8 +11,6 @@ using BE;
 using BLL;
 
 
-
-
 namespace UIDeportes
 {
     public partial class Form1 : Form

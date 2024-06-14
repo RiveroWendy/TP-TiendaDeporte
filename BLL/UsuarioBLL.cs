@@ -50,6 +50,26 @@ namespace BLL
             return _usuarioDAL.BuscarUsuarioPorDni(dni);
         }
 
+
+        public void EliminarUsuario(int dni)
+        {
+            try
+            {
+                // Obtener el usuario a eliminar para verificar si es administrador
+                UsuarioBE usuario = _usuarioDAL.BuscarUsuarioPorDni(dni);
+
+                if (usuario != null && usuario.Empleado.CargoEmpleado.Nombre.ToLower() == "administrador")
+                {
+                    throw new Exception("No se puede eliminar al usuario administrador.");
+                }
+
+                _usuarioDAL.EliminarUsuario(dni);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar el usuario. Detalles: " + ex.Message, ex);
+            }
+        }
     }
 }
 

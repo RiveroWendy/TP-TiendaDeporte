@@ -13,7 +13,7 @@ using BE;
 
 namespace UIDeportes
 {
-     public partial class FormEditarUsuario : Form
+    public partial class FormEditarUsuario : Form
     {
 
         private UsuarioBLL _usuarioBLL;
@@ -25,11 +25,13 @@ namespace UIDeportes
             _usuarioBLL = new UsuarioBLL();
             _usuario = usuario;
             CargarDatosUsuario();
+
             // Enlazar evento de cambio de selección del ComboBox de Cargo
             cboxCargo.SelectedIndexChanged += cboxCargo_SelectedIndexChanged;
 
-            // Enlazar evento de clic del botón Guardar
-            btnGuardar.Click += btnGuardar_Click_1;
+
+            btnGuardar.Click -= btnGuardar_Click_1; //Eliminamos el manejador existente, si es necesario
+            btnGuardar.Click += btnGuardar_Click_1;// Enlazamos evento de clic del botón Guardar
         }
 
         private void CargarDatosUsuario()
@@ -56,11 +58,6 @@ namespace UIDeportes
 
             // Seleccionamos el cargo actual del usuario
             cboxCargo.SelectedItem = _usuario.Empleado.CargoEmpleado.Nombre;
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void btnGuardar_Click_1(object sender, EventArgs e)
@@ -133,7 +130,62 @@ namespace UIDeportes
 
             return null; // Si no se encuentra el cargo, devolver null
         }
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void tboxNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxApellido_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxCorreo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void tboxDni_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxNombreUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxClave_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxCalle_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxNumeroCalle_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxLocalidad_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxCodigoPostal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
-    
+
 

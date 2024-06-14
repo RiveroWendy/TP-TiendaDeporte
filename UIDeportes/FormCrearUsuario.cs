@@ -63,6 +63,10 @@ namespace UIDeportes
             string nombreUsuario = tboxNombreUsuario.Text;
             string clave = tboxClave.Text;
 
+            // Obtenemos el cargo seleccionado en el ComboBox
+            Cargo cargoSeleccionado = (Cargo)cboxCargos.SelectedItem;
+
+
             // Verificamos si hay campos obligatorios vacíos
             if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(apellido) || string.IsNullOrEmpty(nombreUsuario) || string.IsNullOrEmpty(clave))
             {
@@ -89,7 +93,8 @@ namespace UIDeportes
             empleado.Correo = correo;
             empleado.Dni = dni;
             empleado.Direccion = direccion;
-          
+            empleado.CargoEmpleado = cargoSeleccionado;
+
             UsuarioBE usuario = new UsuarioBE
             {
                 Empleado = empleado,
@@ -126,12 +131,27 @@ namespace UIDeportes
             else
             {
                 MessageBox.Show("Error: no se pudo obtener el cargo seleccionado del ComboBox");
-            }         
+            }
+        }
+
+        private void FormCrearUsuario_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxDNI_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
