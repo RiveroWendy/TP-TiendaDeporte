@@ -75,16 +75,16 @@ namespace BLL
             return _productoDAL.EliminarProducto(idProducto);
         }
 
-        public ProductoBE BuscarProducto(int idProducto)
+        public ProductoBE BuscarProducto(string nombreProducto)
         {
-            var producto = _productos.FirstOrDefault(p => p.IdProducto == idProducto);
+            var producto = _productos.FirstOrDefault(p => p.Nombre.Equals(nombreProducto, StringComparison.OrdinalIgnoreCase));
             if (producto != null)
             {
                 return producto;
             }
             else
             {
-                DataTable productoData = _productoDAL.BuscarProducto(idProducto);
+                DataTable productoData = _productoDAL.BuscarProducto(nombreProducto);
                 if (productoData.Rows.Count > 0)
                 {
                     DataRow row = productoData.Rows[0];

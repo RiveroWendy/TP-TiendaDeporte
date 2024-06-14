@@ -41,11 +41,8 @@ namespace UIDeportes
         {
             //Valor TextBox Nombre
             string input = tboxNombreProducto.Text;
-            int idProducto;
-
-            if (int.TryParse(input, out idProducto))
-            {
-                BE.ProductoBE producto = _productoBLL.BuscarProducto(idProducto);
+            string nombreProducto = input;
+                ProductoBE producto = _productoBLL.BuscarProducto(nombreProducto);
                 if (producto != null)
                 {
                     MessageBox.Show("Producto Encontrado Nombre: " + producto.Nombre + "Precio: " + producto.Precio);
@@ -55,12 +52,8 @@ namespace UIDeportes
                 {
                     MessageBox.Show("Producto no encontrado");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Por favor ingrese un ID de producto válido");
-            }
-
+            
+           
         }
     }
 }
