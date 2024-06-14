@@ -75,43 +75,33 @@ namespace BLL
             return _productoDAL.EliminarProducto(idProducto);
         }
 
-        public List<ProductoBE> BuscarProducto(string nombreProducto)
+        public ProductoBE BuscarProducto(int idProducto)
         {
-            List<ProductoBE> productosEncontrados = new List<ProductoBE>();
-
-            var resultados = _productoDAL.BuscarProducto(nombreProducto);
-
-            foreach (DataRow row in resultados.Rows)
+            var producto = _productos.FirstOrDefault(p => p.IdProducto == idProducto);
+            if (producto != null)
             {
-                int IdProducto = Convert.ToInt32(row["IdProducto"]);
-                string Nombre = row["Nombre"].ToString();
-                long Precio = Convert.ToInt64(row["Precio"]);
-                int IdProveedor = Convert.ToInt32(row["IdProveedor"]);
-                int IdCategoria = Convert.ToInt32(row["IdCategoria"]);
-
-
-                ProductoBE producto = new ProductoBE
-                {
-                    IdProducto = IdProducto,
-                    Nombre = Nombre,
-                    Precio = Precio,
-                    Proveedor = new Proveedor
-                    {
-                        IdProveedor = IdProveedor
-                    },
-                    Categoria = new CategoriaProducto
-                    {
-                        IdCategoria = IdCategoria
-                    }
-                    
-                };
-
-                productosEncontrados.Add(producto);
+                return producto;
             }
-
-            return productosEncontrados;
+            else
+            {
+                DataTable productoData = _productoDAL.BuscarProducto(idProducto);
+                if (productoData.Rows.Count > 0)
+                {
+                    DataRow row = productoData.Rows[0];
+                    ProductoBE encontradoProducto = new ProductoBE
+                    {
+                        IdProducto = Convert.ToInt32(row["IdProducto"]),
+                        Nombre = row["Nombre"].ToString(),
+                        Precio = Convert.ToInt64(row["Precio"]),
+                        //Cantidad = new Stock { Cantidad = Convert.ToInt32(row["Cantidad"]) },
+                        //Categoria = new CategoriaProducto { Nombre = row["Categoria"].ToString() },
+                        //Proveedor = new Proveedor { NombreEmpresa = row["Proveedor"].ToString() }
+                    };
+                    return encontradoProducto;
+                }
+                return null;
+            }
         }
-   
 
         public List<CategoriaProducto> ObtenerCategoria()
         {
