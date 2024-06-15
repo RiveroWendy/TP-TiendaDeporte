@@ -147,6 +147,41 @@ namespace DAL
                 throw;
             }
         }
+
+        public List<ClienteBE> ObtenerListadoDeClientes()
+        {
+            List<ClienteBE> clientes = new List<ClienteBE>();
+
+            try
+            {
+                DataTable dt = _storeProcedure.LeerPorStoreProcedure("sp_obtener_clientes");
+
+                foreach (DataRow row in dt.Rows)
+                {
+
+                    ClienteBE cliente = new ClienteBE
+                    {
+                        IdCliente = Convert.ToInt32(row["IdCliente"]),
+                        Dni = Convert.ToInt32(row["Dni"]),
+                        Nombre = row["Nombre"].ToString(),
+                        Apellido = row["Apellido"].ToString(),
+                        Correo = row["CorreoElectronico"].ToString(),
+                        Direccion = _direccion.ObtenerDireccionPorId(Convert.ToInt32(row["IdDireccion"]))
+                    };
+
+                    clientes.Add(cliente);
+                }
+
+                return clientes;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }
 

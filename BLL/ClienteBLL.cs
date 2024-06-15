@@ -48,6 +48,11 @@ namespace BLL
                 throw new Exception("Error al actualizar el cliente.", ex);
             }
         }
-   
+
+        public List<ClienteBE> ObtenerClientes()
+        {
+            return clienteDAL.ObtenerListadoDeClientes();
+        }
+
     }
 }
