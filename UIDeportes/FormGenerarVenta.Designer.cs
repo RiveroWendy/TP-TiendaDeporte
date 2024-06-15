@@ -37,7 +37,6 @@
             this.cbxProductos = new System.Windows.Forms.ComboBox();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.tbxCantidadProducto = new System.Windows.Forms.TextBox();
-            this.txtDniCliente = new System.Windows.Forms.TextBox();
             this.lblDNICliente = new System.Windows.Forms.Label();
             this.lblEnvioDomicilio = new System.Windows.Forms.Label();
             this.checkBoxSI = new System.Windows.Forms.CheckBox();
@@ -51,6 +50,7 @@
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbxSeleccionCliente = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductosVenta)).BeginInit();
@@ -59,7 +59,7 @@
             // btnGuardarVenta
             // 
             this.btnGuardarVenta.Location = new System.Drawing.Point(212, 424);
-            this.btnGuardarVenta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGuardarVenta.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuardarVenta.Name = "btnGuardarVenta";
             this.btnGuardarVenta.Size = new System.Drawing.Size(112, 40);
             this.btnGuardarVenta.TabIndex = 5;
@@ -82,7 +82,7 @@
             this.cbxProductos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxProductos.FormattingEnabled = true;
             this.cbxProductos.Location = new System.Drawing.Point(89, 28);
-            this.cbxProductos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxProductos.Margin = new System.Windows.Forms.Padding(2);
             this.cbxProductos.Name = "cbxProductos";
             this.cbxProductos.Size = new System.Drawing.Size(135, 21);
             this.cbxProductos.TabIndex = 0;
@@ -103,28 +103,20 @@
             // tbxCantidadProducto
             // 
             this.tbxCantidadProducto.Location = new System.Drawing.Point(350, 29);
-            this.tbxCantidadProducto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxCantidadProducto.Margin = new System.Windows.Forms.Padding(2);
             this.tbxCantidadProducto.Name = "tbxCantidadProducto";
             this.tbxCantidadProducto.Size = new System.Drawing.Size(60, 20);
             this.tbxCantidadProducto.TabIndex = 1;
             // 
-            // txtDniCliente
-            // 
-            this.txtDniCliente.Location = new System.Drawing.Point(222, 28);
-            this.txtDniCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtDniCliente.Name = "txtDniCliente";
-            this.txtDniCliente.Size = new System.Drawing.Size(176, 20);
-            this.txtDniCliente.TabIndex = 27;
-            // 
             // lblDNICliente
             // 
             this.lblDNICliente.AutoSize = true;
-            this.lblDNICliente.Location = new System.Drawing.Point(63, 32);
+            this.lblDNICliente.Location = new System.Drawing.Point(65, 32);
             this.lblDNICliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDNICliente.Name = "lblDNICliente";
-            this.lblDNICliente.Size = new System.Drawing.Size(116, 13);
+            this.lblDNICliente.Size = new System.Drawing.Size(106, 13);
             this.lblDNICliente.TabIndex = 26;
-            this.lblDNICliente.Text = "Ingrese DNI del Cliente";
+            this.lblDNICliente.Text = "Seleccione al Cliente";
             // 
             // lblEnvioDomicilio
             // 
@@ -140,7 +132,7 @@
             // 
             this.checkBoxSI.AutoSize = true;
             this.checkBoxSI.Location = new System.Drawing.Point(338, 378);
-            this.checkBoxSI.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxSI.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxSI.Name = "checkBoxSI";
             this.checkBoxSI.Size = new System.Drawing.Size(35, 17);
             this.checkBoxSI.TabIndex = 29;
@@ -151,7 +143,7 @@
             // 
             this.checkBoxNO.AutoSize = true;
             this.checkBoxNO.Location = new System.Drawing.Point(438, 378);
-            this.checkBoxNO.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxNO.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxNO.Name = "checkBoxNO";
             this.checkBoxNO.Size = new System.Drawing.Size(40, 17);
             this.checkBoxNO.TabIndex = 30;
@@ -161,7 +153,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(375, 424);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(112, 40);
             this.btnCancelar.TabIndex = 31;
@@ -171,7 +163,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtDniCliente);
+            this.groupBox1.Controls.Add(this.cbxSeleccionCliente);
             this.groupBox1.Controls.Add(this.lblDNICliente);
             this.groupBox1.Location = new System.Drawing.Point(99, 29);
             this.groupBox1.Name = "groupBox1";
@@ -254,6 +246,15 @@
             this.Subtotal.Name = "Subtotal";
             this.Subtotal.ReadOnly = true;
             // 
+            // cbxSeleccionCliente
+            // 
+            this.cbxSeleccionCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSeleccionCliente.FormattingEnabled = true;
+            this.cbxSeleccionCliente.Location = new System.Drawing.Point(213, 29);
+            this.cbxSeleccionCliente.Name = "cbxSeleccionCliente";
+            this.cbxSeleccionCliente.Size = new System.Drawing.Size(228, 21);
+            this.cbxSeleccionCliente.TabIndex = 27;
+            // 
             // FormGenerarVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,7 +268,7 @@
             this.Controls.Add(this.checkBoxSI);
             this.Controls.Add(this.lblEnvioDomicilio);
             this.Controls.Add(this.btnGuardarVenta);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormGenerarVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormGenerarVenta";
@@ -289,7 +290,6 @@
         private System.Windows.Forms.ComboBox cbxProductos;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.TextBox tbxCantidadProducto;
-        private System.Windows.Forms.TextBox txtDniCliente;
         private System.Windows.Forms.Label lblDNICliente;
         private System.Windows.Forms.Label lblEnvioDomicilio;
         private System.Windows.Forms.CheckBox checkBoxSI;
@@ -303,5 +303,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Subtotal;
+        private System.Windows.Forms.ComboBox cbxSeleccionCliente;
     }
 }

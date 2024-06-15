@@ -88,11 +88,18 @@ namespace UIDeportes
             try
             {
                 _productos = _producto.TraerProductos();
+                List<ClienteBE> clientes = _cliente.ObtenerClientes();
+                cbxSeleccionCliente.Items.Clear();
                 cbxProductos.Items.Clear();
 
                 foreach (ProductoBE producto in _productos)
                 {
                     cbxProductos.Items.Add(producto.Nombre.ToString());
+                }
+
+                foreach (var cliente in clientes)
+                {
+                    cbxSeleccionCliente.Items.Add($"{cliente.Apellido}, {cliente.Nombre} - DNI: {cliente.Dni}");
                 }
 
                 dgvProductosVenta.EnableHeadersVisualStyles = false;
@@ -193,7 +200,9 @@ namespace UIDeportes
                 try
                 {
                     UsuarioBE usuario = ManejadorDeSesion.Instancia.Sesion;
-                    ClienteBE cliente = _cliente.BuscarClientePorDNI(Convert.ToInt32(txtDniCliente.Text.ToString()));
+                    int indice = cbxSeleccionCliente.Text.IndexOf(": ");
+                    string dni = cbxSeleccionCliente.Text.Substring(indice + 2);
+                    ClienteBE cliente = _cliente.BuscarClientePorDNI(Convert.ToInt32(dni));
                     VentaBE venta = new VentaBE
                     {
                         EmpleadoResponsable = new EmpleadoBE
